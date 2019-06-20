@@ -1,0 +1,6 @@
+.wrap {
+    @apply min-h-screen flex flex-col;
+}
+.main {
+    @apply flex-grow text-gray-900 leading-normal mt-20;
+}
