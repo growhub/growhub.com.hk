@@ -6,7 +6,7 @@ import Breadcrumb from "@components/molecules/breadcrumb"
 import Services from "@components/organisms/services"
 
 const SrevicesPage = ({intl}) => (
-  <Layout intl={intl} >
+  <Layout intl={intl} page="services" >
     <SEO title={intl.formatMessage({ id: 'services' })} keywords={[`${intl.formatMessage({ id: 'services' })}`]} />
     <Breadcrumb breadcrumbs={[
       { to: '/', label: intl.formatMessage({ id: 'home' }) },

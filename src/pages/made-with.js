@@ -6,7 +6,7 @@ import Breadcrumb from "@components/molecules/breadcrumb"
 import MadeWith from "@components/organisms/made-with"
 
 const MadeWithPage = ({ intl }) => (
-  <Layout intl={intl} >
+  <Layout intl={intl} page="made-with" >
     <SEO title="Made with" keywords={[`gatsby`, `react`, `tailwindcss`]} />
     <Breadcrumb breadcrumbs={[
       { to: '/', label: intl.formatMessage({ id: 'home' }) },

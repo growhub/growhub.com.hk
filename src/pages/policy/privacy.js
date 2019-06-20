@@ -6,7 +6,7 @@ import Breadcrumb from "@components/molecules/breadcrumb"
 import PrivacyPolicy from "@components/organisms/privacy-policy"
 
 const PrivacyPolicyPage = ({intl}) => (
-  <Layout intl={intl} >
+  <Layout intl={intl} page="privacy-policy" >
     <SEO title={intl.formatMessage({ id: 'privacy-policy' })} keywords={[`${intl.formatMessage({ id: 'privacy-policy' })}`]} />
     <Breadcrumb breadcrumbs={[
       { to: '/', label: intl.formatMessage({ id: 'home' }) },

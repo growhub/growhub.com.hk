@@ -6,7 +6,7 @@ import SEO from "@components/seo"
 import Home from "@components/organisms/home"
 
 const IndexPage = ({ intl, data }) => (
-  <Layout intl={intl} >
+  <Layout intl={intl} page="home" >
     <SEO title={data.site.siteMetadata.title} keywords={[`gatsby`, `react`]} />
     <Home
       intl={intl}

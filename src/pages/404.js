@@ -6,7 +6,7 @@ import SEO from "@components/seo"
 import SadFaceLineIcon from "@components/atoms/icon/sad-face-line"
 
 const NotFoundPage = ({intl}) => (
-  <Layout intl={intl} >
+  <Layout intl={intl} page="404" >
     <SEO title="404: Not found" />
     <section className="mt-10 container mx-auto">
       <div className="flex justify-center">

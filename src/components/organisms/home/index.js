@@ -23,7 +23,7 @@ const Home = ({intl, siteTitle}) => (
       </div>
     </div>
     <div>
-      <div className="container mx-auto mt-20">
+      <div className="container mx-auto my-20">
         <Title title="News" subtitle="" />
         <div className="shadow-lg bg-white rounded p-6 px-2 lg:p-6">
           <div className="border-b p-2 flex justify-between items-center">

@@ -25,7 +25,7 @@ class Layout extends React.Component  {
   }
 
   render() {
-    const { intl, children } = this.props
+    const { intl, page, children } = this.props
     return (
       <StaticQuery
         query={graphql`
@@ -50,6 +50,7 @@ class Layout extends React.Component  {
             </main>
             <Footer
               intl={intl}
+              page={page}
               siteTitle={data.site.siteMetadata.title}
             />
           </div>
