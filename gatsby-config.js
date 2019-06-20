@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
   siteMetadata: {
     title: `GrowHub`,
-    description: `香港移住を自由に楽しく共有していくブログ`,
+    description: '',
     author: `@nakanakamu0828`,
     siteUrl: process.env.SITE_URL
   },
@@ -49,78 +49,78 @@ module.exports = {
         path: `${__dirname}/contents/images`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/contents/posts`,
-        name: `posts`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `json`,
-        path: `${__dirname}/contents/jsons`,
-      },
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        commonmark: true,
-        footnotes: true,
-        pedantic: true,
-        gfm: true,
-        plugins: [
-          `gatsby-remark-embed-video`,
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590,
-            },
-          },
-          {
-            resolve: "gatsby-remark-external-links",
-            options: {
-              target: "_blank",
-              rel: "nofollow, noopener, noreferrer"
-            }
-          },
-          {
-            resolve: `gatsby-remark-autolink-headers`,
-            options: {
-              offsetY: `100`,
-              icon: false,
-              className: `custom-class`,
-              maintainCase: false,
-            },
-          },
-          {
-            resolve: 'gatsby-remark-toc',
-            options: {
-              header: '目次', // the custom header text
-              include: [
-                'contents/**/*.md' // an include glob to match against
-              ],
-              mdastUtilTocOptions: {
-                maxDepth: 3
-              }
-            }
-          },
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              classPrefix: "language-",
-              inlineCodeMarker: null,
-              aliases: {},
-              showLineNumbers: false,
-              noInlineHighlight: false,
-            },
-          },
-          `gatsby-remark-component`,
-          `gatsby-remark-responsive-iframe`,
-        ],
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/contents/posts`,
+    //     name: `posts`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `json`,
+    //     path: `${__dirname}/contents/jsons`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-transformer-remark`,
+    //   options: {
+    //     commonmark: true,
+    //     footnotes: true,
+    //     pedantic: true,
+    //     gfm: true,
+    //     plugins: [
+    //       `gatsby-remark-embed-video`,
+    //       {
+    //         resolve: `gatsby-remark-images`,
+    //         options: {
+    //           maxWidth: 590,
+    //         },
+    //       },
+    //       {
+    //         resolve: "gatsby-remark-external-links",
+    //         options: {
+    //           target: "_blank",
+    //           rel: "nofollow, noopener, noreferrer"
+    //         }
+    //       },
+    //       {
+    //         resolve: `gatsby-remark-autolink-headers`,
+    //         options: {
+    //           offsetY: `100`,
+    //           icon: false,
+    //           className: `custom-class`,
+    //           maintainCase: false,
+    //         },
+    //       },
+    //       {
+    //         resolve: 'gatsby-remark-toc',
+    //         options: {
+    //           header: '目次', // the custom header text
+    //           include: [
+    //             'contents/**/*.md' // an include glob to match against
+    //           ],
+    //           mdastUtilTocOptions: {
+    //             maxDepth: 3
+    //           }
+    //         }
+    //       },
+    //       {
+    //         resolve: `gatsby-remark-prismjs`,
+    //         options: {
+    //           classPrefix: "language-",
+    //           inlineCodeMarker: null,
+    //           aliases: {},
+    //           showLineNumbers: false,
+    //           noInlineHighlight: false,
+    //         },
+    //       },
+    //       `gatsby-remark-component`,
+    //       `gatsby-remark-responsive-iframe`,
+    //     ],
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
@@ -137,9 +137,7 @@ module.exports = {
       resolve: `gatsby-plugin-env-variables`,
       options: {
         whitelist: [
-          "IFRAMELY_API_KEY",
           "GOOGLE_ANALYTICS_TRACKING_ID",
-          "GOOGLE_ADSENSE_ID",
           "SITE_URL"
         ]
       },
