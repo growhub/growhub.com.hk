@@ -2,7 +2,24 @@
     "contact": "查詢",
     "home": "首頁",
     "privacy-policy": "隱私政策",
+    "company": "会社概要",
     "services": "服務",
     "description": "GrowHub通過使用IT簡化公司結構和支持個人創作者來促進增長。",
+
+    "company_company-name-label": "企業名",
+    "company_company-name": "GrowHub株式会社",
+    "company_ceo-label": "FOUNDER & CEO",
+    "company_ceo": "中村 美嘉",
+    "company_foundation-label": "設立",
+    "company_foundation": "2019年4月19日",
+    "company_address-label": "住所",
+    "company_address": "",
+
+    "contact_subtitle": "こちらからお問い合わせください",
+    "contact_form_name": "氏名",
+    "contact_form_email": "メールアドレス",
+    "contact_form_content": "問い合わせ内容",
+    "contact_form_submit": "送信する",
+    
     "footer_please-contact": "ご気軽にお問い合わせください"
 }

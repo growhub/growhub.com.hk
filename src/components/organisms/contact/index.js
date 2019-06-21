@@ -21,13 +21,12 @@ const Contact = ({intl}) => (
                 className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                 htmlFor="name"
               >
-                名前
+                {intl.formatMessage({ id: 'contact_form_name' })}
             </label>
             <input
               id="name"
               type="text"
               name="name"
-              placeholder="山田 太郎"
               className="appearance-none block w-full bg-grey-lighter text-grey-darker border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               required
             />
@@ -36,13 +35,13 @@ const Contact = ({intl}) => (
             <label
               className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
               htmlFor="email">
-              メールアドレス
+              {intl.formatMessage({ id: 'contact_form_email' })}
             </label>
             <input
               id="email"
               type="email"
               name="email"
-              placeholder="example@nnn.com"
+              placeholder="example@sample.com"
               className="appearance-none block w-full bg-grey-lighter text-grey-darker border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey"
               required
             />
@@ -52,7 +51,7 @@ const Contact = ({intl}) => (
             <label
               className="block text-grey-darker text-sm font-bold mb-2"
               htmlFor="content">
-              問い合わせ内容
+                {intl.formatMessage({ id: 'contact_form_content' })}
             </label>
             <textarea
               name="content"
@@ -67,7 +66,7 @@ const Contact = ({intl}) => (
               type="submit"
               className="w-2/3 bg-red-500 text-lg text-white font-bold py-4 px-8 border-b-4 hover:opacity-75 rounded"
             >
-              送信する
+              {intl.formatMessage({ id: 'contact_form_submit' })}
             </button>
           </div>
       </form>

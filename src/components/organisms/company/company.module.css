@@ -1,0 +1,21 @@
+.table {
+    @apply w-full text-left border-t;
+}
+.table th {
+    @apply block text-sm font-semibold text-gray-800 p-3 bg-gray-100 border border-t-0 whitespace-no-wrap;
+}
+.table td {
+    @apply block p-3 border border-t-0;
+}
+
+@screen sm {
+}
+@screen md {
+}
+@screen lg {
+  .table th, .table td {
+    display: table-cell;
+  }
+}
+@screen xl {
+}

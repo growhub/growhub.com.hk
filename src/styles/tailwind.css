@@ -43,3 +43,11 @@ svg {
 .gatsby-resp-image-link {
     @apply my-4;
 }
+
+.bg-gradient-red-to-orange {
+    background-image: linear-gradient(
+      to right,
+      theme('colors.red.500'),
+      theme('colors.orange.500')
+    );
+  }

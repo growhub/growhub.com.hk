@@ -6,7 +6,7 @@ import styles from "./footer.module.css"
 const Footer = ({ intl, page, siteTitle }) => (
 <footer>
   {'contact' !== page && (
-    <div className="bg-red-500 text-white px-5 py-10">
+    <div className="bg-gradient-red-to-orange text-white px-5 py-10">
       <p className="text-2xl lg:text-3xl text-center mb-10">
         {intl.formatMessage({ id: 'footer_please-contact' })}
       </p>

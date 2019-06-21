@@ -61,6 +61,9 @@ class Header extends React.Component  {
               <Link to='/' className={styles.menuLink}>
                 {intl.formatMessage({ id: 'home' })}
               </Link>
+              <Link to='/company' className={styles.menuLink}>
+                {intl.formatMessage({ id: 'company' })}
+              </Link>
               <Link to='/services' className={styles.menuLink}>
                 {intl.formatMessage({ id: 'services' })}
               </Link>
@@ -71,13 +74,13 @@ class Header extends React.Component  {
                 <IntlContextConsumer>
                   {({ languages, language: currentLocale }) =>
                     languages.map(language => (
-                      <a
+                      <button
                         key={language}
                         onClick={() => changeLocale(language)}
                         className=""
                       >
                         {languageName[language]}
-                      </a>
+                      </button>
                     ))
                   }
                 </IntlContextConsumer>

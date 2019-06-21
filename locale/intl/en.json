@@ -2,7 +2,25 @@
     "contact": "Contact",
     "home": "HOME",
     "privacy-policy": "Privacy Policy",
+    "company": "Company",
     "services": "Services",
     "description": "GrowHub contribute to growth by using IT to streamline the structure of a company and supporting individual creators.",
-    "footer_please-contact": "ご気軽にお問い合わせください"
+
+    "company_company-name-label": "COMPANY",
+    "company_company-name": "GrowHub Limited",
+    "company_ceo-label": "FOUNDER & CEO",
+    "company_ceo": "MIKA NAKAMURA (CARMEN)",
+    "company_foundation-label": "FOUNDATION",
+    "company_foundation": "19rd of Apri, 2019",
+    "company_address-label": "ADDRESS",
+    "company_address": "",
+
+
+    "contact_subtitle": "Please contact from here",
+    "contact_form_name": "Name",
+    "contact_form_email": "E-Mail",
+    "contact_form_content": "Content",
+    "contact_form_submit": "SUBMIT",
+
+    "footer_please-contact": "Please feel free to contact us"
 }
