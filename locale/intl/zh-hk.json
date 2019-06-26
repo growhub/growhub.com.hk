@@ -1,31 +1,31 @@
 {
     "contact": "查詢",
-    "home": "首頁",
-    "privacy-policy": "隱私政策",
-    "company": "会社概要",
-    "services": "服務",
-    "description": "GrowHub通過使用IT簡化公司結構和支持個人創作者來促進增長。",
+    "home": "首頁​",
+    "privacy-policy": "私隱條例​",
+    "company": "公司詳情​",
+    "services": "服務範圍​",
+    "description": "GrowHub通過使用IT程序來幫助貴公司簡化管理架構以及節省開支，幫助帶來合理的收入增長。",
 
-    "company_company-name-label": "企業名",
-    "company_company-name": "GrowHub株式会社",
-    "company_ceo-label": "FOUNDER & CEO",
+    "company_company-name-label": "企業名稱​",
+    "company_company-name": "GrouHub香港有限公司​",
+    "company_ceo-label": "創始人&首席執行官​",
     "company_ceo": "中村 美嘉",
-    "company_foundation-label": "設立",
+    "company_foundation-label": "公司成立日期​",
     "company_foundation": "2019年4月19日",
-    "company_address-label": "住所",
-    "company_address": "FLAT 6A 14/F BLK A FUK KEUG IND BLDG 66-68 TONG MI RD PRINCE EDWARD KL",
+    "company_address-label": "地址​",
+    "company_address": "九龍旺角塘尾道66-68福強工業大廈​A座14樓6A室",
 
-    "services_subtitle": "私たちの提供していること",
+    "services_subtitle": "服務範圍​",
 
-    "privacy-policy_subtitle": "プライバシーポリシーの内容にご同意頂き本サイトをご利用ください",
+    "privacy-policy_subtitle": "關於個人資料（私隱）條例（「該條例」）的通知請基於同意本公司的個人資料私隱條例後做出瀏覽。",
 
-    "made-with_subtitle": "このサイトは以下の技術を利用して構築されています",
+    "made-with_subtitle": "本網站利用以下技術手段構成",
 
-    "contact_subtitle": "こちらからお問い合わせください",
-    "contact_form_name": "氏名",
-    "contact_form_email": "メールアドレス",
-    "contact_form_content": "問い合わせ内容",
-    "contact_form_submit": "送信する",
+    "contact_subtitle": "快捷提問​",
+    "contact_form_name": "姓名，公司名，團體名​",
+    "contact_form_email": "電子郵箱",
+    "contact_form_content": "咨詢内容",
+    "contact_form_submit": "提交​",
     
-    "footer_please-contact": "ご気軽にお問い合わせください"
+    "footer_please-contact": "歡迎垂詢"
 }
