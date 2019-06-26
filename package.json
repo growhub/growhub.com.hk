@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "nakamu <yuuki.nakamura.0828@gmail.com>",
   "dependencies": {
+    "@loadable/component": "^5.10.1",
     "babel-plugin-styled-components": "^1.10.0",
     "gatsby": "^2.8.2",
     "gatsby-background-image": "^0.3.6",

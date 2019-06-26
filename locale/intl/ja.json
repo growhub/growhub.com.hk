@@ -13,8 +13,14 @@
     "company_foundation-label": "設立",
     "company_foundation": "2019年4月19日",
     "company_address-label": "住所",
-    "company_address": "",
+    "company_address": "FLAT 6A 14/F BLK A FUK KEUG IND BLDG 66-68 TONG MI RD PRINCE EDWARD KL",
     
+    "services_subtitle": "私たちの提供していること",
+
+    "privacy-policy_subtitle": "プライバシーポリシーの内容にご同意頂き本サイトをご利用ください",
+
+    "made-with_subtitle": "このサイトは以下の技術を利用して構築されています",
+
     "contact_subtitle": "こちらからお問い合わせください",
     "contact_form_name": "氏名",
     "contact_form_email": "メールアドレス",

@@ -2,34 +2,31 @@ import React from "react"
 import Image from "@components/atoms/image";
 import Title from "@components/atoms/title"
 
-const MadeWith = () => (
+const MadeWith = ({intl}) => (
   <>
     <div className="container mx-auto">
-      <Title title="Made with" subtitle="このサイトは以下の技術を利用して作られています" />
+      <Title title="Made with" subtitle={intl.formatMessage({ id: 'made-with_subtitle' })} />
     </div>
     <div className="bg-white mt-10 py-10">
       <div className="container mx-auto">
 
         <div className="my-4 p-4">
           <div className="mb-4">
-            <h2 className="flex items-center text-3xl font-bold">
+            <h2 className="flex items-center text-3xl font-bold mb-5">
               <div
                 className="mr-4"
                 style={{ width: `40px` }}
               >
                 <Image filename="gatsby-icon.png" alt="GatsbyJS"　/>
               </div>
-              <span>GasbyJS</span>
-            </h2>
-            <p className="py-2">
-              React.jsで構築された静的ジェネレーターの<a
+              <a
                 href="https://www.gatsbyjs.org/"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
               >
                 GasbyJS
-              </a>を、本ブログの基本構成として利用して構築しています。
-            </p>
+              </a>
+            </h2>
             <div
                 className="w-full mb-10"
               >
@@ -37,24 +34,21 @@ const MadeWith = () => (
             </div>
           </div>
           <div className="mb-4">
-            <h2 className="flex items-center text-3xl font-bold">
+            <h2 className="flex items-center text-3xl font-bold mb-5">
               <div
                 className="mr-4"
                 style={{ width: `40px` }}
               >
                 <Image filename="tailwind-icon.png" alt="TailwindCSS"　/>
               </div>
-              <span>TailwindCSS</span>
-            </h2>
-            <p className="py-2">
               <a
                 href="https://tailwindcss.com/"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
               >
                 TailwindCSS
-              </a>は、WebサイトのUIを構築する際の手助けとなるCSSフレームワークです。本ブログのUIはTailwindCSSで構築されています。
-            </p>
+              </a>
+            </h2>
             <div
                 className="w-full mb-10"
               >
@@ -62,24 +56,21 @@ const MadeWith = () => (
             </div>
           </div>
           <div className="mb-4">
-            <h2 className="flex items-center text-3xl font-bold">
+            <h2 className="flex items-center text-3xl font-bold mb-5">
               <div
                 className="mr-4"
                 style={{ width: `40px` }}
               >
                 <Image filename="netlify-icon.png" alt="Netlify"　/>
               </div>
-              <span>Netlify</span>
-            </h2>
-            <p className="py-2">
               <a
                 href="https://www.netlify.com/"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
               >
                 Netlify
-              </a>は、静的コンテンツをホスティングすることができるWebサービスです。無料枠が用意されているためスモールサービスや個人サービスに多く利用されています。
-            </p>
+              </a>
+            </h2>
             <div
                 className="w-full mb-10"
               >

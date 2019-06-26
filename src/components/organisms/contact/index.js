@@ -4,7 +4,7 @@ import Title from "@components/atoms/title"
 const Contact = ({intl}) => (
   <>
     <div className="container mx-auto">
-      <Title title={intl.formatMessage({ id: 'contact' })} subtitle="こちらからお問い合わせください" />
+      <Title title={intl.formatMessage({ id: 'contact' })} subtitle={intl.formatMessage({ id: 'contact_subtitle' })} />
     </div>
     <div className="bg-white mt-10 py-10">
       <form

@@ -7,7 +7,7 @@ import TeachingSVG from "@contents/svg/undraw_teaching_f1cm.svg"
 const Services = ({intl}) => (
   <>
     <div className="container mx-auto">
-      <Title title={intl.formatMessage({ id: 'services' })} subtitle="私たちの提供できること" />
+      <Title title={intl.formatMessage({ id: 'services' })} subtitle={intl.formatMessage({ id: 'services_subtitle' })} />
     </div>
     <div className="bg-white mt-10 py-10">
       <div className="container mx-auto">
