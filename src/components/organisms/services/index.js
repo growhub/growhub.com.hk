@@ -16,10 +16,8 @@ const Services = ({intl}) => (
             <img src={ContentSVG} alt="" />
           </div>
           <div className="lg:w-3/5 p-4">
-            <h2 className="font-bold text-3xl lg:text-5xl mb-2">Media Management</h2>
-            <p className="text-lg lg:text-2xl">
-              Webサイトの開発から構築、運営まで一貫してサポートします。全ての開発フローをお客様と一緒に取り組みサービスの質を高めていきます。
-            </p>
+            <h2 className="font-bold text-3xl lg:text-5xl mb-2">{intl.formatMessage({ id: 'services_media-management' })}</h2>
+            <p className="text-lg lg:text-2xl">{intl.formatMessage({ id: 'services_media-management_description' })}</p>
           </div>
         </div>
       </div>
@@ -28,10 +26,8 @@ const Services = ({intl}) => (
       <div className="container mx-auto">
         <div className="flex flex-col lg:items-center lg:flex-row">
           <div className="lg:w-3/5 p-4">
-            <h2 className="font-bold text-3xl lg:text-5xl mb-2">Web Development</h2>
-            <p className="text-lg lg:text-2xl">
-              Webサイトの開発から構築、運営まで一貫してサポートします。全ての開発フローをお客様と一緒に取り組みサービスの質を高めていきます。
-            </p>
+            <h2 className="font-bold text-3xl lg:text-5xl mb-2">{intl.formatMessage({ id: 'services_web-development' })}</h2>
+            <p className="text-lg lg:text-2xl">{intl.formatMessage({ id: 'services_web-development_description' })}</p>
           </div>
           <div className="lg:w-2/5 p-4">
             <img src={DevelopSVG} alt="" />
@@ -46,10 +42,8 @@ const Services = ({intl}) => (
             <img src={TeachingSVG} alt="" />
           </div>
           <div className="lg:w-3/5 p-4">
-            <h2 className="font-bold text-3xl lg:text-5xl mb-2">Programmer Teaching</h2>
-            <p className="text-lg lg:text-2xl">
-              Webサイトの開発から構築、運営まで一貫してサポートします。全ての開発フローをお客様と一緒に取り組みサービスの質を高めていきます。
-            </p>
+            <h2 className="font-bold text-3xl lg:text-5xl mb-2">{intl.formatMessage({ id: 'services_programmer-coaching' })}</h2>
+            <p className="text-lg lg:text-2xl">{intl.formatMessage({ id: 'services_programmer-coaching_description' })}</p>
           </div>
         </div>
       </div>
