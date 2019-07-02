@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby-plugin-intl"
 import Title from "@components/atoms/title"
 import GrowthSVG from "@contents/svg/undraw_growth_analytics_8btt.svg"
-import ArrowRightSVG from "@contents/svg/arrow_right.svg"
+// import ArrowRightSVG from "@contents/svg/arrow_right.svg"
 
 const Home = ({intl, siteTitle}) => (
   <>
@@ -26,15 +26,19 @@ const Home = ({intl, siteTitle}) => (
       <div className="container mx-auto my-20">
         <Title title="News" subtitle="" />
         <div className="shadow-lg bg-white rounded p-6 px-2 lg:p-6">
-          <div className="border-b p-2 flex justify-between items-center">
+
+          <div className="p-2 flex justify-between items-center">
             <div>
               <p className="mb-2">
-                <time className="text-gray-600 text-lg">2019/06/03</time>
+                <time className="text-gray-700 text-lg">2019/04/19</time>
               </p>
-              <a href="/" className="text-xl">法人登記が完了しました</a>
-            </div>
-            <div>
-              <img src={ArrowRightSVG} alt="Arrow Right" className="h-10 w-10" />
+              <p className="text-xl">法人登記が完了しました</p>
+              <div className="border-b-2 border-red-400 w-10 mt-1 mb-3"></div>
+              <p className="text-gray-700 text-sm">
+                2019年4月19日付けで法人登記が完了いたしました。<br />
+                支援していただいた皆様、誠にありがとうございます。<br />
+                至らない点もあるかと存じますが、今後とも末永くお付き合いのほどお願い申し上げます。
+              </p>
             </div>
           </div>
         </div>

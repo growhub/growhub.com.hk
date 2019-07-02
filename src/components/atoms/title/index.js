@@ -6,6 +6,7 @@ const Title = ({ title, subtitle }) => {
   return (
     <>
       <h1 className={styles.title}>{title}</h1>
+      <div className={styles.dot}></div>
       {sub}
     </>
   )

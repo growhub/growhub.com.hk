@@ -13,11 +13,11 @@ const Services = ({intl}) => (
       <div className="container mx-auto">
         <div className="flex flex-col lg:items-center lg:flex-row">
           <div className="lg:w-2/5 p-4">
-            <img src={ContentSVG} alt="" />
+            <img src={DevelopSVG} alt="" />
           </div>
           <div className="lg:w-3/5 p-4">
-            <h2 className="font-bold text-3xl lg:text-5xl mb-2">{intl.formatMessage({ id: 'services_media-management' })}</h2>
-            <p className="text-lg lg:text-2xl">{intl.formatMessage({ id: 'services_media-management_description' })}</p>
+            <h2 className="font-bold text-3xl lg:text-5xl mb-2">{intl.formatMessage({ id: 'services_web-development' })}</h2>
+            <p className="text-lg lg:text-2xl">{intl.formatMessage({ id: 'services_web-development_description' })}</p>
           </div>
         </div>
       </div>
@@ -26,11 +26,11 @@ const Services = ({intl}) => (
       <div className="container mx-auto">
         <div className="flex flex-col lg:items-center lg:flex-row">
           <div className="lg:w-3/5 p-4">
-            <h2 className="font-bold text-3xl lg:text-5xl mb-2">{intl.formatMessage({ id: 'services_web-development' })}</h2>
-            <p className="text-lg lg:text-2xl">{intl.formatMessage({ id: 'services_web-development_description' })}</p>
+            <h2 className="font-bold text-3xl lg:text-5xl mb-2">{intl.formatMessage({ id: 'services_media-management' })}</h2>
+            <p className="text-lg lg:text-2xl">{intl.formatMessage({ id: 'services_media-management_description' })}</p>
           </div>
           <div className="lg:w-2/5 p-4">
-            <img src={DevelopSVG} alt="" />
+            <img src={ContentSVG} alt="" />
           </div>
         </div>
       </div>
@@ -42,8 +42,8 @@ const Services = ({intl}) => (
             <img src={TeachingSVG} alt="" />
           </div>
           <div className="lg:w-3/5 p-4">
-            <h2 className="font-bold text-3xl lg:text-5xl mb-2">{intl.formatMessage({ id: 'services_programmer-coaching' })}</h2>
-            <p className="text-lg lg:text-2xl">{intl.formatMessage({ id: 'services_programmer-coaching_description' })}</p>
+            <h2 className="font-bold text-3xl lg:text-5xl mb-2">{intl.formatMessage({ id: 'services_programmer-mentoring' })}</h2>
+            <p className="text-lg lg:text-2xl">{intl.formatMessage({ id: 'services_programmer-mentoring_description' })}</p>
           </div>
         </div>
       </div>

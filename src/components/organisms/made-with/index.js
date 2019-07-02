@@ -24,7 +24,7 @@ const MadeWith = ({intl}) => (
                 target="_blank"
                 rel="nofollow noopener noreferrer"
               >
-                GasbyJS
+                GatsbyJS
               </a>
             </h2>
             <div
