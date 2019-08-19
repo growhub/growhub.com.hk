@@ -1,5 +1,5 @@
 .title {
-    @apply text-center w-full font-bold text-5xl relative inline-block px-5;
+    @apply text-center w-full font-bold text-3xl relative inline-block px-5;
 }
 .subtitle {
     @apply text-center text-gray-700 text-base;
@@ -14,6 +14,9 @@
 @screen md {
 }
 @screen lg {
+    .title {
+        @apply text-5xl;
+    }
 }
 @screen xl {
 }

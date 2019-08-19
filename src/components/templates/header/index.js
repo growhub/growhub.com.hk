@@ -74,13 +74,16 @@ class Header extends React.Component  {
                 <IntlContextConsumer>
                   {({ languages, language: currentLocale }) =>
                     languages.map(language => (
-                      <button
-                        key={language}
-                        onClick={() => changeLocale(language)}
-                        className=""
-                      >
-                        {languageName[language]}
-                      </button>
+                      <>
+                        <button
+                          key={language}
+                          onClick={() => changeLocale('ja' === language ? '' : language)}
+                          className={(language === currentLocale ? 'font-bold text-red-500' : '')}
+                        >
+                          {languageName[language]}
+                        </button>
+                        {('zh-hk' !== language ? <span>|</span> : '')}
+                      </>
                     ))
                   }
                 </IntlContextConsumer>
