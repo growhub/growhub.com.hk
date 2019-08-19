@@ -16,16 +16,16 @@
     "company_address": "FLAT 6A 14/F BLK A FUK KEUG IND BLDG 66-68 TONG MI RD PRINCE EDWARD KL",
 
     "services_subtitle": "What We Do",
-    "services_media-management": "Media Management",
-    "services_media-management_description": "Webサイトの開発から構築、運営まで一貫してサポートします。全ての開発フローをお客様と一緒に取り組みサービスの質を高めていきます。",
     "services_web-development": "Web Development",
     "services_web-development_description": "Webサイトの開発から構築、運営まで一貫してサポートします。全ての開発フローをお客様と一緒に取り組みサービスの質を高めていきます。",
+    "services_media-management": "Media Management",
+    "services_media-management_description": "Webサイトのリリース後のメディア運営からグロースをサポートします。また、グロースに向けて運営企画からその開発までサポートしていきます。",
     "services_programmer-mentoring": "Programmer Mentoring",
-    "services_programmer-mentoring_description": "将来のプログラマー、エンジニアと育てる為にネットを通してプログラマーの教育からメンタリングなどサポートを行います。",
+    "services_programmer-mentoring_description": "将来のプログラマー、エンジニアなどITに関わる人材を育てる為にネットを通してプログラマーの教育からメンタリングを行います。",
 
-    "privacy-policy_subtitle": "プライバシーポリシーの内容にご同意頂き本サイトをご利用ください",
+    "privacy-policy_subtitle": "Please read and agree to our privacy policy",
 
-    "made-with_subtitle": "このサイトは以下の技術を利用して構築されています",
+    "made-with_subtitle": "made with the following technologies",
 
 
     "contact_subtitle": "Please contact from here",

@@ -1,11 +1,11 @@
 .breadcrumb-nav {
-    @apply w-full overflow-x-scroll whitespace-no-wrap;
+    @apply w-full;
 }
 .container {
     @apply mx-auto h-full;
 }
 .breadcrumb {
-    @apply flex text-gray-600 px-4 py-6 overflow-x-scroll whitespace-no-wrap;
+    @apply flex text-gray-600 px-4 py-6;
 }
 .breadcrumb::-webkit-scrollbar {
     @apply hidden;

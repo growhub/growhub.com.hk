@@ -13,9 +13,9 @@ const PrivacyPolicy = ({intl}) => {
         <div className="container mx-auto">
           
           <div
-            className="px-4 lg:px-8 pt-6 pb-8 mb-5"
+            className="px-4 lg:px-8 pt-6 pb-8"
           >
-            <LocaleComponent />
+            <LocaleComponent intl={intl} />
           </div>
         </div>
       </div>
