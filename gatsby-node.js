@@ -12,10 +12,10 @@ exports.createPages = ({ actions }) => {
   const { createRedirect } = actions
 
   // Netlifyの_redirectsファイルを生成
-  createRedirect({
-    fromPath: 'https://enjoyhk-blog.netlify.com/*',
-    toPath: 'https://enjoyhk.nakamu.life/:splat',
-    isPermanent: true,
-    force: true
-  })
+  // createRedirect({
+  //   fromPath: 'https://growhub.netlify.com/*',
+  //   toPath: 'https://growhub.com.hk/:splat',
+  //   isPermanent: true,
+  //   force: true
+  // })
 }
