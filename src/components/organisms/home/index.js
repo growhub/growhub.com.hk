@@ -30,15 +30,11 @@ const Home = ({intl, siteTitle}) => (
           <div className="p-2 flex justify-between items-center">
             <div>
               <p className="mb-2">
-                <time className="text-gray-700 text-lg">2019/04/19</time>
+                <time className="text-gray-700 text-lg">{intl.formatMessage({ id: 'news_1-date' })}</time>
               </p>
-              <p className="text-xl">法人登記が完了しました</p>
+              <p className="text-xl">{intl.formatMessage({ id: 'news_1-title' })}</p>
               <div className="border-b-2 border-red-400 w-10 mt-1 mb-3"></div>
-              <p className="text-gray-700 text-sm">
-                2019年4月19日付けで法人登記が完了いたしました。<br />
-                支援していただいた皆様、誠にありがとうございます。<br />
-                至らない点もあるかと存じますが、今後とも末永くお付き合いのほどお願い申し上げます。
-              </p>
+              <p className="text-gray-700 text-sm whitespace-pre-line">{intl.formatMessage({ id: 'news_1-description' })}</p>
             </div>
           </div>
         </div>
