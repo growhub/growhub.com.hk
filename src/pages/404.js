@@ -17,11 +17,8 @@ const NotFoundPage = ({intl}) => (
           <h1 className="text-5xl mt-10">
             Not Found.
           </h1>
-          <p className="mt-5">
-            お探しのページは削除されたか存在しません。
-          </p>
-          <div className="mt-16 mx-4">
-            <Link to="/" className="px-10 py-4 bg-white border border-grey-darker no-underline rounded-sm text-grey-darkest hover:bg-grey-lighter">Homeに戻る</Link>
+          <div className="my-16 mx-4">
+            <Link to="/" className="px-10 py-4 bg-white border border-grey-darker no-underline rounded-sm text-grey-darkest hover:bg-grey-lighter">Go to Home</Link>
           </div>
         </div>
       </div>

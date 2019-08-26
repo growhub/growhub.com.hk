@@ -33,5 +33,9 @@
     "contact_form_content": "問い合わせ内容",
     "contact_form_submit": "送信する",
 
+    "contact-thanks_title": "問い合わせ完了",
+    "contact-thanks_subtitle": "お問い合わせありがとうございます。",
+    "contact-thanks_description": "お問い合わせを受け付けました。\n担当より折り返しご連絡致します。しばらくお待ち下さい。",
+
     "footer_please-contact": "ご気軽にお問い合わせください"
 }

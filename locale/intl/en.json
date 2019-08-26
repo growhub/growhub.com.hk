@@ -34,5 +34,9 @@
     "contact_form_content": "Content",
     "contact_form_submit": "SUBMIT",
 
+    "contact-thanks_title": "Thank you for contact",
+    "contact-thanks_subtitle": "",
+    "contact-thanks_description": "Your contact form submission has been received.",
+
     "footer_please-contact": "Please feel free to contact us"
 }

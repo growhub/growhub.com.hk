@@ -12,6 +12,7 @@ const Contact = ({intl}) => (
         method="post"
         className="container mx-auto"
         data-netlify="true"
+        action="/contact/thanks"
       >
         <input type="hidden" name="form-name" value="contact" /> 
 
