@@ -3,7 +3,7 @@ import { injectIntl, Link } from "gatsby-plugin-intl"
 
 import Layout from "@components/templates/layout"
 import SEO from "@components/seo"
-import SadFaceLineIcon from "@components/atoms/icon/sad-face-line"
+import NotFoundSVG from "@contents/svg/undraw_page_not_found_su7k.svg"
 
 const NotFoundPage = ({intl}) => (
   <Layout intl={intl} page="404" >
@@ -12,13 +12,15 @@ const NotFoundPage = ({intl}) => (
       <div className="flex justify-center">
         <div className="lg:w-2/3 p-4 text-center">
           <div className="my-10">
-            <SadFaceLineIcon className="fill-current w-48 h-48" />
+            <img src={NotFoundSVG} alt="Not Found" className="h-60 mx-auto" />
           </div>
           <h1 className="text-5xl mt-10">
-            Not Found.
+            Not Found
           </h1>
-          <div className="my-16 mx-4">
-            <Link to="/" className="px-10 py-4 bg-white border border-grey-darker no-underline rounded-sm text-grey-darkest hover:bg-grey-lighter">Go to Home</Link>
+          <div className="my-4 flex justify-center">
+            <Link to='/' className="inline-block mx-auto lg:mx-0 hover:opacity-75 bg-red-500 text-white font-bold text-xl rounded-full my-6 py-4 px-8 shadow-lg">
+              Go to Home
+            </Link>
           </div>
         </div>
       </div>
