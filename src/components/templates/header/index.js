@@ -77,7 +77,7 @@ class Header extends React.Component  {
                       <>
                         <button
                           key={language}
-                          onClick={() => changeLocale('ja' === language ? '' : language)}
+                          onClick={() => changeLocale('zh-hk' === language ? '' : language)}
                           className={(language === currentLocale ? 'font-bold text-red-500' : '')}
                         >
                           {languageName[language]}
