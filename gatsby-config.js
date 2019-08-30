@@ -153,7 +153,7 @@ module.exports = {
       options: {
         path: `${__dirname}/locale/intl`,
         languages: [`en`, `ja`, `zh-hk`],
-        defaultLanguage: `ja`,
+        defaultLanguage: `zh-hk`,
         redirect: false,
       },
     },
