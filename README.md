@@ -18,13 +18,13 @@
     Gatsby CLIを利用して、githubリポジトリからGatsbyJSのプロジェクトを作成します。
 
     ```sh
-    $ gatsby new growhub-homepage  https://github.com/nakanakamu0828/growhub-homepage
+    $ gatsby new growhub.com.hk https://github.com/growhub/growhub.com.hk.git
     ```
 
 1.  **developmentモードでの起動**
 
     ```sh
-    $ cd growhub-homepage 
+    $ cd growhub.com.hk
     $ gatsby develop
     ```
 
