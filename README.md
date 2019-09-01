@@ -5,7 +5,7 @@
   </a>
 </p>
 <h1 align="center">
-  GrowHub, Limited - Homepage
+  GrowHub, Limited - Corporate site
 </h1>
 
 このブログは、GatsbyJS + TailwindCSSを利用して構築されています。
@@ -46,9 +46,5 @@ EOF
 SITE_URL | サイトのベースURL。商用環境にて、RSSの生成などに利用する
 GOOGLE_ANALYTICS_TRACKING_ID |Googleアナリティクス トラッキングID
 
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/nakanakamu0828/growhub-homepage)
 
 <!-- AUTO-GENERATED-CONTENT:END -->
