@@ -5,7 +5,7 @@
   </a>
 </p>
 <h1 align="center">
-  GrowHub, Limited - Homepage
+  GrowHub, Limited - Corporate site
 </h1>
 
 このブログは、GatsbyJS + TailwindCSSを利用して構築されています。
@@ -18,13 +18,13 @@
     Gatsby CLIを利用して、githubリポジトリからGatsbyJSのプロジェクトを作成します。
 
     ```sh
-    $ gatsby new growhub-homepage  https://github.com/nakanakamu0828/growhub-homepage
+    $ gatsby new growhub.com.hk https://github.com/growhub/growhub.com.hk.git
     ```
 
 1.  **developmentモードでの起動**
 
     ```sh
-    $ cd growhub-homepage 
+    $ cd growhub.com.hk
     $ gatsby develop
     ```
 
@@ -46,9 +46,5 @@ EOF
 SITE_URL | サイトのベースURL。商用環境にて、RSSの生成などに利用する
 GOOGLE_ANALYTICS_TRACKING_ID |Googleアナリティクス トラッキングID
 
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/nakanakamu0828/growhub-homepage)
 
 <!-- AUTO-GENERATED-CONTENT:END -->
