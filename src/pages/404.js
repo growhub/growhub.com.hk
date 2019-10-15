@@ -7,7 +7,7 @@ import NotFoundSVG from "@contents/svg/undraw_page_not_found_su7k.svg"
 
 const NotFoundPage = ({intl}) => (
   <Layout intl={intl} page="404" >
-    <SEO title="404: Not found" />
+    <SEO lang={intl.locale} title="404: Not found" />
     <section className="mt-10 container mx-auto">
       <div className="flex justify-center">
         <div className="lg:w-2/3 p-4 text-center">

@@ -7,7 +7,7 @@ import Company from "@components/organisms/company"
 
 const CompanyPage = ({intl}) => (
   <Layout intl={intl} page="company" >
-    <SEO title={intl.formatMessage({ id: 'company' })} keywords={[`${intl.formatMessage({ id: 'company' })}`]} />
+    <SEO lang={intl.locale} title={intl.formatMessage({ id: 'company' })} keywords={[`${intl.formatMessage({ id: 'company' })}`]} />
     <Breadcrumb breadcrumbs={[
       { to: '/', label: intl.formatMessage({ id: 'home' }) },
       { to: `/company`, label: intl.formatMessage({ id: 'company' }), active: true },

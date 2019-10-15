@@ -7,7 +7,7 @@ import Services from "@components/organisms/services"
 
 const SrevicesPage = ({intl}) => (
   <Layout intl={intl} page="services" >
-    <SEO title={intl.formatMessage({ id: 'services' })} keywords={[`${intl.formatMessage({ id: 'services' })}`]} />
+    <SEO lang={intl.locale} title={intl.formatMessage({ id: 'services' })} keywords={[`${intl.formatMessage({ id: 'services' })}`]} />
     <Breadcrumb breadcrumbs={[
       { to: '/', label: intl.formatMessage({ id: 'home' }) },
       { to: `/services`, label: intl.formatMessage({ id: 'services' }), active: true },

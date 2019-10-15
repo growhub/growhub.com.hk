@@ -7,7 +7,7 @@ import Contact from "@components/organisms/contact"
 
 const ContactPage = ({intl}) => (
   <Layout intl={intl} page="contact" >
-    <SEO title={intl.formatMessage({ id: 'contact' })} keywords={[`${intl.formatMessage({ id: 'contact' })}`]} />
+    <SEO lang={intl.locale} title={intl.formatMessage({ id: 'contact' })} keywords={[`${intl.formatMessage({ id: 'contact' })}`]} />
     <Breadcrumb breadcrumbs={[
       { to: '/', label: intl.formatMessage({ id: 'home' }) },
       { to: `/contact`, label: intl.formatMessage({ id: 'contact' }), active: true },
