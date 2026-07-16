@@ -323,9 +323,9 @@ const en: Dict = {
   },
   hero: {
     badge: 'Hong Kong · Software Studio',
-    title_line1: 'Turning ideas into products,',
+    title_line1: 'Turning ideas into products, ',
     title_highlight: 'AI-driven',
-    title_line2: 'and fast.',
+    title_line2: ' and fast.',
     subtitle:
       'GrowHub is a Hong Kong-based software studio. From web apps & services and website production to mobile app development, we harness AI to build faster and work alongside our clients at every step of growth.',
     cta_primary: 'Get in touch',

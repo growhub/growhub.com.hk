@@ -26,10 +26,20 @@ const t = getDict(lang);
 const site = Astro.site ?? new URL('https://www.growhub.com.hk');
 const canonical = new URL(localizePath(route, lang), site).href;
 const ogImage = new URL('/android-chrome-512x512.png', site).href;
+
+// Active site theme. The stylesheet also ships 'light' / 'dusk' / 'dark'
+// palettes so a light/dark toggle can be added later without re-theming.
+const THEME = 'aurora';
+const themeColors: Record<string, string> = {
+  light: '#ffffff',
+  aurora: '#f7f9ff',
+  dusk: '#141b2e',
+  dark: '#070b16',
+};
 ---
 
 <!doctype html>
-<html lang={htmlLang[lang]}>
+<html lang={htmlLang[lang]} data-theme={THEME}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,7 +53,7 @@ const ogImage = new URL('/android-chrome-512x512.png', site).href;
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#070b16" />
+    <meta name="theme-color" content={themeColors[THEME] ?? '#ffffff'} />
 
     <!-- hreflang alternates -->
     {

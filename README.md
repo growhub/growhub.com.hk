@@ -40,8 +40,16 @@ npm run preview  # ビルド結果のプレビュー
 
 ## 🎨 デザイン
 
-モダン・ダークテック路線。配色などのデザイントークンは `src/styles/global.css` の `@theme`
-（CSS カスタムプロパティ）に定義しています。
+明るく先進的な **Aurora**（白ベース＋紫〜シアン〜ピンクのソフトグラデーション）を採用しています。
+
+配色は `src/styles/global.css` の CSS カスタムプロパティで管理し、`:root[data-theme='…']`
+として **light / aurora / dusk / dark** の 4 パレットを用意しています。現在の適用テーマは
+`src/layouts/BaseLayout.astro` の `THEME` 定数（既定: `'aurora'`）で切り替えられます。将来的に
+light/dark トグルを追加する場合も、この仕組みをそのまま利用できます。
+
+> 注: 色トークンは Tailwind の `@theme` ではなく `:root` に定義しています。`--color-base` の
+> ような名前を `@theme` に置くと、Tailwind 標準の `text-base`（フォントサイズ）ユーティリティと
+> 衝突するためです。各コンポーネントは `var(--color-*)` 経由で参照します。
 
 ## 📮 お問い合わせフォーム（Netlify Forms）
 

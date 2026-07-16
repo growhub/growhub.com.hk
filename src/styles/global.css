@@ -1,31 +1,129 @@
 @import 'tailwindcss';
 
 /* ============================================================
-   GrowHub — Design tokens (Modern Dark Tech)
+   GrowHub — Theme tokens
+   Default (:root) = LIGHT. Alternate palettes via [data-theme].
+   All components read the CSS variables below, so switching the
+   data-theme attribute on <html> re-skins the whole site.
    ============================================================ */
 @theme {
-  /* Base surfaces */
-  --color-base: #070b16;
-  --color-surface: #0b1120;
-  --color-surface-2: #111a2e;
-  --color-border: #1e2a44;
-
-  /* Ink */
-  --color-ink: #e8edf7;
-  --color-ink-muted: #9aa8c4;
-  --color-ink-faint: #64748b;
-
-  /* Brand accents — indigo→cyan neon with a warm coral highlight */
-  --color-brand: #6366f1; /* indigo */
-  --color-brand-2: #22d3ee; /* cyan */
-  --color-accent: #fb7185; /* coral (nod to legacy red/orange) */
-
   --font-sans:
     'Space Grotesk', 'Inter', ui-sans-serif, system-ui, -apple-system,
     'Segoe UI', Roboto, 'Noto Sans', 'Noto Sans TC', 'Noto Sans JP',
     'Hiragino Sans', 'Microsoft JhengHei', sans-serif;
-  --font-display:
-    'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* NOTE: colour tokens are intentionally NOT declared inside @theme.
+   A token named `--color-base` would make Tailwind generate a `text-base`
+   colour utility that shadows the built-in `text-base` font-size utility.
+   Declaring them on :root keeps them fully themeable while leaving
+   Tailwind's core utilities intact. All components reference them via
+   var(--color-*) or arbitrary `[color:var(--color-*)]` values. */
+
+/* ---- Default LIGHT palette + semantic surface tokens (themeable) ---- */
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+  --color-base: #ffffff;
+  --color-surface: #f8fafc;
+  --color-surface-2: #eef2f8;
+  --color-border: #e2e8f0;
+  --color-ink: #0f172a;
+  --color-ink-muted: #475569;
+  --color-ink-faint: #94a3b8;
+  --color-brand: #4f46e5;
+  --color-brand-2: #0891b2;
+  --color-accent: #e11d48;
+
+  --card-bg: #ffffff;
+  --card-border: #e6ebf3;
+  --card-border-hover: #c7d2fe;
+  --card-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 10px 26px -14px rgba(15, 23, 42, 0.12);
+  --card-shadow-hover: 0 24px 44px -22px rgba(79, 70, 229, 0.4);
+  --glow-c1: rgba(79, 70, 229, 0.14);
+  --glow-c2: rgba(8, 145, 178, 0.12);
+  --grid-alpha: 0.7;
+  --header-bg: rgba(255, 255, 255, 0.82);
+  --hero-tint: linear-gradient(180deg, #f4f7ff 0%, #ffffff 70%);
+}
+
+/* ---- DARK (original deep navy) ---- */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-base: #070b16;
+  --color-surface: #0b1120;
+  --color-surface-2: #111a2e;
+  --color-border: #1e2a44;
+  --color-ink: #e8edf7;
+  --color-ink-muted: #9aa8c4;
+  --color-ink-faint: #64748b;
+  --color-brand: #6366f1;
+  --color-brand-2: #22d3ee;
+  --color-accent: #fb7185;
+
+  --card-bg: linear-gradient(180deg, #111a2e 0%, #0b1120 100%);
+  --card-border: #1e2a44;
+  --card-border-hover: #3a4a75;
+  --card-shadow: none;
+  --card-shadow-hover: 0 20px 50px -20px rgba(99, 102, 241, 0.45);
+  --glow-c1: rgba(99, 102, 241, 0.35);
+  --glow-c2: rgba(34, 211, 238, 0.28);
+  --grid-alpha: 0.7;
+  --header-bg: rgba(7, 11, 22, 0.8);
+  --hero-tint: transparent;
+}
+
+/* ---- AURORA (light + colourful gradient washes) ---- */
+:root[data-theme='aurora'] {
+  color-scheme: light;
+  --color-base: #f7f9ff;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef2ff;
+  --color-border: #e4e9fb;
+  --color-ink: #101a3a;
+  --color-ink-muted: #4a5578;
+  --color-ink-faint: #8b95b5;
+  --color-brand: #6d28d9;
+  --color-brand-2: #0ea5e9;
+  --color-accent: #f43f5e;
+
+  --card-bg: #ffffff;
+  --card-border: #e7ebfb;
+  --card-border-hover: #d6c6fb;
+  --card-shadow: 0 1px 2px rgba(16, 26, 58, 0.05), 0 12px 30px -16px rgba(109, 40, 217, 0.22);
+  --card-shadow-hover: 0 26px 48px -22px rgba(109, 40, 217, 0.4);
+  --glow-c1: rgba(109, 40, 217, 0.2);
+  --glow-c2: rgba(14, 165, 233, 0.2);
+  --grid-alpha: 0.6;
+  --header-bg: rgba(247, 249, 255, 0.82);
+  --hero-tint: linear-gradient(180deg, #eef1ff 0%, #f7f9ff 55%, #fdf2f8 120%);
+}
+
+/* ---- DUSK (softer, lighter dark) ---- */
+:root[data-theme='dusk'] {
+  color-scheme: dark;
+  --color-base: #141b2e;
+  --color-surface: #1b2440;
+  --color-surface-2: #223056;
+  --color-border: #2c3a5f;
+  --color-ink: #eef2fb;
+  --color-ink-muted: #a9b6d4;
+  --color-ink-faint: #7383a8;
+  --color-brand: #818cf8;
+  --color-brand-2: #38e0f0;
+  --color-accent: #ff8fa3;
+
+  --card-bg: linear-gradient(180deg, #223056 0%, #1b2440 100%);
+  --card-border: #2c3a5f;
+  --card-border-hover: #4a5c8c;
+  --card-shadow: 0 10px 30px -20px rgba(0, 0, 0, 0.6);
+  --card-shadow-hover: 0 24px 50px -20px rgba(129, 140, 248, 0.5);
+  --glow-c1: rgba(129, 140, 248, 0.32);
+  --glow-c2: rgba(56, 224, 240, 0.26);
+  --grid-alpha: 0.6;
+  --header-bg: rgba(20, 27, 46, 0.82);
+  --hero-tint: transparent;
 }
 
 /* ============================================================
@@ -34,7 +132,6 @@
 html {
   scroll-behavior: smooth;
   background-color: var(--color-base);
-  color-scheme: dark;
 }
 
 body {
@@ -47,7 +144,7 @@ body {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--color-brand) 45%, transparent);
+  background: color-mix(in oklab, var(--color-brand) 40%, transparent);
   color: #fff;
 }
 
@@ -85,6 +182,11 @@ body {
   backdrop-filter: blur(10px);
 }
 
+/* Hero tint background */
+.hero-tint {
+  background: var(--hero-tint);
+}
+
 /* Radial glow backdrop */
 .glow-bg {
   position: relative;
@@ -97,16 +199,8 @@ body {
   height: 70%;
   z-index: -1;
   background:
-    radial-gradient(
-      40% 60% at 20% 20%,
-      color-mix(in oklab, var(--color-brand) 35%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      45% 55% at 80% 10%,
-      color-mix(in oklab, var(--color-brand-2) 28%, transparent),
-      transparent 70%
-    );
+    radial-gradient(40% 60% at 20% 20%, var(--glow-c1), transparent 70%),
+    radial-gradient(45% 55% at 80% 10%, var(--glow-c2), transparent 70%);
   filter: blur(30px);
   pointer-events: none;
 }
@@ -128,16 +222,13 @@ body {
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
 }
 
-/* Gradient hairline border for cards */
+/* Cards */
 .card {
   position: relative;
   border-radius: 1rem;
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--color-surface-2) 90%, transparent),
-    color-mix(in oklab, var(--color-surface) 90%, transparent)
-  );
-  border: 1px solid var(--color-border);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
   transition:
     transform 0.25s ease,
     border-color 0.25s ease,
@@ -145,8 +236,8 @@ body {
 }
 .card:hover {
   transform: translateY(-4px);
-  border-color: color-mix(in oklab, var(--color-brand) 55%, var(--color-border));
-  box-shadow: 0 20px 50px -20px color-mix(in oklab, var(--color-brand) 45%, transparent);
+  border-color: var(--card-border-hover);
+  box-shadow: var(--card-shadow-hover);
 }
 
 /* Buttons */
@@ -167,20 +258,20 @@ body {
 .btn-primary {
   color: #fff;
   background: linear-gradient(100deg, var(--color-brand), var(--color-brand-2));
-  box-shadow: 0 12px 32px -12px color-mix(in oklab, var(--color-brand) 80%, transparent);
+  box-shadow: 0 12px 32px -12px color-mix(in oklab, var(--color-brand) 70%, transparent);
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 40px -12px color-mix(in oklab, var(--color-brand) 90%, transparent);
+  box-shadow: 0 18px 40px -12px color-mix(in oklab, var(--color-brand) 85%, transparent);
 }
 .btn-ghost {
   color: var(--color-ink);
   border: 1px solid var(--color-border);
-  background: color-mix(in oklab, var(--color-surface) 60%, transparent);
+  background: color-mix(in oklab, var(--color-surface) 70%, transparent);
 }
 .btn-ghost:hover {
   border-color: color-mix(in oklab, var(--color-brand-2) 60%, var(--color-border));
-  color: #fff;
+  color: var(--color-brand);
 }
 
 /* Reveal on scroll */
