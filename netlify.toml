@@ -1,9 +1,11 @@
 [build]
-  command = "npm run build"
+  command = "pnpm build"
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
+  # Netlify detects pnpm from pnpm-lock.yaml and activates the version
+  # pinned in package.json "packageManager" via Corepack.
 
 # SPA-like fallbacks are unnecessary for a static multi-page Astro site.
 # Netlify Forms are auto-detected from the pre-rendered static HTML.

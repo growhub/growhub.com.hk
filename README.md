@@ -12,16 +12,31 @@
 | スタイル | [Tailwind CSS](https://tailwindcss.com) v4（`@tailwindcss/vite`） |
 | 多言語 | Astro 標準 i18n ルーティング（`src/i18n/ui.ts` に辞書を集約） |
 | SEO | hreflang alternate + `@astrojs/sitemap` |
+| フォント | Sora（見出し・ロゴ）+ Inter（本文）/ CJK はシステムフォント |
+| パッケージ管理 | [pnpm](https://pnpm.io)（`pnpm-workspace.yaml`） |
+| Lint / Format | [Biome](https://biomejs.dev)（`biome.json`） |
 | ホスティング | Netlify（`netlify.toml` / Netlify Forms） |
 
 ## 🚀 開発
 
+パッケージ管理は **pnpm** です（`package.json` の `packageManager` で pnpm を固定。
+Corepack 有効時は `corepack enable` で自動的に同じバージョンが使われます）。
+
 ```sh
-npm install      # 依存関係のインストール
-npm run dev      # 開発サーバー起動 (http://localhost:4321)
-npm run build    # 本番ビルド (dist/ に出力)
-npm run preview  # ビルド結果のプレビュー
+pnpm install     # 依存関係のインストール
+pnpm dev         # 開発サーバー起動 (http://localhost:4321)
+pnpm build       # 本番ビルド (dist/ に出力)
+pnpm preview     # ビルド結果のプレビュー
+pnpm check       # Biome で lint + format を自動修正
+pnpm lint        # Biome で lint（修正なし）
 ```
+
+### サプライチェーン対策（pnpm）
+
+`pnpm-workspace.yaml` で **公開から 7 日未満のパッケージをインストールしない**設定
+（`minimumReleaseAge: 10080`）を有効にしています。新規追加された悪意あるパッケージ／
+乗っ取りバージョンを踏むリスクを軽減します。`onlyBuiltDependencies` で postinstall の実行を
+許可する依存（esbuild / sharp）も明示しています。
 
 ## 🌐 多言語 (i18n)
 
@@ -42,8 +57,13 @@ npm run preview  # ビルド結果のプレビュー
 
 明るく先進的な **Aurora**（白ベース＋紫〜シアン〜ピンクのソフトグラデーション）を採用しています。
 
-配色は `src/styles/global.css` の CSS カスタムプロパティで管理し、`:root[data-theme='…']`
-として **light / aurora / dusk / dark** の 4 パレットを用意しています。現在の適用テーマは
+- **フォント**: 見出し・ロゴは **Sora**、本文は **Inter**（`src/styles/global.css` の
+  `--font-display` / `--font-sans`）。繁体字・日本語はシステムフォントにフォールバックします。
+- **ロゴ**: 単色ワードマーク（`.logo` クラス）。`--logo-color` を `var(--color-brand)` に
+  変えるとブランドカラーのロゴにできます。
+
+配色は CSS カスタムプロパティで管理し、`:root[data-theme='…']` として
+**light / aurora / dusk / dark** の 4 パレットを用意しています。現在の適用テーマは
 `src/layouts/BaseLayout.astro` の `THEME` 定数（既定: `'aurora'`）で切り替えられます。将来的に
 light/dark トグルを追加する場合も、この仕組みをそのまま利用できます。
 
@@ -65,9 +85,12 @@ light/dark トグルを追加する場合も、この仕組みをそのまま利
 
 ```toml
 [build]
-  command = "npm run build"
+  command = "pnpm build"
   publish = "dist"
 ```
+
+Netlify は `pnpm-lock.yaml` を検出して pnpm を有効化し、`packageManager` のバージョンを
+Corepack 経由で使用します。
 
 環境変数（任意）:
 
@@ -79,7 +102,7 @@ light/dark トグルを追加する場合も、この仕組みをそのまま利
 
 静的サイトのため、ホスティング依存は **`netlify.toml`** と **お問い合わせフォームのバックエンド** に限定されます。
 
-1. Cloudflare Pages でビルドコマンド `npm run build` / 出力ディレクトリ `dist` を設定
+1. Cloudflare Pages でビルドコマンド `pnpm build` / 出力ディレクトリ `dist` を設定
 2. お問い合わせフォームは Netlify Forms が使えなくなるため、
    [Cloudflare Pages Functions](https://developers.cloudflare.com/pages/functions/) か
    外部フォームサービス（Formspree 等）へ差し替え（`ContactForm.astro` の `action` / 属性を変更）

@@ -28,6 +28,15 @@ export default function MobileNav({ links, contact, langLinks }: Props) {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
+
   return (
     <div className="lg:hidden">
       <button
@@ -37,7 +46,16 @@ export default function MobileNav({ links, contact, langLinks }: Props) {
         onClick={() => setOpen((v) => !v)}
         className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[color:var(--color-border)] text-[color:var(--color-ink)]"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          aria-hidden="true"
+        >
           {open ? (
             <>
               <line x1="18" y1="6" x2="6" y2="18" />
@@ -54,14 +72,14 @@ export default function MobileNav({ links, contact, langLinks }: Props) {
       </button>
 
       {open && (
-        <div
-          className="fixed inset-0 z-40 bg-[color:var(--color-base)]/95 backdrop-blur-md"
-          onClick={() => setOpen(false)}
-        >
-          <nav
-            className="flex h-full flex-col items-center justify-center gap-6 px-8 text-center"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="fixed inset-0 z-40">
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+            className="absolute inset-0 h-full w-full cursor-default bg-[color:var(--color-base)]/95 backdrop-blur-md"
+          />
+          <nav className="relative flex h-full flex-col items-center justify-center gap-6 px-8 text-center">
             {links.map((l) => (
               <a
                 key={l.href}
@@ -87,9 +105,7 @@ export default function MobileNav({ links, contact, langLinks }: Props) {
                   <a
                     href={ll.href}
                     className={
-                      ll.active
-                        ? 'font-bold text-gradient'
-                        : 'text-[color:var(--color-ink-muted)]'
+                      ll.active ? 'font-bold text-gradient' : 'text-[color:var(--color-ink-muted)]'
                     }
                   >
                     {ll.label}

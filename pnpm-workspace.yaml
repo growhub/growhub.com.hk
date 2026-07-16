@@ -1,0 +1,7 @@
+# サプライチェーン攻撃対策: 公開から7日未満のパッケージをインストールしない
+minimumReleaseAge: 10080 # 7日（分単位）
+
+# postinstall スクリプトの実行を許可する依存（pnpm 10 は既定でブロックする）
+onlyBuiltDependencies:
+  - esbuild
+  - sharp

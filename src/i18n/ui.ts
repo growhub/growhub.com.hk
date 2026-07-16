@@ -389,10 +389,19 @@ const en: Dict = {
     title: 'Our process',
     subtitle: 'Transparent, collaborative, and fast-iterating — every step, together.',
     steps: [
-      { title: 'Discovery', desc: 'Understand your needs and goals, and align on direction together.' },
+      {
+        title: 'Discovery',
+        desc: 'Understand your needs and goals, and align on direction together.',
+      },
       { title: 'Design & Prototype', desc: 'Prototype quickly to validate and adjust early.' },
-      { title: 'AI-Driven Build', desc: 'Leverage AI to accelerate development while safeguarding quality.' },
-      { title: 'Launch & Operate', desc: 'Operate, measure, and optimize after launch to support growth.' },
+      {
+        title: 'AI-Driven Build',
+        desc: 'Leverage AI to accelerate development while safeguarding quality.',
+      },
+      {
+        title: 'Launch & Operate',
+        desc: 'Operate, measure, and optimize after launch to support growth.',
+      },
     ],
   },
   company: {
