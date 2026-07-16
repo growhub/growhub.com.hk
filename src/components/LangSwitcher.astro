@@ -1,0 +1,33 @@
+---
+import { locales, localeNames, type Locale, localizePath } from '@i18n/ui';
+
+interface Props {
+  lang: Locale;
+  route: string; // canonical path without locale prefix, e.g. "/" or "/contact"
+}
+
+const { lang, route } = Astro.props;
+---
+
+<div class="flex items-center gap-1 text-sm">
+  {
+    locales.map((loc, i) => (
+      <>
+        {i > 0 && <span class="text-[color:var(--color-ink-faint)]">/</span>}
+        <a
+          href={localizePath(route, loc)}
+          hreflang={loc}
+          class:list={[
+            'px-1.5 py-1 rounded transition-colors',
+            loc === lang
+              ? 'font-bold text-gradient'
+              : 'text-[color:var(--color-ink-muted)] hover:text-[color:var(--color-ink)]',
+          ]}
+          aria-current={loc === lang ? 'true' : undefined}
+        >
+          {localeNames[loc]}
+        </a>
+      </>
+    ))
+  }
+</div>

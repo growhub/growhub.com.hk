@@ -1,0 +1,60 @@
+---
+import { type Locale, getDict, localizePath } from '@i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = getDict(lang);
+---
+
+<section class="glow-bg relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28">
+  <div class="grid-pattern pointer-events-none absolute inset-0 -z-10 opacity-70"></div>
+
+  <div class="container-x">
+    <div class="mx-auto max-w-3xl text-center">
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)]/60 px-4 py-1.5 text-xs font-medium text-[color:var(--color-ink-muted)]"
+      >
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--color-brand-2)] opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--color-brand-2)]"></span>
+        </span>
+        {t.hero.badge}
+      </span>
+
+      <h1
+        class="mt-6 font-[family-name:var(--font-display)] text-4xl font-bold leading-[1.15] tracking-tight sm:text-6xl"
+      >
+        {t.hero.title_line1}<span class="text-gradient">{t.hero.title_highlight}</span>{t.hero.title_line2}
+      </h1>
+
+      <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-ink-muted)] sm:text-lg">
+        {t.hero.subtitle}
+      </p>
+
+      <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a href={localizePath('/contact', lang)} class="btn btn-primary w-full sm:w-auto">
+          {t.hero.cta_primary}
+        </a>
+        <a href="#services" class="btn btn-ghost w-full sm:w-auto">
+          {t.hero.cta_secondary}
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="mx-auto mt-16 grid max-w-2xl grid-cols-3 gap-4">
+      {
+        t.hero.stats.map((s) => (
+          <div class="glass rounded-xl px-3 py-5 text-center">
+            <div class="font-[family-name:var(--font-display)] text-2xl font-bold text-gradient sm:text-3xl">
+              {s.value}
+            </div>
+            <div class="mt-1 text-xs text-[color:var(--color-ink-muted)] sm:text-sm">{s.label}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

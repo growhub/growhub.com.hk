@@ -1,50 +1,82 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  GrowHub, Limited - Corporate site
-</h1>
+# GrowHub Limited — Corporate Site
 
-このブログは、GatsbyJS + TailwindCSSを利用して構築されています。
+香港のソフトウェア開発会社 **GrowHub Limited** のコーポレートサイトです。
+**Astro + React + Tailwind CSS v4** で構築された、繁体字 (zh-hk) / 英語 (en) / 日本語 (ja) の 3 言語対応の静的サイトです。
 
+## 技術スタック
 
-## 🚀 Quick start
+| 項目 | 採用技術 |
+| --- | --- |
+| フレームワーク | [Astro](https://astro.build) v5（静的出力 `output: 'static'`） |
+| UI / islands | [React](https://react.dev) 19（`@astrojs/react`） |
+| スタイル | [Tailwind CSS](https://tailwindcss.com) v4（`@tailwindcss/vite`） |
+| 多言語 | Astro 標準 i18n ルーティング（`src/i18n/ui.ts` に辞書を集約） |
+| SEO | hreflang alternate + `@astrojs/sitemap` |
+| ホスティング | Netlify（`netlify.toml` / Netlify Forms） |
 
-1.  **growhub-homepageプロジェクトの作成.**
+## 🚀 開発
 
-    Gatsby CLIを利用して、githubリポジトリからGatsbyJSのプロジェクトを作成します。
-
-    ```sh
-    $ gatsby new growhub.com.hk https://github.com/growhub/growhub.com.hk.git
-    ```
-
-1.  **developmentモードでの起動**
-
-    ```sh
-    $ cd growhub.com.hk
-    $ gatsby develop
-    ```
-
-1.  **ブラウザにて起動確認!**
-
-    `http://localhost:8000`でブラウザの表示を確認してください。
-
-
-## 環境変数（.env）
-``` bash
-$ cat <<EOF > .env
-SITE_URL=
-GOOGLE_ANALYTICS_TRACKING_ID=
-EOF
+```sh
+npm install      # 依存関係のインストール
+npm run dev      # 開発サーバー起動 (http://localhost:4321)
+npm run build    # 本番ビルド (dist/ に出力)
+npm run preview  # ビルド結果のプレビュー
 ```
 
-環境変数名    |説明
---------------|----------------------------
-SITE_URL | サイトのベースURL。商用環境にて、RSSの生成などに利用する
-GOOGLE_ANALYTICS_TRACKING_ID |Googleアナリティクス トラッキングID
+## 🌐 多言語 (i18n)
 
+- 対応言語: `zh-hk`（デフォルト・URL プレフィックス無し）/ `en`（`/en/…`）/ `ja`（`/ja/…`）
+- 表示テキストはすべて `src/i18n/ui.ts` の辞書に集約。文言の追加・修正はこのファイルで行います。
+- 各言語のルートは `src/pages/`, `src/pages/en/`, `src/pages/ja/` の薄いラッパで、本体は
+  `src/components/pages/*.astro`（`lang` prop を受け取る共有コンポーネント）に集約しています。
 
-<!-- AUTO-GENERATED-CONTENT:END -->
+### ページ構成（1 ページ LP + 補助ページ）
+
+- `/` … トップ（Hero / Services / AI開発 / 開発フロー / 会社概要 / News / Contact CTA）
+- `/contact` … お問い合わせ（Netlify Forms）
+- `/contact/thanks` … 送信完了
+- `/policy/privacy` … プライバシーポリシー
+- `/404`
+
+## 🎨 デザイン
+
+モダン・ダークテック路線。配色などのデザイントークンは `src/styles/global.css` の `@theme`
+（CSS カスタムプロパティ）に定義しています。
+
+## 📮 お問い合わせフォーム（Netlify Forms）
+
+`src/components/ContactForm.astro` の静的 HTML フォーム（`data-netlify="true"` + hidden
+`form-name` + ハニーポット `bot-field`）を Netlify がビルド時に自動検出します。送信後は各言語の
+`/…/contact/thanks` へリダイレクトされます。
+
+## ☁️ デプロイ
+
+### Netlify（現行）
+
+`netlify.toml`:
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+```
+
+環境変数（任意）:
+
+| 変数名 | 説明 |
+| --- | --- |
+| `SITE_URL` | サイトのベース URL。sitemap / canonical / OG に利用（既定: `https://www.growhub.com.hk`） |
+
+### Cloudflare Pages への移行メモ
+
+静的サイトのため、ホスティング依存は **`netlify.toml`** と **お問い合わせフォームのバックエンド** に限定されます。
+
+1. Cloudflare Pages でビルドコマンド `npm run build` / 出力ディレクトリ `dist` を設定
+2. お問い合わせフォームは Netlify Forms が使えなくなるため、
+   [Cloudflare Pages Functions](https://developers.cloudflare.com/pages/functions/) か
+   外部フォームサービス（Formspree 等）へ差し替え（`ContactForm.astro` の `action` / 属性を変更）
+3. `_redirects` / `_headers` が必要な場合は `public/` に配置
+
+## License
+
+MIT

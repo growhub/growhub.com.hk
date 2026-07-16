@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/sections/Hero.astro';
+import Services from '@components/sections/Services.astro';
+import AiApproach from '@components/sections/AiApproach.astro';
+import Works from '@components/sections/Works.astro';
+import Company from '@components/sections/Company.astro';
+import News from '@components/sections/News.astro';
+import ContactCta from '@components/sections/ContactCta.astro';
+import { type Locale, getDict } from '@i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = getDict(lang);
+---
+
+<BaseLayout lang={lang} route="/" title={t.meta.home_title} description={t.meta.home_desc}>
+  <Hero lang={lang} />
+  <Services lang={lang} />
+  <AiApproach lang={lang} />
+  <Works lang={lang} />
+  <Company lang={lang} />
+  <News lang={lang} />
+  <ContactCta lang={lang} />
+</BaseLayout>

@@ -1,0 +1,91 @@
+---
+import { type Locale, getDict, localizePath, locales, localeNames } from '@i18n/ui';
+import LangSwitcher from './LangSwitcher.astro';
+import MobileNav from './MobileNav.tsx';
+
+interface Props {
+  lang: Locale;
+  route: string;
+}
+
+const { lang, route } = Astro.props;
+const t = getDict(lang);
+const home = localizePath('/', lang);
+
+// Section anchors live on the home page.
+const navLinks = [
+  { href: `${home === '/' ? '' : home}#services`, label: t.nav.services },
+  { href: `${home === '/' ? '' : home}#ai`, label: t.nav.approach },
+  { href: `${home === '/' ? '' : home}#works`, label: t.nav.works },
+  { href: `${home === '/' ? '' : home}#company`, label: t.nav.company },
+];
+const contactLink = { href: localizePath('/contact', lang), label: t.nav.contact };
+
+const langLinks = locales.map((loc) => ({
+  href: localizePath(route, loc),
+  code: loc,
+  label: localeNames[loc],
+  active: loc === lang,
+}));
+---
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-30 transition-all duration-300">
+  <div class="container-x">
+    <div class="flex h-16 items-center justify-between">
+      <a href={home} class="group flex items-center gap-2" aria-label="GrowHub home">
+        <span class="text-xl font-bold tracking-tight text-[color:var(--color-ink)]">
+          Grow<span class="text-gradient">Hub</span>
+        </span>
+        <sup class="text-[10px] font-semibold text-[color:var(--color-ink-faint)]">HK</sup>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden items-center gap-7 lg:flex">
+        {
+          navLinks.map((l) => (
+            <a
+              href={l.href}
+              class="text-sm font-medium text-[color:var(--color-ink-muted)] transition-colors hover:text-[color:var(--color-ink)]"
+            >
+              {l.label}
+            </a>
+          ))
+        }
+        <LangSwitcher lang={lang} route={route} />
+        <a href={contactLink.href} class="btn btn-primary text-sm">
+          {contactLink.label}
+        </a>
+      </nav>
+
+      <!-- Mobile nav (React island) -->
+      <MobileNav
+        client:load
+        links={[...navLinks, { href: home, label: t.nav.home }]}
+        contact={contactLink}
+        langLinks={langLinks}
+      />
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const onScroll = () => {
+    if (!header) return;
+    if (window.scrollY > 12) {
+      header.classList.add('is-scrolled');
+    } else {
+      header.classList.remove('is-scrolled');
+    }
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+<style>
+  #site-header.is-scrolled {
+    background: color-mix(in oklab, var(--color-base) 80%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+</style>
