@@ -75,30 +75,30 @@
   --hero-tint: transparent;
 }
 
-/* ---- AURORA (light + colourful gradient washes) ---- */
+/* ---- AURORA (light, cool indigo→blue) ---- */
 :root[data-theme="aurora"] {
   color-scheme: light;
   --color-base: #f7f9ff;
   --color-surface: #ffffff;
   --color-surface-2: #eef2ff;
   --color-border: #e4e9fb;
-  --color-ink: #101a3a;
+  --color-ink: #0f1b3d;
   --color-ink-muted: #4a5578;
   --color-ink-faint: #8b95b5;
-  --color-brand: #6d28d9;
-  --color-brand-2: #0ea5e9;
-  --color-accent: #f43f5e;
+  --color-brand: #4f46e5;
+  --color-brand-2: #0284c7;
+  --color-accent: #7c3aed;
 
   --card-bg: #ffffff;
   --card-border: #e7ebfb;
-  --card-border-hover: #d6c6fb;
-  --card-shadow: 0 1px 2px rgba(16, 26, 58, 0.05), 0 12px 30px -16px rgba(109, 40, 217, 0.22);
-  --card-shadow-hover: 0 26px 48px -22px rgba(109, 40, 217, 0.4);
-  --glow-c1: rgba(109, 40, 217, 0.2);
-  --glow-c2: rgba(14, 165, 233, 0.2);
+  --card-border-hover: #c7d2fe;
+  --card-shadow: 0 1px 2px rgba(16, 26, 58, 0.05), 0 12px 30px -16px rgba(79, 70, 229, 0.2);
+  --card-shadow-hover: 0 24px 44px -22px rgba(79, 70, 229, 0.4);
+  --glow-c1: rgba(79, 70, 229, 0.2);
+  --glow-c2: rgba(2, 132, 199, 0.18);
   --grid-alpha: 0.6;
   --header-bg: rgba(247, 249, 255, 0.82);
-  --hero-tint: linear-gradient(180deg, #eef1ff 0%, #f7f9ff 55%, #fdf2f8 120%);
+  --hero-tint: linear-gradient(180deg, #e9f0ff 0%, #f6f9ff 60%, #eef2ff 120%);
 }
 
 /* ---- DUSK (softer, lighter dark) ---- */
