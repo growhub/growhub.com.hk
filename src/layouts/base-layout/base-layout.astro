@@ -1,6 +1,7 @@
 ---
 import '../../styles/global.css';
 import { htmlLang } from '@i18n/ui';
+import Analytics from '@ui/analytics';
 import Footer from '@ui/footer';
 import Header from '@ui/header';
 import { OG_IMAGE_PATH, THEME, themeColors } from './constants';
@@ -28,6 +29,7 @@ const alternates = buildAlternateLinks(route, site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <Analytics />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />

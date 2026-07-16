@@ -4,12 +4,19 @@ import { buildContactLink, buildLangLinks, buildNavLinks } from './hooks';
 describe('buildNavLinks', () => {
   it('uses bare anchors for the default locale', () => {
     const links = buildNavLinks('zh-hk');
-    expect(links.map((l) => l.href)).toEqual(['#services', '#ai', '#works', '#company']);
+    expect(links.map((l) => l.href)).toEqual([
+      '#services',
+      '#capabilities',
+      '#ai',
+      '#works',
+      '#company',
+    ]);
   });
 
   it('prefixes anchors with the localized home for non-default locales', () => {
     expect(buildNavLinks('en')[0].href).toBe('/en#services');
-    expect(buildNavLinks('ja')[3].href).toBe('/ja#company');
+    expect(buildNavLinks('en')[1].href).toBe('/en#capabilities');
+    expect(buildNavLinks('ja')[4].href).toBe('/ja#company');
   });
 
   it('labels come from the locale dictionary', () => {

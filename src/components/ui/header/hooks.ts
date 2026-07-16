@@ -8,6 +8,7 @@ export function buildNavLinks(lang: Locale): NavLink[] {
   const base = home === '/' ? '' : home;
   return [
     { href: `${base}#services`, label: t.nav.services },
+    { href: `${base}#capabilities`, label: t.nav.capabilities },
     { href: `${base}#ai`, label: t.nav.approach },
     { href: `${base}#works`, label: t.nav.works },
     { href: `${base}#company`, label: t.nav.company },

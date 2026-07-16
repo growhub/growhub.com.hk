@@ -35,6 +35,7 @@ export interface Dict {
   nav: {
     home: string;
     services: string;
+    capabilities: string;
     approach: string;
     works: string;
     company: string;
@@ -138,6 +139,7 @@ const zhHK: Dict = {
   nav: {
     home: '首頁',
     services: '服務',
+    capabilities: '技術',
     approach: 'AI 開發',
     works: '開發流程',
     company: '公司詳情',
@@ -326,6 +328,7 @@ const en: Dict = {
   nav: {
     home: 'Home',
     services: 'Services',
+    capabilities: 'Tech',
     approach: 'AI Development',
     works: 'Process',
     company: 'Company',
@@ -523,6 +526,7 @@ const ja: Dict = {
   nav: {
     home: 'ホーム',
     services: 'サービス',
+    capabilities: '技術',
     approach: 'AI開発',
     works: '開発フロー',
     company: '会社概要',
