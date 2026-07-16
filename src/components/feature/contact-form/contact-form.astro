@@ -1,0 +1,55 @@
+---
+import { getDict } from '@i18n/ui';
+import { inputClass, labelClass } from './constants';
+import { buildContactAction } from './hooks';
+import type { ContactFormProps } from './types';
+
+const { lang } = Astro.props as ContactFormProps;
+const t = getDict(lang);
+const action = buildContactAction(lang);
+---
+
+<form
+  name="contact"
+  method="POST"
+  action={action}
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="card p-6 sm:p-8"
+>
+  <!-- Netlify form detection + honeypot -->
+  <input type="hidden" name="form-name" value="contact" />
+  <p class="hidden">
+    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+  </p>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label class={labelClass} for="name">{t.contact.name}</label>
+      <input id="name" name="name" type="text" required class={inputClass} />
+    </div>
+    <div>
+      <label class={labelClass} for="email">{t.contact.email}</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        placeholder="example@sample.com"
+        required
+        class={inputClass}
+      />
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <label class={labelClass} for="content">{t.contact.content}</label>
+    <textarea id="content" name="content" rows="6" required class={inputClass}></textarea>
+  </div>
+
+  <div class="mt-6 flex flex-col items-center gap-3">
+    <button type="submit" class="btn btn-primary w-full sm:w-auto sm:px-14">
+      {t.contact.submit}
+    </button>
+    <p class="text-center text-xs text-[color:var(--color-ink-faint)]">{t.contact.privacy_note}</p>
+  </div>
+</form>

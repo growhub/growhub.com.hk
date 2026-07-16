@@ -29,6 +29,7 @@ pnpm build       # 本番ビルド (dist/ に出力)
 pnpm preview     # ビルド結果のプレビュー
 pnpm check       # Biome で lint + format を自動修正
 pnpm lint        # Biome で lint（修正なし）
+pnpm test        # Vitest でユニットテスト実行
 ```
 
 ### サプライチェーン対策（pnpm）
@@ -43,7 +44,38 @@ pnpm lint        # Biome で lint（修正なし）
 - 対応言語: `zh-hk`（デフォルト・URL プレフィックス無し）/ `en`（`/en/…`）/ `ja`（`/ja/…`）
 - 表示テキストはすべて `src/i18n/ui.ts` の辞書に集約。文言の追加・修正はこのファイルで行います。
 - 各言語のルートは `src/pages/`, `src/pages/en/`, `src/pages/ja/` の薄いラッパで、本体は
-  `src/components/pages/*.astro`（`lang` prop を受け取る共有コンポーネント）に集約しています。
+  `src/components/page/*`（`lang` prop を受け取る共有コンポーネント）に集約しています。
+
+## 🧩 ディレクトリ構成・コンポーネント規約
+
+ファイル名は **kebab-case**。コンポーネントは 1 つのフォルダにまとめ、役割ごとにファイルを分けます。
+
+```
+src/components/
+  ui/        # 汎用 UI（header / footer / lang-switcher / mobile-nav）
+  feature/   # ページのセクション（hero / services / ai-approach / works /
+             #                       company / news / contact-cta / contact-form）
+  page/      # ページ合成（home-page / contact-page / privacy-page / thanks-page）
+```
+
+各フォルダ内のファイルの役割:
+
+| ファイル | 役割 |
+| --- | --- |
+| `<name>.astro` / `<name>.tsx` | コンポーネント本体 |
+| `index.ts` | 公開 API（`export { default }` + 型の再エクスポート） |
+| `types.ts` | 型定義（Props など） |
+| `constants.ts` | 定数（アイコンパス・クラス文字列など） |
+| `hooks.ts` | ロジック（純関数、または React フック）。**必ず `hooks.test.ts` を用意** |
+
+- `.astro` は React フックを持てないため、`hooks.ts` は「テスト可能な純ロジックの `.ts`」として
+  扱います（例: `header/hooks.ts` の `buildNavLinks`）。`mobile-nav` のみ React フック
+  （`useMobileNav`）です。
+- `constants.ts` / `hooks.ts` は**ロジックがある場合のみ**作成します。
+- テストは **[Vitest](https://vitest.dev)**。`pnpm test` で実行します（`hooks.ts` には必ずテスト）。
+- レイアウトは `src/layouts/base-layout/`、i18n 辞書は `src/i18n/ui.ts`（`ui.test.ts` あり）。
+- import エイリアス: `@ui/*` `@feature/*` `@page/*` `@layouts/*` `@i18n/*`（`tsconfig.json` /
+  `vitest.config.ts`）。
 
 ### ページ構成（1 ページ LP + 補助ページ）
 
@@ -64,7 +96,7 @@ pnpm lint        # Biome で lint（修正なし）
 
 配色は CSS カスタムプロパティで管理し、`:root[data-theme='…']` として
 **light / aurora / dusk / dark** の 4 パレットを用意しています。現在の適用テーマは
-`src/layouts/BaseLayout.astro` の `THEME` 定数（既定: `'aurora'`）で切り替えられます。将来的に
+`src/layouts/base-layout/constants.ts` の `THEME` 定数（既定: `'aurora'`）で切り替えられます。将来的に
 light/dark トグルを追加する場合も、この仕組みをそのまま利用できます。
 
 > 注: 色トークンは Tailwind の `@theme` ではなく `:root` に定義しています。`--color-base` の

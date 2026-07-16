@@ -1,0 +1,28 @@
+---
+import { getDict, localizePath } from '@i18n/ui';
+import type { ContactCtaProps } from './types';
+
+const { lang } = Astro.props as ContactCtaProps;
+const t = getDict(lang);
+---
+
+<section class="py-20 sm:py-28">
+  <div class="container-x">
+    <div
+      class="glow-bg relative overflow-hidden rounded-3xl border border-[color:var(--color-border)] bg-gradient-to-br from-[color:var(--color-surface-2)] to-[color:var(--color-surface)] px-6 py-16 text-center sm:px-12"
+    >
+      <div class="grid-pattern pointer-events-none absolute inset-0 -z-10 opacity-40"></div>
+      <h2
+        class="reveal mx-auto max-w-2xl font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl"
+      >
+        {t.contactCta.title}
+      </h2>
+      <p class="reveal mx-auto mt-4 max-w-xl text-[color:var(--color-ink-muted)]">
+        {t.contactCta.subtitle}
+      </p>
+      <a href={localizePath('/contact', lang)} class="btn btn-primary reveal mt-8">
+        {t.contactCta.button}
+      </a>
+    </div>
+  </div>
+</section>

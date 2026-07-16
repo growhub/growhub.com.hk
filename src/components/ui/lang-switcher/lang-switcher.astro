@@ -1,0 +1,30 @@
+---
+import { buildLocaleLinks } from './hooks';
+import type { LangSwitcherProps } from './types';
+
+const { lang, route } = Astro.props as LangSwitcherProps;
+const links = buildLocaleLinks(lang, route);
+---
+
+<div class="flex items-center gap-1 text-sm">
+  {
+    links.map((link, i) => (
+      <>
+        {i > 0 && <span class="text-[color:var(--color-ink-faint)]">/</span>}
+        <a
+          href={link.href}
+          hreflang={link.code}
+          class:list={[
+            'px-1.5 py-1 rounded transition-colors',
+            link.active
+              ? 'font-bold text-gradient'
+              : 'text-[color:var(--color-ink-muted)] hover:text-[color:var(--color-ink)]',
+          ]}
+          aria-current={link.active ? 'true' : undefined}
+        >
+          {link.label}
+        </a>
+      </>
+    ))
+  }
+</div>

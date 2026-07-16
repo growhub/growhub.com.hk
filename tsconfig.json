@@ -8,9 +8,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@i18n/*": ["src/i18n/*"],
-      "@layouts/*": ["src/layouts/*"]
+      "@ui/*": ["src/components/ui/*"],
+      "@feature/*": ["src/components/feature/*"],
+      "@page/*": ["src/components/page/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@i18n/*": ["src/i18n/*"]
     }
   }
 }

@@ -1,0 +1,42 @@
+---
+import { getDict } from '@i18n/ui';
+import { buildCompanyRows } from './hooks';
+import type { CompanyProps } from './types';
+
+const { lang } = Astro.props as CompanyProps;
+const t = getDict(lang);
+const rows = buildCompanyRows(lang);
+---
+
+<section id="company" class="scroll-mt-20 py-20 sm:py-28">
+  <div class="container-x">
+    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <div class="reveal">
+        <p class="text-sm font-semibold tracking-[0.2em] text-[color:var(--color-brand-2)]">
+          {t.company.kicker}
+        </p>
+        <h2 class="mt-3 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl">
+          {t.company.title}
+        </h2>
+      </div>
+
+      <dl class="reveal card overflow-hidden">
+        {
+          rows.map((row, i) => (
+            <div
+              class:list={[
+                'flex flex-col gap-1 px-6 py-5 sm:flex-row sm:gap-6',
+                i > 0 && 'border-t border-[color:var(--color-border)]',
+              ]}
+            >
+              <dt class="w-full text-xs font-semibold uppercase tracking-wide text-[color:var(--color-ink-faint)] sm:w-52 sm:shrink-0">
+                {row.label}
+              </dt>
+              <dd class="text-sm leading-relaxed text-[color:var(--color-ink)]">{row.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</section>
