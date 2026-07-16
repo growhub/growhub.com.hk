@@ -1,0 +1,68 @@
+---
+import { getDict } from '@i18n/ui';
+import { capabilityIconPaths as icons } from './constants';
+import type { CapabilitiesProps } from './types';
+
+const { lang } = Astro.props as CapabilitiesProps;
+const t = getDict(lang);
+---
+
+<section id="capabilities" class="scroll-mt-20 py-20 sm:py-28">
+  <div class="container-x">
+    <div class="reveal max-w-2xl">
+      <p class="text-sm font-semibold tracking-[0.2em] text-[color:var(--color-brand-2)]">
+        {t.capabilities.kicker}
+      </p>
+      <h2
+        class="mt-3 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl"
+      >
+        {t.capabilities.title}
+      </h2>
+      <p class="mt-4 text-[color:var(--color-ink-muted)]">{t.capabilities.subtitle}</p>
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        t.capabilities.groups.map((group, i) => (
+          <article class="card reveal p-6" style={`transition-delay:${i * 60}ms`}>
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)]">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="url(#cap-grad)"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d={icons[i]} />
+                </svg>
+              </div>
+              <h3 class="font-semibold">{group.name}</h3>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <span class="rounded-full border border-[color:var(--color-border)] px-2.5 py-1 text-xs text-[color:var(--color-ink-muted)]">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- shared gradient for icon strokes -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="cap-grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0284c7" />
+        <stop offset="100%" stop-color="#4f46e5" />
+      </linearGradient>
+    </defs>
+  </svg>
+</section>

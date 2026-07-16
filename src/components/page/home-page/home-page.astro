@@ -1,5 +1,6 @@
 ---
 import AiApproach from '@feature/ai-approach';
+import Capabilities from '@feature/capabilities';
 import Company from '@feature/company';
 import ContactCta from '@feature/contact-cta';
 import Hero from '@feature/hero';
@@ -17,6 +18,7 @@ const t = getDict(lang);
 <BaseLayout lang={lang} route="/" title={t.meta.home_title} description={t.meta.home_desc}>
   <Hero lang={lang} />
   <Services lang={lang} />
+  <Capabilities lang={lang} />
   <AiApproach lang={lang} />
   <Works lang={lang} />
   <Company lang={lang} />

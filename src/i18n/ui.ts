@@ -63,6 +63,12 @@ export interface Dict {
     subtitle: string;
     items: ServiceItem[];
   };
+  capabilities: {
+    kicker: string;
+    title: string;
+    subtitle: string;
+    groups: { name: string; items: string[] }[];
+  };
   ai: {
     kicker: string;
     title: string;
@@ -185,6 +191,18 @@ const zhHK: Dict = {
         desc: '運用最新 AI 技術，重塑開發流程，以更快的速度與更高的品質交付產品。',
         tags: ['AI', '自動化', '效率'],
       },
+    ],
+  },
+  capabilities: {
+    kicker: 'CAPABILITIES',
+    title: '技術能力',
+    subtitle: '我們用以構建產品的主要技術。',
+    groups: [
+      { name: '前端', items: ['React', 'Next.js', 'Astro', 'TypeScript', 'Tailwind CSS'] },
+      { name: '後端', items: ['Node.js', 'Python', 'Go', 'REST / GraphQL', 'PostgreSQL'] },
+      { name: '流動應用', items: ['React Native', 'Swift', 'Kotlin', 'Flutter'] },
+      { name: '雲端 & DevOps', items: ['AWS', 'Cloudflare', 'Docker', 'CI/CD', 'Netlify'] },
+      { name: 'AI', items: ['LLM 整合', 'RAG', 'AI 輔助開發', '自動化'] },
     ],
   },
   ai: {
@@ -361,6 +379,18 @@ const en: Dict = {
         desc: 'We reshape the development process with the latest AI technology, shipping products with more speed and higher quality.',
         tags: ['AI', 'Automation', 'Efficiency'],
       },
+    ],
+  },
+  capabilities: {
+    kicker: 'CAPABILITIES',
+    title: 'Our tech stack',
+    subtitle: 'The core technologies we build with.',
+    groups: [
+      { name: 'Frontend', items: ['React', 'Next.js', 'Astro', 'TypeScript', 'Tailwind CSS'] },
+      { name: 'Backend', items: ['Node.js', 'Python', 'Go', 'REST / GraphQL', 'PostgreSQL'] },
+      { name: 'Mobile', items: ['React Native', 'Swift', 'Kotlin', 'Flutter'] },
+      { name: 'Cloud & DevOps', items: ['AWS', 'Cloudflare', 'Docker', 'CI/CD', 'Netlify'] },
+      { name: 'AI', items: ['LLM integration', 'RAG', 'AI-assisted dev', 'Automation'] },
     ],
   },
   ai: {
@@ -546,6 +576,18 @@ const ja: Dict = {
         desc: '最新のAI技術で開発フローを再設計し、より速く、より高い品質でプロダクトをお届けします。',
         tags: ['AI', '自動化', '効率化'],
       },
+    ],
+  },
+  capabilities: {
+    kicker: 'CAPABILITIES',
+    title: '技術スタック',
+    subtitle: '私たちがプロダクトを形にする主な技術です。',
+    groups: [
+      { name: 'フロントエンド', items: ['React', 'Next.js', 'Astro', 'TypeScript', 'Tailwind CSS'] },
+      { name: 'バックエンド', items: ['Node.js', 'Python', 'Go', 'REST / GraphQL', 'PostgreSQL'] },
+      { name: 'モバイル', items: ['React Native', 'Swift', 'Kotlin', 'Flutter'] },
+      { name: 'クラウド & DevOps', items: ['AWS', 'Cloudflare', 'Docker', 'CI/CD', 'Netlify'] },
+      { name: 'AI', items: ['LLM連携', 'RAG', 'AI活用開発', '自動化'] },
     ],
   },
   ai: {
