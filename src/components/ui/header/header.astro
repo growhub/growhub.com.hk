@@ -1,6 +1,7 @@
 ---
 import { getDict, localizePath } from '@i18n/ui';
 import LangSwitcher from '@ui/lang-switcher';
+import Logo from '@ui/logo';
 import MobileNav from '@ui/mobile-nav';
 import { buildContactLink, buildLangLinks, buildNavLinks } from './hooks';
 import type { HeaderProps } from './types';
@@ -17,6 +18,7 @@ const langLinks = buildLangLinks(lang, route);
   <div class="container-x">
     <div class="flex h-16 items-center justify-between">
       <a href={home} class="group flex items-center gap-2" aria-label="GrowHub home">
+        <Logo size={30} />
         <span class="logo text-xl">GrowHub</span>
         <sup class="text-[10px] font-semibold text-[color:var(--color-ink-faint)]">HK</sup>
       </a>
