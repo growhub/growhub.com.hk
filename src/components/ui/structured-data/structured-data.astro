@@ -1,0 +1,11 @@
+---
+import { buildOrganizationSchema, buildWebsiteSchema } from './hooks';
+import type { StructuredDataProps } from './types';
+
+const { lang, site } = Astro.props as StructuredDataProps;
+const org = buildOrganizationSchema(lang, site);
+const website = buildWebsiteSchema(lang, site);
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(org)} />
+<script type="application/ld+json" set:html={JSON.stringify(website)} />

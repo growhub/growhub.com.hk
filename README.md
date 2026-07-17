@@ -103,6 +103,23 @@ light/dark トグルを追加する場合も、この仕組みをそのまま利
 > ような名前を `@theme` に置くと、Tailwind 標準の `text-base`（フォントサイズ）ユーティリティと
 > 衝突するためです。各コンポーネントは `var(--color-*)` 経由で参照します。
 
+## 🔎 SEO / AEO / GEO / LLMO
+
+検索エンジンと生成AI・LLM の双方に向けた最適化を実装しています（いずれも実在の会社情報のみ）。
+
+- **構造化データ (JSON-LD)**: 全ページに `ProfessionalService`（会社情報・所在地・設立・代表者・
+  サービスの `OfferCatalog`）と `WebSite` を出力。`src/components/ui/structured-data`
+  （`hooks.ts` にビルダー、`hooks.test.ts` でテスト）。
+- **メタ**: 各ページ固有の title / description、canonical、`hreflang` alternates、
+  `robots`、Open Graph（`og:image` 1200×630 バナー `public/og.png`、`og:locale` + alternates）、
+  Twitter カード。
+- **`llms.txt`** (`public/llms.txt`): LLM 向けにサイト概要・会社情報・サービス・技術スタックを
+  Markdown で提供（[llmstxt.org](https://llmstxt.org/) 準拠）。
+- **サイトマップ / robots**: `@astrojs/sitemap`（hreflang 付き）+ `public/robots.txt`。
+
+> 次の一手（任意）: FAQ セクション + `FAQPage` 構造化データを追加すると、AEO（Answer Engine）/
+> GEO でさらに効果的です。Q&A の内容が決まれば追加できます。
+
 ## 📮 お問い合わせフォーム（Netlify Forms）
 
 `src/components/ContactForm.astro` の静的 HTML フォーム（`data-netlify="true"` + hidden

@@ -1,5 +1,5 @@
 export const SITE_FALLBACK = 'https://www.growhub.com.hk';
-export const OG_IMAGE_PATH = '/android-chrome-512x512.png';
+export const OG_IMAGE_PATH = '/og.png';
 
 /**
  * Active site theme. The stylesheet also ships 'light' / 'dusk' / 'dark'

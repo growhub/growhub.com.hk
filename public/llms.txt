@@ -1,0 +1,38 @@
+# GrowHub Limited
+
+> GrowHub is a Hong Kong-based software studio building web apps & services,
+> websites, and mobile apps, powered by an AI-driven development workflow.
+> The site is available in Traditional Chinese (zh-HK), English, and Japanese.
+
+## Company
+
+- Legal name: GrowHub Limited (香港 / Hong Kong)
+- Founder & CEO: Mika Nakamura (Carmen)
+- Founded: 2019-04-17
+- Location: 21/F., Kam Fung Commercial Building, 2-4 Tin Lok Lane, Wan Chai, Hong Kong
+- Website: https://www.growhub.com.hk/
+
+## Services
+
+- Web Application & Service Development — scalable web apps and SaaS, from concept to launch.
+- Website Production & Management — design, build, and post-launch operation & growth support.
+- App Development — iOS / Android mobile apps, from UI/UX design to release and maintenance.
+- AI-Driven Development — reshaping the development process with AI for more speed and higher quality; consulting and collaboration on adopting AI-driven workflows.
+
+## Tech stack
+
+- Frontend: React, Next.js, Astro, TypeScript, Tailwind CSS
+- Backend: Node.js, Python, Go, REST / GraphQL, PostgreSQL
+- Mobile: React Native, Swift, Kotlin, Flutter
+- Cloud & DevOps: AWS, Cloudflare, Docker, CI/CD, Netlify
+- AI: LLM integration, RAG, AI-assisted development, automation
+
+## Pages
+
+- Home: https://www.growhub.com.hk/ (English: /en/ , Japanese: /ja/)
+- Contact: https://www.growhub.com.hk/contact
+- Privacy Policy: https://www.growhub.com.hk/policy/privacy
+
+## Contact
+
+- Please use the contact form at https://www.growhub.com.hk/contact
