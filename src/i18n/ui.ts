@@ -304,24 +304,57 @@ const zhHK: Dict = {
     back: '返回首頁',
   },
   privacy: {
-    title: '私隱條例',
-    subtitle: '請於同意本公司的個人資料私隱條例後瀏覽本網站。',
+    title: '私隱政策',
+    subtitle:
+      'GrowHub Limited（下稱「本公司」）致力遵守香港《個人資料（私隱）條例》（第486章）的規定，保障閣下的個人資料私隱。請於使用本網站前細閱本私隱政策。',
     body: [
       {
-        heading: '個人資料的收集',
-        text: '本公司在您透過查詢表格與我們聯絡時，會收集您所提供的姓名、電子郵箱及查詢內容等個人資料。',
+        heading: '適用範圍',
+        text: '本私隱政策適用於閣下透過本網站（www.growhub.com.hk）向本公司提供的個人資料，說明本公司如何收集、使用、儲存及保障該等資料，並列明閣下可行使的權利。',
       },
       {
-        heading: '個人資料的使用',
-        text: '所收集的個人資料僅用於回覆您的查詢及提供相關服務，不會用於其他用途。',
+        heading: '收集的個人資料類別',
+        text: '本公司透過查詢表格收集的個人資料包括：姓名、公司名稱（如適用）、電子郵箱地址及查詢內容。\n此外，本網站使用網站分析工具，可能自動收集瀏覽器類型、裝置資訊、IP 地址（經匿名化處理）及瀏覽行為等非直接識別個人身份的資料。',
       },
       {
-        heading: '個人資料的保護',
-        text: '本公司會採取合理措施保護您的個人資料，防止未經授權的存取、外洩或篡改。',
+        heading: '收集方式',
+        text: '個人資料主要透過閣下自願於查詢表格中填寫而收集；瀏覽數據則透過 Cookie 及類似技術於閣下瀏覽本網站時自動收集。',
       },
       {
-        heading: '第三方披露',
-        text: '除法律要求或取得您的同意外，本公司不會向第三方披露您的個人資料。',
+        heading: '收集及使用個人資料的目的',
+        text: '收集的個人資料將用於以下目的：\n(a) 回覆及處理閣下的查詢；\n(b) 提供閣下所要求的服務資訊；\n(c) 改善本網站的內容、功能及使用體驗；\n(d) 分析網站流量及使用情況，以優化服務質素；\n(e) 履行適用法律及監管要求。\n提供上述個人資料屬自願性質；惟如閣下未有提供姓名及電子郵箱地址等必要資料，本公司將無法回覆閣下的查詢。',
+      },
+      {
+        heading: 'Cookie 及網站分析工具',
+        text: '本網站使用 Google Analytics（GA4）分析網站使用情況，該工具會透過 Cookie 收集匿名的瀏覽數據。閣下可透過瀏覽器設定拒絕或刪除 Cookie，惟此舉可能影響本網站部分功能的正常運作。\n有關 Google Analytics 的私隱政策，請參閱 Google 的相關說明。',
+      },
+      {
+        heading: '第三方披露及服務供應商',
+        text: '本公司不會出售閣下的個人資料。除下列情況外，本公司不會向第三方披露閣下的個人資料：\n(a) 為處理查詢表格及網站分析而使用的服務供應商（包括 Netlify 及 Google Analytics），該等供應商僅按本公司指示處理資料；\n(b) 法律、法規或政府機關要求；\n(c) 已取得閣下的明確同意。\n由於上述服務供應商的伺服器可能位於香港以外地區，閣下的個人資料有可能被傳送至香港以外的司法管轄區處理。',
+      },
+      {
+        heading: '資料的保留期限',
+        text: '個人資料將僅於達成收集目的所需的期間內保留，其後將被安全刪除或匿名化處理，惟法律另有規定或本公司有合理業務需要保留者除外。',
+      },
+      {
+        heading: '資料保安',
+        text: '本公司已採取合理可行的技術及行政保安措施（包括傳輸加密及存取權限管理），保障個人資料免受未經授權或意外的查閱、處理、刪除或其他使用。',
+      },
+      {
+        heading: '查閱及更正個人資料的權利',
+        text: '根據《個人資料（私隱）條例》，閣下有權查閱及要求更正本公司持有關於閣下的個人資料。如欲提出查閱或更正請求，請透過本網站的查詢表格與本公司聯絡，本公司將於合理時間內回覆。',
+      },
+      {
+        heading: '未成年人的個人資料',
+        text: '本網站及服務主要面向企業客戶，並非為兒童而設。本公司不會在知情的情況下故意收集未成年人的個人資料。',
+      },
+      {
+        heading: '本政策的修訂',
+        text: '本公司可能因應法律要求或業務需要不時修訂本私隱政策，最新版本將於本網站發佈。建議閣下定期查閱本頁面，以了解最新內容。',
+      },
+      {
+        heading: '查詢方式',
+        text: '如對本私隱政策有任何疑問，或欲行使閣下的個人資料權利，請透過本網站的查詢表格與 GrowHub Limited 聯絡。\n地址：21/F., Kam Fung Commercial Building, 2-4 Tin Lok Lane, Wanchai, Hong Kong',
       },
     ],
   },
@@ -516,23 +549,56 @@ const en: Dict = {
   },
   privacy: {
     title: 'Privacy Policy',
-    subtitle: 'Please read and agree to our privacy policy before using this site.',
+    subtitle:
+      'GrowHub Limited (the "Company") is committed to complying with the Hong Kong Personal Data (Privacy) Ordinance (Cap. 486) and to protecting your personal data privacy. Please read this Privacy Policy carefully before using this website.',
     body: [
       {
-        heading: 'Collection of Personal Data',
-        text: 'When you contact us through the inquiry form, we collect the personal data you provide, such as your name, e-mail address, and the content of your message.',
+        heading: 'Scope',
+        text: 'This Privacy Policy applies to personal data you provide to the Company through this website (www.growhub.com.hk). It explains how the Company collects, uses, stores, and protects that data, and sets out the rights available to you.',
       },
       {
-        heading: 'Use of Personal Data',
-        text: 'The personal data collected is used solely to respond to your inquiry and provide related services, and for no other purpose.',
+        heading: 'Personal Data We Collect',
+        text: 'Through the contact form, we collect: your name, company name (if provided), e-mail address, and the content of your message.\nIn addition, this website uses analytics tools that may automatically collect non-identifying information such as browser type, device information, IP address (anonymised), and browsing behaviour.',
       },
       {
-        heading: 'Protection of Personal Data',
-        text: 'We take reasonable measures to protect your personal data against unauthorized access, disclosure, or alteration.',
+        heading: 'How We Collect Personal Data',
+        text: 'Personal data is primarily collected when you voluntarily submit the contact form. Browsing data is collected automatically via cookies and similar technologies while you use this website.',
       },
       {
-        heading: 'Disclosure to Third Parties',
-        text: 'We do not disclose your personal data to third parties except as required by law or with your consent.',
+        heading: 'Purposes of Collection and Use',
+        text: 'Personal data collected is used for the following purposes:\n(a) responding to and handling your enquiry;\n(b) providing information about services you have requested;\n(c) improving the content, functionality, and usability of this website;\n(d) analysing website traffic and usage to improve our services; and\n(e) complying with applicable laws and regulatory requirements.\nProvision of personal data is voluntary; however, if you do not provide the necessary information (such as your name and e-mail address), we will not be able to respond to your enquiry.',
+      },
+      {
+        heading: 'Cookies and Website Analytics',
+        text: 'This website uses Google Analytics (GA4) to analyse website usage, which collects anonymised browsing data via cookies. You may decline or delete cookies through your browser settings, although doing so may affect certain functions of this website.\nFor more information on how Google handles data, please refer to the Google Analytics privacy policy.',
+      },
+      {
+        heading: 'Disclosure to Third Parties and Service Providers',
+        text: 'We do not sell your personal data. We do not disclose your personal data to third parties except:\n(a) to service providers that help us operate this website (including Netlify for form processing and Google for analytics), who process data only on our instructions;\n(b) where required by law, regulation, or government authority; or\n(c) with your explicit consent.\nAs these service providers’ servers may be located outside Hong Kong, your personal data may be transferred to and processed in jurisdictions outside Hong Kong.',
+      },
+      {
+        heading: 'Data Retention',
+        text: 'Personal data is retained only for as long as necessary to fulfil the purposes for which it was collected, after which it is securely deleted or anonymised, unless a longer retention period is required by law or for legitimate business purposes.',
+      },
+      {
+        heading: 'Data Security',
+        text: 'We have implemented reasonable and practicable technical and administrative security measures, including encryption in transit and access controls, to protect personal data against unauthorised or accidental access, processing, erasure, or other use.',
+      },
+      {
+        heading: 'Access and Correction Rights',
+        text: 'Under the Personal Data (Privacy) Ordinance, you have the right to request access to, and correction of, personal data we hold about you. To make such a request, please contact us via the contact form on this website; we will respond within a reasonable time.',
+      },
+      {
+        heading: "Children's Privacy",
+        text: 'This website and our services are directed at business customers and are not intended for children. We do not knowingly collect personal data from minors.',
+      },
+      {
+        heading: 'Changes to This Policy',
+        text: 'We may update this Privacy Policy from time to time to reflect legal requirements or changes to our business. The latest version will be published on this website. We encourage you to review this page periodically.',
+      },
+      {
+        heading: 'Contact Us',
+        text: 'If you have any questions about this Privacy Policy, or wish to exercise your rights regarding your personal data, please contact GrowHub Limited via the contact form on this website.\nAddress: 21/F., Kam Fung Commercial Building, 2-4 Tin Lok Lane, Wanchai, Hong Kong',
       },
     ],
   },
@@ -721,23 +787,56 @@ const ja: Dict = {
   },
   privacy: {
     title: 'プライバシーポリシー',
-    subtitle: '本サイトのご利用にあたっては、プライバシーポリシーへの同意をお願いいたします。',
+    subtitle:
+      'GrowHub Limited（以下「当社」といいます）は、香港の個人資料（隠私）条例（第486章）を遵守し、お客様の個人情報保護に努めています。本サイトのご利用前に、本プライバシーポリシーをご確認ください。',
     body: [
       {
-        heading: '個人情報の収集',
-        text: 'お問い合わせフォームからご連絡いただく際に、お名前・メールアドレス・お問い合わせ内容などの個人情報を取得します。',
+        heading: '適用範囲',
+        text: '本プライバシーポリシーは、お客様が本サイト（www.growhub.com.hk）を通じて当社に提供する個人情報に適用され、当社による個人情報の収集・利用・保管・保護の方法、およびお客様が行使できる権利について定めるものです。',
       },
       {
-        heading: '個人情報の利用',
-        text: '取得した個人情報は、お問い合わせへの回答および関連するサービス提供の目的にのみ利用し、それ以外の目的には利用しません。',
+        heading: '収集する個人情報の種類',
+        text: 'お問い合わせフォームからは、お名前・会社名（任意）・メールアドレス・お問い合わせ内容を収集します。\nまた、本サイトではアクセス解析ツールを利用しており、ブラウザの種類、デバイス情報、IPアドレス（匿名化処理済み）、閲覧行動など、個人を直接特定しない情報を自動的に取得する場合があります。',
       },
       {
-        heading: '個人情報の保護',
-        text: '不正アクセス・漏洩・改ざんなどを防ぐため、合理的な安全対策を講じて個人情報を保護します。',
+        heading: '収集方法',
+        text: '個人情報は、主にお客様がお問い合わせフォームに任意でご入力いただくことで収集します。閲覧データは、Cookie等の技術を用いて、本サイトのご利用時に自動的に収集されます。',
       },
       {
-        heading: '第三者への開示',
-        text: '法令に基づく場合、またはご本人の同意がある場合を除き、個人情報を第三者に開示することはありません。',
+        heading: '収集・利用目的',
+        text: '取得した個人情報は、以下の目的で利用します。\n(a) お問い合わせへの対応・回答\n(b) ご要望に応じたサービス情報のご案内\n(c) 本サイトのコンテンツ・機能・利便性の改善\n(d) アクセス状況の分析によるサービス品質の向上\n(e) 適用される法令・規制の遵守\nこれらの情報提供は任意ですが、お名前・メールアドレス等の必要情報をご提供いただけない場合、お問い合わせへの回答ができません。',
+      },
+      {
+        heading: 'Cookie・アクセス解析ツールについて',
+        text: '本サイトでは、Google アナリティクス（GA4）を用いてアクセス状況を分析しており、同ツールはCookieを通じて匿名化された閲覧データを収集します。ブラウザの設定によりCookieの拒否・削除が可能ですが、その場合、本サイトの一部機能が正常に動作しない可能性があります。\nGoogleによるデータの取り扱いについては、Googleアナリティクスのプライバシーポリシーをご参照ください。',
+      },
+      {
+        heading: '第三者提供・業務委託について',
+        text: '当社はお客様の個人情報を第三者に販売することはありません。以下の場合を除き、個人情報を第三者に開示することはありません。\n(a) 本サイトの運営を支援する委託先（フォーム処理を担うNetlify、アクセス解析を担うGoogle等）。これらの委託先は当社の指示の範囲内でのみ情報を取り扱います。\n(b) 法令・規制または政府機関からの要請がある場合\n(c) お客様本人の同意がある場合\nなお、上記委託先のサーバーは香港域外に所在する場合があるため、お客様の個人情報が香港域外で処理される可能性があります。',
+      },
+      {
+        heading: '保有期間',
+        text: '個人情報は、収集目的の達成に必要な期間に限り保有し、その後は安全に削除または匿名化処理を行います。ただし、法令により保存が求められる場合、または正当な業務上の必要がある場合はこの限りではありません。',
+      },
+      {
+        heading: '安全管理措置',
+        text: '当社は、通信の暗号化やアクセス権限の管理など、合理的かつ実行可能な技術的・組織的安全対策を講じ、個人情報への不正アクセス・漏えい・改ざん・その他の不正利用を防止します。',
+      },
+      {
+        heading: '開示・訂正請求への対応',
+        text: '個人資料（隠私）条例に基づき、お客様は当社が保有するご自身の個人情報の開示および訂正を請求する権利を有します。ご請求の際は、本サイトのお問い合わせフォームよりご連絡ください。当社は合理的な期間内に対応いたします。',
+      },
+      {
+        heading: '未成年者の情報について',
+        text: '本サイトおよび当社サービスは法人のお客様を主な対象としており、児童を対象としたものではありません。当社が未成年者の個人情報を意図的に収集することはありません。',
+      },
+      {
+        heading: '本ポリシーの変更',
+        text: '当社は、法令の改正や事業内容の変更等に応じて、本プライバシーポリシーを予告なく変更する場合があります。最新の内容は本サイトに掲載いたしますので、定期的にご確認ください。',
+      },
+      {
+        heading: 'お問い合わせ窓口',
+        text: '本プライバシーポリシーに関するご質問、または個人情報に関する権利行使をご希望の場合は、本サイトのお問い合わせフォームより GrowHub Limited までご連絡ください。\n住所：21/F., Kam Fung Commercial Building, 2-4 Tin Lok Lane, Wanchai, Hong Kong',
       },
     ],
   },

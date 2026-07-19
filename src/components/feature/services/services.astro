@@ -1,6 +1,6 @@
 ---
 import { getDict } from '@i18n/ui';
-import { serviceIconPaths as icons } from './constants';
+import { serviceIconPaths as icons, serviceImages as images } from './constants';
 import type { ServicesProps } from './types';
 
 const { lang } = Astro.props as ServicesProps;
@@ -22,34 +22,37 @@ const t = getDict(lang);
     <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {
         t.services.items.map((item, i) => (
-          <article class="card reveal flex flex-col p-6" style={`transition-delay:${i * 70}ms`}>
-            <div
-              class="flex h-11 w-11 items-center justify-center rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)]"
-            >
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="url(#svc-grad)"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
+          <article class="card reveal flex flex-col overflow-hidden p-0" style={`transition-delay:${i * 70}ms`}>
+            <img src={images[i]} alt="" width="800" height="600" class="aspect-[4/3] w-full object-cover" />
+            <div class="flex flex-1 flex-col p-6">
+              <div
+                class="flex h-11 w-11 items-center justify-center rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)]"
               >
-                <path d={icons[i]} />
-              </svg>
-            </div>
-            <h3 class="mt-5 text-lg font-semibold">{item.name}</h3>
-            <p class="mt-2 flex-1 text-sm leading-relaxed text-[color:var(--color-ink-muted)]">
-              {item.desc}
-            </p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              {item.tags.map((tag) => (
-                <span class="rounded-full border border-[color:var(--color-border)] px-2.5 py-0.5 text-[11px] text-[color:var(--color-ink-faint)]">
-                  {tag}
-                </span>
-              ))}
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="url(#svc-grad)"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d={icons[i]} />
+                </svg>
+              </div>
+              <h3 class="mt-5 text-lg font-semibold">{item.name}</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-[color:var(--color-ink-muted)]">
+                {item.desc}
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                {item.tags.map((tag) => (
+                  <span class="rounded-full border border-[color:var(--color-border)] px-2.5 py-0.5 text-[11px] text-[color:var(--color-ink-faint)]">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </article>
         ))

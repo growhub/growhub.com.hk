@@ -9,3 +9,14 @@ export const serviceIconPaths = [
   // AI-driven — spark
   'M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18',
 ];
+
+/**
+ * Cover image per service card, in the same order as services[].
+ * Placeholder visuals — swap for licensed photography when available.
+ */
+export const serviceImages = [
+  '/images/services/web-app.svg',
+  '/images/services/web-production.svg',
+  '/images/services/app-dev.svg',
+  '/images/services/ai-dev.svg',
+];

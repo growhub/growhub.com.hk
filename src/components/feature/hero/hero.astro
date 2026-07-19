@@ -10,34 +10,46 @@ const t = getDict(lang);
   <div class="grid-pattern pointer-events-none absolute inset-0 -z-10 opacity-60"></div>
 
   <div class="container-x">
-    <div class="mx-auto max-w-3xl text-center">
-      <span
-        class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)]/60 px-4 py-1.5 text-xs font-medium text-[color:var(--color-ink-muted)]"
-      >
-        <span class="relative flex h-2 w-2">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--color-brand-2)] opacity-75"></span>
-          <span class="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--color-brand-2)]"></span>
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div class="text-center lg:text-left">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)]/60 px-4 py-1.5 text-xs font-medium text-[color:var(--color-ink-muted)]"
+        >
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--color-brand-2)] opacity-75"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--color-brand-2)]"></span>
+          </span>
+          {t.hero.badge}
         </span>
-        {t.hero.badge}
-      </span>
 
-      <h1
-        class="mt-6 font-[family-name:var(--font-display)] text-4xl font-bold leading-[1.15] tracking-tight sm:text-6xl"
-      >
-        {t.hero.title_line1}<span class="text-gradient">{t.hero.title_highlight}</span>{t.hero.title_line2}
-      </h1>
+        <h1
+          class="mt-6 font-[family-name:var(--font-display)] text-4xl font-bold leading-[1.15] tracking-tight sm:text-6xl"
+        >
+          {t.hero.title_line1}<span class="text-gradient">{t.hero.title_highlight}</span>{t.hero.title_line2}
+        </h1>
 
-      <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-ink-muted)] sm:text-lg">
-        {t.hero.subtitle}
-      </p>
+        <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-ink-muted)] sm:text-lg lg:mx-0">
+          {t.hero.subtitle}
+        </p>
 
-      <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <a href={localizePath('/contact', lang)} class="btn btn-primary w-full sm:w-auto">
-          {t.hero.cta_primary}
-        </a>
-        <a href="#services" class="btn btn-ghost w-full sm:w-auto">
-          {t.hero.cta_secondary}
-        </a>
+        <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href={localizePath('/contact', lang)} class="btn btn-primary w-full sm:w-auto">
+            {t.hero.cta_primary}
+          </a>
+          <a href="#services" class="btn btn-ghost w-full sm:w-auto">
+            {t.hero.cta_secondary}
+          </a>
+        </div>
+      </div>
+
+      <div class="relative">
+        <img
+          src="/images/hero-visual.svg"
+          alt=""
+          width="1000"
+          height="800"
+          class="w-full rounded-3xl border border-[color:var(--color-border)] shadow-2xl"
+        />
       </div>
     </div>
 

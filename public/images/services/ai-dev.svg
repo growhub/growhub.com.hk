@@ -1,0 +1,46 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f1b3d"/>
+      <stop offset="1" stop-color="#1e2a5e"/>
+    </linearGradient>
+    <linearGradient id="acc4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#818cf8"/>
+    </linearGradient>
+    <radialGradient id="glow4" cx="0.5" cy="0.5" r="0.7">
+      <stop offset="0" stop-color="#6366f1" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg4)"/>
+  <rect width="800" height="600" fill="url(#glow4)"/>
+  <!-- neural network nodes -->
+  <g stroke="url(#acc4)" stroke-width="1.5" stroke-opacity="0.55" fill="none">
+    <path d="M180 200 L360 160 M180 200 L360 300 M180 200 L360 430"/>
+    <path d="M180 340 L360 160 M180 340 L360 300 M180 340 L360 430"/>
+    <path d="M180 470 L360 160 M180 470 L360 300 M180 470 L360 430"/>
+    <path d="M360 160 L560 240 M360 160 L560 380"/>
+    <path d="M360 300 L560 240 M360 300 L560 380"/>
+    <path d="M360 430 L560 240 M360 430 L560 380"/>
+    <path d="M560 240 L680 300 M560 380 L680 300"/>
+  </g>
+  <g fill="#ffffff">
+    <circle cx="180" cy="200" r="10"/>
+    <circle cx="180" cy="340" r="10"/>
+    <circle cx="180" cy="470" r="10"/>
+  </g>
+  <g fill="url(#acc4)">
+    <circle cx="360" cy="160" r="12"/>
+    <circle cx="360" cy="300" r="12"/>
+    <circle cx="360" cy="430" r="12"/>
+    <circle cx="560" cy="240" r="12"/>
+    <circle cx="560" cy="380" r="12"/>
+  </g>
+  <circle cx="680" cy="300" r="16" fill="#ffffff"/>
+  <!-- spark accents -->
+  <g stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.85">
+    <path d="M700 150 v34 M683 167 h34"/>
+    <path d="M120 470 v26 M107 483 h26"/>
+  </g>
+</svg>
