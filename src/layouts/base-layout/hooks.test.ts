@@ -15,8 +15,8 @@ describe('resolveSite', () => {
 
 describe('buildCanonical', () => {
   it('builds a localized absolute URL', () => {
-    expect(buildCanonical('/contact', 'en', site)).toBe('https://example.com/en/contact');
-    expect(buildCanonical('/', 'zh-hk', site)).toBe('https://example.com/');
+    expect(buildCanonical('/contact', 'en', site)).toBe('https://example.com/contact');
+    expect(buildCanonical('/', 'zh-hk', site)).toBe('https://example.com/zh-hk');
   });
 });
 

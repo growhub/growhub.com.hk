@@ -11,8 +11,8 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'ignore',
   i18n: {
-    defaultLocale: 'zh-hk',
-    locales: ['zh-hk', 'en', 'ja'],
+    defaultLocale: 'en',
+    locales: ['en', 'zh-hk', 'ja'],
     routing: {
       prefixDefaultLocale: false,
       redirectToDefaultLocale: false,
@@ -22,7 +22,7 @@ export default defineConfig({
     react(),
     sitemap({
       i18n: {
-        defaultLocale: 'zh-hk',
+        defaultLocale: 'en',
         locales: {
           'zh-hk': 'zh-Hant-HK',
           en: 'en',

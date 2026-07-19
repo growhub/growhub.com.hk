@@ -36,7 +36,7 @@ describe('buildWebsiteSchema', () => {
   it('is a WebSite listing all site languages and linking the publisher', () => {
     const web = buildWebsiteSchema('en', site);
     expect(web['@type']).toBe('WebSite');
-    expect(web.inLanguage).toEqual(['zh-Hant-HK', 'en', 'ja']);
+    expect(web.inLanguage).toEqual(['en', 'zh-Hant-HK', 'ja']);
     expect(web.publisher['@id']).toBe('https://www.growhub.com.hk/#organization');
   });
 });

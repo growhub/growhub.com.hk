@@ -1,11 +1,11 @@
 // ============================================================
 // GrowHub i18n — trilingual content dictionary
-// Locales: zh-hk (default, no URL prefix), en, ja
+// Locales: en (default, no URL prefix), zh-hk, ja
 // ============================================================
 
-export const locales = ['zh-hk', 'en', 'ja'] as const;
+export const locales = ['en', 'zh-hk', 'ja'] as const;
 export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = 'zh-hk';
+export const defaultLocale: Locale = 'en';
 
 export const localeNames: Record<Locale, string> = {
   'zh-hk': '繁',
@@ -104,10 +104,13 @@ export interface Dict {
     title: string;
     subtitle: string;
     name: string;
+    company: string;
     email: string;
     content: string;
     submit: string;
+    sending: string;
     privacy_note: string;
+    errors: { name: string; email: string; content: string; generic: string };
   };
   thanks: {
     title: string;
@@ -260,6 +263,11 @@ const zhHK: Dict = {
     title: '最新消息',
     items: [
       {
+        date: '2026/07/31',
+        title: '本公司網站已全新改版',
+        desc: '本公司網站已於設計及技術層面全面更新。今後亦請繼續多多支持。',
+      },
+      {
         date: '2019/04/17',
         title: '完成法人登記手續',
         desc: '本公司於 2019 年 4 月 17 日完成法人登記相關手續。衷心感謝一直支持本公司的各位。',
@@ -275,11 +283,19 @@ const zhHK: Dict = {
     kicker: 'CONTACT',
     title: '查詢',
     subtitle: '請由此填寫，我們會儘快回覆。',
-    name: '姓名 / 公司名稱',
+    name: '姓名',
+    company: '公司名稱（可選）',
     email: '電子郵箱',
     content: '查詢內容',
     submit: '提交',
+    sending: '傳送中…',
     privacy_note: '提交即表示您同意本公司的私隱條例。',
+    errors: {
+      name: '請輸入姓名。',
+      email: '請輸入有效的電子郵箱。',
+      content: '請輸入查詢內容。',
+      generic: '發生錯誤，請稍後再試。',
+    },
   },
   thanks: {
     title: '查詢完畢',
@@ -458,6 +474,11 @@ const en: Dict = {
     title: 'Latest news',
     items: [
       {
+        date: '31 Jul 2026',
+        title: 'We renewed our corporate website',
+        desc: 'We have renewed our corporate website with a fresh design and a modern technology stack. Thank you for your continued support.',
+      },
+      {
         date: '17 Apr 2019',
         title: 'Corporate registration completed',
         desc: 'We completed our corporate registration on 17 April 2019. Thank you sincerely to everyone who has supported us.',
@@ -473,11 +494,19 @@ const en: Dict = {
     kicker: 'CONTACT',
     title: 'Contact',
     subtitle: 'Fill in the form below and we will get back to you soon.',
-    name: 'Name / Company',
+    name: 'Name',
+    company: 'Company (optional)',
     email: 'E-mail',
     content: 'Message',
     submit: 'Submit',
+    sending: 'Sending…',
     privacy_note: 'By submitting, you agree to our privacy policy.',
+    errors: {
+      name: 'Please enter your name.',
+      email: 'Please enter a valid e-mail address.',
+      content: 'Please enter a message.',
+      generic: 'Something went wrong. Please try again.',
+    },
   },
   thanks: {
     title: 'Thank you',
@@ -587,7 +616,10 @@ const ja: Dict = {
     title: '技術スタック',
     subtitle: '私たちがプロダクトを形にする主な技術です。',
     groups: [
-      { name: 'フロントエンド', items: ['React', 'Next.js', 'Astro', 'TypeScript', 'Tailwind CSS'] },
+      {
+        name: 'フロントエンド',
+        items: ['React', 'Next.js', 'Astro', 'TypeScript', 'Tailwind CSS'],
+      },
       { name: 'バックエンド', items: ['Node.js', 'Python', 'Go', 'REST / GraphQL', 'PostgreSQL'] },
       { name: 'モバイル', items: ['React Native', 'Swift', 'Kotlin', 'Flutter'] },
       { name: 'クラウド & DevOps', items: ['AWS', 'Cloudflare', 'Docker', 'CI/CD', 'Netlify'] },
@@ -647,6 +679,11 @@ const ja: Dict = {
     title: 'お知らせ',
     items: [
       {
+        date: '2026/07/31',
+        title: 'コーポレートサイトをリニューアルしました',
+        desc: 'この度、コーポレートサイトをデザイン・技術スタックともに一新いたしました。今後とも変わらぬご愛顧を賜りますようお願い申し上げます。',
+      },
+      {
         date: '2019/04/17',
         title: '法人登記が完了しました',
         desc: '2019年4月17日付けで法人登記が完了いたしました。支援していただいた皆様、誠にありがとうございます。',
@@ -662,11 +699,19 @@ const ja: Dict = {
     kicker: 'CONTACT',
     title: 'お問い合わせ',
     subtitle: 'こちらのフォームよりお問い合わせください。折り返しご連絡いたします。',
-    name: 'お名前 / 会社名',
+    name: 'お名前',
+    company: '会社名（任意）',
     email: 'メールアドレス',
     content: 'お問い合わせ内容',
     submit: '送信する',
+    sending: '送信中…',
     privacy_note: '送信することで、プライバシーポリシーに同意したものとみなします。',
+    errors: {
+      name: 'お名前を入力してください。',
+      email: '有効なメールアドレスを入力してください。',
+      content: 'お問い合わせ内容を入力してください。',
+      generic: 'エラーが発生しました。時間をおいて再度お試しください。',
+    },
   },
   thanks: {
     title: 'お問い合わせ完了',

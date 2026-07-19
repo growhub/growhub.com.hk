@@ -3,8 +3,8 @@ import { buildLocaleLinks } from './hooks';
 
 describe('buildLocaleLinks', () => {
   it('returns a link for every locale', () => {
-    const links = buildLocaleLinks('zh-hk', '/');
-    expect(links.map((l) => l.code)).toEqual(['zh-hk', 'en', 'ja']);
+    const links = buildLocaleLinks('en', '/');
+    expect(links.map((l) => l.code)).toEqual(['en', 'zh-hk', 'ja']);
   });
 
   it('marks the current locale active', () => {
@@ -15,8 +15,8 @@ describe('buildLocaleLinks', () => {
 
   it('preserves the route across locales', () => {
     const links = buildLocaleLinks('en', '/contact');
-    expect(links.find((l) => l.code === 'zh-hk')?.href).toBe('/contact');
-    expect(links.find((l) => l.code === 'en')?.href).toBe('/en/contact');
+    expect(links.find((l) => l.code === 'en')?.href).toBe('/contact');
+    expect(links.find((l) => l.code === 'zh-hk')?.href).toBe('/zh-hk/contact');
     expect(links.find((l) => l.code === 'ja')?.href).toBe('/ja/contact');
   });
 

@@ -41,9 +41,9 @@ pnpm test        # Vitest でユニットテスト実行
 
 ## 🌐 多言語 (i18n)
 
-- 対応言語: `zh-hk`（デフォルト・URL プレフィックス無し）/ `en`（`/en/…`）/ `ja`（`/ja/…`）
+- 対応言語: `en`（デフォルト・URL プレフィックス無し）/ `zh-hk`（`/zh-hk/…`）/ `ja`（`/ja/…`）
 - 表示テキストはすべて `src/i18n/ui.ts` の辞書に集約。文言の追加・修正はこのファイルで行います。
-- 各言語のルートは `src/pages/`, `src/pages/en/`, `src/pages/ja/` の薄いラッパで、本体は
+- 各言語のルートは `src/pages/`, `src/pages/zh-hk/`, `src/pages/ja/` の薄いラッパで、本体は
   `src/components/page/*`（`lang` prop を受け取る共有コンポーネント）に集約しています。
 
 ## 🧩 ディレクトリ構成・コンポーネント規約
@@ -122,9 +122,13 @@ light/dark トグルを追加する場合も、この仕組みをそのまま利
 
 ## 📮 お問い合わせフォーム（Netlify Forms）
 
-`src/components/ContactForm.astro` の静的 HTML フォーム（`data-netlify="true"` + hidden
-`form-name` + ハニーポット `bot-field`）を Netlify がビルド時に自動検出します。送信後は各言語の
-`/…/contact/thanks` へリダイレクトされます。
+`src/components/feature/contact-form` で実装。表示フォームは **React island**（`form.tsx`）で、
+**[Zod](https://zod.dev) によるフロントエンドのバリデーション**（Name 必須 / Company 任意 /
+E-mail 形式チェック / Message 必須）を行い、エラーは各言語のメッセージで表示します。
+送信は Netlify Forms への AJAX（`fetch` で `/` へ POST）で行い、成功後は各言語の
+`/…/contact/thanks` へ遷移します。Netlify のビルド時検出用に、同名・同フィールドの
+**hidden な静的フォーム**（`data-netlify="true"` + `form-name` + ハニーポット `bot-field`）を
+併置しています。
 
 ## ☁️ デプロイ
 

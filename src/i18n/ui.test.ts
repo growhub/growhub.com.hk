@@ -2,27 +2,27 @@ import { describe, expect, it } from 'vitest';
 import { defaultLocale, getDict, isLocale, localizePath } from './ui';
 
 describe('localizePath', () => {
-  it('returns "/" for the default-locale home', () => {
-    expect(localizePath('/', 'zh-hk')).toBe('/');
+  it('returns "/" for the default-locale (en) home', () => {
+    expect(localizePath('/', 'en')).toBe('/');
   });
 
   it('prefixes the home path for non-default locales', () => {
-    expect(localizePath('/', 'en')).toBe('/en');
+    expect(localizePath('/', 'zh-hk')).toBe('/zh-hk');
     expect(localizePath('/', 'ja')).toBe('/ja');
   });
 
   it('keeps sub-paths unprefixed for the default locale', () => {
-    expect(localizePath('/contact', 'zh-hk')).toBe('/contact');
-    expect(localizePath('/policy/privacy', 'zh-hk')).toBe('/policy/privacy');
+    expect(localizePath('/contact', 'en')).toBe('/contact');
+    expect(localizePath('/policy/privacy', 'en')).toBe('/policy/privacy');
   });
 
   it('prefixes sub-paths for non-default locales', () => {
-    expect(localizePath('/contact', 'en')).toBe('/en/contact');
+    expect(localizePath('/contact', 'zh-hk')).toBe('/zh-hk/contact');
     expect(localizePath('/policy/privacy', 'ja')).toBe('/ja/policy/privacy');
   });
 
   it('strips a trailing slash', () => {
-    expect(localizePath('/contact/', 'en')).toBe('/en/contact');
+    expect(localizePath('/contact/', 'zh-hk')).toBe('/zh-hk/contact');
   });
 });
 
@@ -49,7 +49,7 @@ describe('isLocale', () => {
 });
 
 describe('defaultLocale', () => {
-  it('is zh-hk', () => {
-    expect(defaultLocale).toBe('zh-hk');
+  it('is en', () => {
+    expect(defaultLocale).toBe('en');
   });
 });

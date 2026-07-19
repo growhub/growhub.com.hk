@@ -31,7 +31,8 @@
     "@astrojs/sitemap": "^3.7.3",
     "astro": "^5.2.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.0.0",

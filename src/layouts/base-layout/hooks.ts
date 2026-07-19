@@ -1,4 +1,4 @@
-import { htmlLang, type Locale, locales, localizePath } from '@i18n/ui';
+import { defaultLocale, htmlLang, type Locale, locales, localizePath } from '@i18n/ui';
 import { SITE_FALLBACK } from './constants';
 import type { AlternateLink } from './types';
 
@@ -18,6 +18,9 @@ export function buildAlternateLinks(route: string, site: URL): AlternateLink[] {
     hreflang: htmlLang[loc],
     href: new URL(localizePath(route, loc), site).href,
   }));
-  links.push({ hreflang: 'x-default', href: new URL(localizePath(route, 'zh-hk'), site).href });
+  links.push({
+    hreflang: 'x-default',
+    href: new URL(localizePath(route, defaultLocale), site).href,
+  });
   return links;
 }
