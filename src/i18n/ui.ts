@@ -144,31 +144,31 @@ const zhHK: Dict = {
     services: '服務',
     capabilities: '技術',
     approach: 'AI 開發',
-    works: '開發流程',
+    works: '合作方式',
     company: '公司詳情',
     contact: '查詢',
   },
   meta: {
-    home_title: 'GrowHub — 香港軟件開發公司 | Web・App・AI 開發',
+    home_title: 'GrowHub — 香港軟件開發公司 | 0 初期費用原型開發・Web・App・AI',
     home_desc:
-      'GrowHub 是位於香港的軟件開發公司，專注 Web 應用・服務開發、網站製作與運營，以及流動應用程式開發。我們善用 AI 打造高效的開發流程。',
+      '先做出來，再談。GrowHub 是香港的軟件開發公司，以 0 初期費用、AI 驅動的方式先造出可運作的原型，再以成品為基礎，與您一起釐清要解決的課題與服務方向。提供 Web 應用・服務開發、網站製作與運營、流動應用程式開發。',
     contact_title: '查詢 | GrowHub',
     privacy_title: '私隱條例 | GrowHub',
     thanks_title: '查詢完畢 | GrowHub',
   },
   hero: {
     badge: '香港・軟件開發',
-    title_line1: '以',
-    title_highlight: 'AI 驅動',
-    title_line2: '的方式，將構想快速化為產品',
+    title_line1: '以 0 初期費用，從',
+    title_highlight: '可運作的原型',
+    title_line2: '開始。',
     subtitle:
-      'GrowHub 是一間位於香港的軟件開發公司。由 Web 應用・服務、網站製作與運營，到流動應用程式開發，我們善用 AI 打造高效流程，與客戶並肩把握每一次成長機會。',
+      '我們先以 AI 驅動的方式快速造出「動得起來的東西」，再一邊看著成品，一邊與您一起決定要解決甚麼課題、打造怎樣的服務。靈活、快速——把您的第一步，變成踏實的一步。',
     cta_primary: '免費諮詢',
-    cta_secondary: '了解服務',
+    cta_secondary: '了解合作方式',
     stats: [
+      { value: 'HK$0', label: '初期費用原型開發' },
+      { value: '數日', label: '最快見到成品' },
       { value: '2019', label: '香港成立' },
-      { value: '3', label: '核心服務領域' },
-      { value: 'AI', label: '驅動開發流程' },
     ],
   },
   services: {
@@ -229,17 +229,21 @@ const zhHK: Dict = {
         desc: '以精簡而高效的流程，讓每一分投入都能發揮更大價值。',
       },
     ],
-    note: '我們亦提供 AI 開發流程導入的諮詢與協作。',
+    note: '正因為有這套 AI 開發能力，我們才能提供 0 初期費用的原型開發。亦歡迎查詢 AI 開發流程導入的協作。',
   },
   works: {
-    kicker: 'HOW WE WORK',
-    title: '我們的開發流程',
-    subtitle: '透明、協作、快速迭代。與客戶一起把握每一步。',
+    kicker: 'PROTOTYPE FIRST',
+    title: '先做出來，再談。',
+    subtitle:
+      '對話的起點不是計劃書，而是「做出來的東西」。這是我們以 0 初期費用原型開展項目的方式。',
     steps: [
-      { title: '諮詢與構思', desc: '深入了解需求與目標，一同釐清方向。' },
-      { title: '設計與原型', desc: '快速製作原型，儘早驗證與調整。' },
-      { title: 'AI 驅動開發', desc: '善用 AI 加速開發，同時確保品質。' },
-      { title: '發佈與運營', desc: '上線後持續運營、量度與優化，支援成長。' },
+      { title: '免費諮詢', desc: '毋須準備計劃書。想做甚麼、有甚麼疑問，直接告訴我們就可以。' },
+      { title: 'AI 驅動試作（HK$0）', desc: '運用 AI，最快數日內以 0 初期費用造出可運作的原型。' },
+      { title: '看著成品傾談', desc: '一邊實際操作原型，一邊釐清要解決的課題與服務應有的形態。' },
+      {
+        title: '進入正式開發',
+        desc: '方向確定後，隨即靈活、快速地展開正式開發；若感覺不合適，在此停下也沒問題。',
+      },
     ],
   },
   company: {
@@ -275,8 +279,8 @@ const zhHK: Dict = {
     ],
   },
   contactCta: {
-    title: '有項目在構思中？',
-    subtitle: '無論是 Web、App 還是 AI 開發，歡迎隨時與我們傾談。',
+    title: '不如先看到「動得起來的東西」，再作決定？',
+    subtitle: '由 0 初期費用的原型開發開始。Web、App、AI 開發亦歡迎隨時查詢。',
     button: '立即查詢',
   },
   contact: {
@@ -360,7 +364,7 @@ const zhHK: Dict = {
     ],
   },
   footer: {
-    tagline: '善用 AI，打造高效的軟件開發。',
+    tagline: '先做出來，再談。由 0 初期費用的原型開始。',
     contactPrompt: '歡迎垂詢',
     nav_home: '首頁',
     nav_privacy: '私隱條例',
@@ -380,31 +384,31 @@ const en: Dict = {
     services: 'Services',
     capabilities: 'Tech',
     approach: 'AI Development',
-    works: 'Process',
+    works: 'How we work',
     company: 'Company',
     contact: 'Contact',
   },
   meta: {
-    home_title: 'GrowHub — Hong Kong Software Studio | Web・App・AI Development',
+    home_title: 'GrowHub — Hong Kong Software Studio | Zero-Cost Prototypes・Web・App・AI',
     home_desc:
-      'GrowHub is a Hong Kong-based software studio building web apps & services, websites, and mobile apps — powered by an AI-driven development workflow.',
+      'Build first, then talk. GrowHub is a Hong Kong software studio that starts every project with a zero-upfront-cost, AI-driven prototype — then shapes the service around something you can actually touch. Web apps & services, websites, and mobile apps.',
     contact_title: 'Contact | GrowHub',
     privacy_title: 'Privacy Policy | GrowHub',
     thanks_title: 'Thank You | GrowHub',
   },
   hero: {
     badge: 'Hong Kong · Software Studio',
-    title_line1: 'Turning ideas into products, ',
-    title_highlight: 'AI-driven',
-    title_line2: ' and fast.',
+    title_line1: 'Start with a ',
+    title_highlight: 'working prototype',
+    title_line2: ' — zero upfront cost.',
     subtitle:
-      'GrowHub is a Hong Kong-based software studio. From web apps & services and website production to mobile app development, we harness AI to build faster and work alongside our clients at every step of growth.',
+      'We build something real first, AI-driven and fast. Then, looking at a working prototype together, we decide what problem your service should solve — and what it should become. Flexible and quick, we turn your first step into a solid one.',
     cta_primary: 'Get in touch',
-    cta_secondary: 'Our services',
+    cta_secondary: 'See how we work',
     stats: [
+      { value: 'HK$0', label: 'Upfront-cost prototype' },
+      { value: 'Days', label: 'To something working' },
       { value: '2019', label: 'Founded in HK' },
-      { value: '3', label: 'Core service areas' },
-      { value: 'AI', label: 'Driven workflow' },
     ],
   },
   services: {
@@ -465,25 +469,29 @@ const en: Dict = {
         desc: 'A lean, high-leverage process makes every unit of investment go further.',
       },
     ],
-    note: 'We also offer consulting and collaboration on adopting AI-driven workflows.',
+    note: 'This AI-driven capability is what makes our zero-cost prototyping possible. We also offer consulting on adopting AI workflows.',
   },
   works: {
-    kicker: 'HOW WE WORK',
-    title: 'Our process',
-    subtitle: 'Transparent, collaborative, and fast-iterating — every step, together.',
+    kicker: 'PROTOTYPE FIRST',
+    title: 'Build first, then talk.',
+    subtitle:
+      'Conversations start around something real — not a spec document. Here is how a project begins with a zero-cost prototype.',
     steps: [
       {
-        title: 'Discovery',
-        desc: 'Understand your needs and goals, and align on direction together.',
-      },
-      { title: 'Design & Prototype', desc: 'Prototype quickly to validate and adjust early.' },
-      {
-        title: 'AI-Driven Build',
-        desc: 'Leverage AI to accelerate development while safeguarding quality.',
+        title: 'Free consultation',
+        desc: 'No pitch deck needed. Just tell us what you want to build — even if it is still fuzzy.',
       },
       {
-        title: 'Launch & Operate',
-        desc: 'Operate, measure, and optimize after launch to support growth.',
+        title: 'AI-driven prototype (HK$0)',
+        desc: 'We build a working prototype in days, AI-driven, at zero upfront cost.',
+      },
+      {
+        title: 'Talk over the real thing',
+        desc: 'Together we explore the prototype and pin down the problem worth solving — and the shape of the service.',
+      },
+      {
+        title: 'Full development',
+        desc: 'Once the direction is clear, we move straight into full development — flexible and fast. If it does not click, you can simply stop here.',
       },
     ],
   },
@@ -520,8 +528,9 @@ const en: Dict = {
     ],
   },
   contactCta: {
-    title: 'Have a project in mind?',
-    subtitle: 'Whether it is web, app, or AI development, we would love to talk.',
+    title: 'Why not see something working before you decide?',
+    subtitle:
+      'Start with a zero-upfront-cost prototype — or just talk to us about web, app, or AI development.',
     button: 'Contact us',
   },
   contact: {
@@ -605,7 +614,7 @@ const en: Dict = {
     ],
   },
   footer: {
-    tagline: 'Building efficient software, powered by AI.',
+    tagline: 'Build first, then talk. Starting with zero-cost prototypes.',
     contactPrompt: 'Get in touch',
     nav_home: 'Home',
     nav_privacy: 'Privacy Policy',
@@ -625,31 +634,31 @@ const ja: Dict = {
     services: 'サービス',
     capabilities: '技術',
     approach: 'AI開発',
-    works: '開発フロー',
+    works: '進め方',
     company: '会社概要',
     contact: 'お問い合わせ',
   },
   meta: {
-    home_title: 'GrowHub — 香港のソフトウェア開発会社 | Web・アプリ・AI開発',
+    home_title: 'GrowHub — 香港のソフトウェア開発会社 | 初期費用0円のプロトタイプ開発',
     home_desc:
-      'GrowHubは香港のソフトウェア開発会社です。Webアプリ・サービス開発、Web制作・運用、アプリ開発を、AIを活用した効率的な開発手法で提供します。',
+      '悩む前に、作る。GrowHubは、初期費用0円・AIドリブンのプロトタイプ開発から始める香港のソフトウェア開発会社です。できたものをベースに、解決すべき課題とつくるべきサービスを一緒に固めます。Webアプリ・サービス開発、Web制作・運用、アプリ開発に対応。',
     contact_title: 'お問い合わせ | GrowHub',
     privacy_title: 'プライバシーポリシー | GrowHub',
     thanks_title: 'お問い合わせ完了 | GrowHub',
   },
   hero: {
     badge: '香港・ソフトウェア開発',
-    title_line1: 'アイデアを、',
-    title_highlight: 'AIを活用',
-    title_line2: 'して素早くプロダクトへ。',
+    title_line1: '初期費用0円で、',
+    title_highlight: '動くプロトタイプ',
+    title_line2: 'から始める。',
     subtitle:
-      'GrowHubは香港のソフトウェア開発会社です。Webアプリ・サービスからWeb制作・運用、アプリ開発まで、AIを活用した効率的な開発でスピーディに形にし、お客様の成長に伴走します。',
+      'まずはAIドリブンで“動くもの”を形に。できたものを見ながら、どんな課題を解決するサービスにするかを一緒に決めていきます。柔軟に、スピーディに——あなたのはじめの一歩を、確かな一歩に。',
     cta_primary: '無料で相談する',
-    cta_secondary: 'サービスを見る',
+    cta_secondary: '進め方を見る',
     stats: [
+      { value: '¥0', label: '初期費用プロトタイプ' },
+      { value: '数日', label: '最短で“動くもの”まで' },
       { value: '2019', label: '香港で設立' },
-      { value: '3', label: 'コア領域' },
-      { value: 'AI', label: '駆動の開発' },
     ],
   },
   services: {
@@ -713,17 +722,30 @@ const ja: Dict = {
         desc: '無駄のない効率的なプロセスで、投資した分の価値を最大化します。',
       },
     ],
-    note: 'AI開発フロー導入のご相談・伴走支援も承っています。',
+    note: 'この開発体制があるから、初期費用0円のプロトタイプ開発が可能になります。AI開発フロー導入のご相談・伴走支援も承っています。',
   },
   works: {
-    kicker: 'HOW WE WORK',
-    title: '開発の進め方',
-    subtitle: '透明・協働・高速な反復。一つひとつのステップをお客様と共に。',
+    kicker: 'PROTOTYPE FIRST',
+    title: '悩む前に、作る。',
+    subtitle:
+      '会話の起点は、企画書ではなく“できたもの”。初期費用0円のプロトタイプから始める、私たちの進め方です。',
     steps: [
-      { title: 'ヒアリング', desc: '要件とゴールを深く理解し、方向性を一緒に定めます。' },
-      { title: '設計・プロトタイプ', desc: '素早く試作し、早い段階で検証・調整します。' },
-      { title: 'AI駆動の開発', desc: 'AIを活用して開発を加速しつつ、品質を担保します。' },
-      { title: 'リリース・運用', desc: '公開後も運用・計測・改善を続け、成長を支援します。' },
+      {
+        title: '無料相談',
+        desc: '企画書は不要です。やりたいこと・モヤモヤを、そのまま聞かせてください。',
+      },
+      {
+        title: 'AIドリブンで試作（0円）',
+        desc: 'AIを活用し、最短数日で“動くプロトタイプ”を初期費用0円で開発します。',
+      },
+      {
+        title: 'できたものを見ながら対話',
+        desc: '実際に触りながら、解決すべき課題とサービスの形を一緒に見極めます。',
+      },
+      {
+        title: '本開発へ',
+        desc: '方向が定まったら、そのまま柔軟・高速に本開発へ。ピンと来なければ、ここで終了でも構いません。',
+      },
     ],
   },
   company: {
@@ -759,8 +781,8 @@ const ja: Dict = {
     ],
   },
   contactCta: {
-    title: '構想中のプロジェクトはありますか？',
-    subtitle: 'Web・アプリ・AI開発など、まずはお気軽にご相談ください。',
+    title: 'まずは、“動くもの”を見てから決めませんか？',
+    subtitle: '初期費用0円のプロトタイプ開発から。Web・アプリ・AI開発のご相談も歓迎です。',
     button: 'お問い合わせ',
   },
   contact: {
@@ -844,7 +866,7 @@ const ja: Dict = {
     ],
   },
   footer: {
-    tagline: 'AIを活用して、効率的なソフトウェア開発を。',
+    tagline: '悩む前に、作る。初期費用0円のプロトタイプから。',
     contactPrompt: 'お気軽にお問い合わせください',
     nav_home: 'ホーム',
     nav_privacy: 'プライバシーポリシー',

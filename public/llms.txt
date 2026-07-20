@@ -1,8 +1,10 @@
 # GrowHub Limited
 
-> GrowHub is a Hong Kong-based software studio building web apps & services,
-> websites, and mobile apps, powered by an AI-driven development workflow.
-> The site is available in Traditional Chinese (zh-HK), English, and Japanese.
+> Build first, then talk. GrowHub is a Hong Kong-based software studio that
+> starts every project with a zero-upfront-cost, AI-driven working prototype —
+> then shapes the service around it: what problem it should solve and what it
+> should become. It builds web apps & services, websites, and mobile apps.
+> The site is available in English, Traditional Chinese (zh-HK), and Japanese.
 
 ## Company
 
@@ -19,6 +21,13 @@
 - App Development — iOS / Android mobile apps, from UI/UX design to release and maintenance.
 - AI-Driven Development — reshaping the development process with AI for more speed and higher quality; consulting and collaboration on adopting AI-driven workflows.
 
+## How we work (prototype first)
+
+1. Free consultation — no pitch deck needed.
+2. AI-driven prototype at zero upfront cost (HK$0), typically within days.
+3. Discuss over the working prototype to pin down the problem worth solving and the shape of the service.
+4. Move into full development — flexible and fast (or simply stop, with no obligation).
+
 ## Tech stack
 
 - Frontend: React, Next.js, Astro, TypeScript, Tailwind CSS
@@ -29,7 +38,7 @@
 
 ## Pages
 
-- Home: https://www.growhub.com.hk/ (English: /en/ , Japanese: /ja/)
+- Home: https://www.growhub.com.hk/ (Traditional Chinese: /zh-hk/ , Japanese: /ja/)
 - Contact: https://www.growhub.com.hk/contact
 - Privacy Policy: https://www.growhub.com.hk/policy/privacy
 
