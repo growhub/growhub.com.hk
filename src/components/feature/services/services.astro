@@ -5,56 +5,60 @@ import type { ServicesProps } from './types';
 
 const { lang } = Astro.props as ServicesProps;
 const t = getDict(lang);
+
+const items = t.services.items;
+const count = items.length;
+// Triple the list so the carousel can loop seamlessly in both directions.
+const loopItems = [...items, ...items, ...items];
 ---
 
 <section id="services" class="scroll-mt-20 bg-[color:var(--color-surface-2)]/60 py-20 sm:py-28">
   <div class="container-x">
-    <div class="flex items-end justify-between gap-6">
-      <div class="reveal max-w-2xl">
-        <p class="text-sm font-semibold tracking-[0.2em] text-[color:var(--color-brand-2)]">
-          {t.services.kicker}
-        </p>
-        <h2 class="mt-3 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl">
-          {t.services.title}
-        </h2>
-        <p class="mt-4 text-[color:var(--color-ink-muted)]">{t.services.subtitle}</p>
-      </div>
-
-      <!-- carousel controls (desktop) -->
-      <div class="hidden shrink-0 gap-2 lg:flex">
-        <button
-          type="button"
-          data-services-prev
-          aria-label="Previous"
-          class="flex h-11 w-11 items-center justify-center rounded-full border border-[color:var(--color-border)] text-[color:var(--color-ink-muted)] transition-colors hover:border-[color:var(--color-brand-2)] hover:text-[color:var(--color-brand)]"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button
-          type="button"
-          data-services-next
-          aria-label="Next"
-          class="flex h-11 w-11 items-center justify-center rounded-full border border-[color:var(--color-border)] text-[color:var(--color-ink-muted)] transition-colors hover:border-[color:var(--color-brand-2)] hover:text-[color:var(--color-brand)]"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-      </div>
+    <div class="reveal max-w-2xl">
+      <p class="text-sm font-semibold tracking-[0.2em] text-[color:var(--color-brand-2)]">
+        {t.services.kicker}
+      </p>
+      <h2 class="mt-3 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl">
+        {t.services.title}
+      </h2>
+      <p class="mt-4 text-[color:var(--color-ink-muted)]">{t.services.subtitle}</p>
     </div>
 
-    <div class="reveal mt-12">
+    <div class="reveal relative mt-12">
+      <!-- prev (left, vertically centered) -->
+      <button
+        type="button"
+        data-services-prev
+        aria-label="Previous"
+        class="glass absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-[color:var(--color-ink-muted)] shadow-lg transition-colors hover:text-[color:var(--color-brand)] sm:h-12 sm:w-12"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <!-- next (right, vertically centered) -->
+      <button
+        type="button"
+        data-services-next
+        aria-label="Next"
+        class="glass absolute right-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-[color:var(--color-ink-muted)] shadow-lg transition-colors hover:text-[color:var(--color-brand)] sm:h-12 sm:w-12"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+
       <div
         data-services-track
-        class="no-scrollbar -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto scroll-smooth px-5 pb-4"
+        data-count={count}
+        class="no-scrollbar -mx-5 flex cursor-grab snap-x snap-mandatory select-none scroll-px-5 gap-5 overflow-x-auto px-5 pb-4 active:cursor-grabbing"
       >
         {
-          t.services.items.map((item, i) => (
+          loopItems.map((item, i) => (
             <article class="card flex w-[85%] shrink-0 snap-start flex-col overflow-hidden p-0 sm:w-[62%] lg:w-[35%]">
               <img
-                src={images[i]}
+                src={images[i % count]}
                 alt=""
                 width="800"
                 height="600"
-                class="aspect-[16/10] w-full object-cover"
+                draggable={false}
+                class="pointer-events-none aspect-[16/10] w-full object-cover"
               />
               <div class="flex flex-1 flex-col p-6">
                 <h3 class="text-lg font-semibold">{item.name}</h3>
@@ -80,16 +84,62 @@ const t = getDict(lang);
 <script>
   const track = document.querySelector<HTMLElement>('[data-services-track]');
   if (track) {
-    const step = () => {
+    const gap = 20;
+    const count = Number(track.dataset.count) || 1;
+    const stepSize = () => {
       const card = track.querySelector<HTMLElement>('article');
-      return card ? card.offsetWidth + 20 : track.clientWidth;
+      return card ? card.offsetWidth + gap : track.clientWidth;
     };
-    const scrollByStep = (dir: number) => track.scrollBy({ left: dir * step(), behavior: 'smooth' });
+    // Width of one full copy of the item set.
+    let copyW = stepSize() * count;
+    const measure = () => {
+      copyW = stepSize() * count;
+    };
+
+    // --- Seamless loop: keep the scroll position within the middle copy. ---
+    // Direct scrollLeft assignment is instant (the track uses the default
+    // `scroll-behavior: auto`), so these jumps are invisible.
+    const recenter = () => {
+      if (copyW <= 0) return;
+      if (track.scrollLeft < copyW * 0.5) track.scrollLeft += copyW;
+      else if (track.scrollLeft > copyW * 1.5) track.scrollLeft -= copyW;
+    };
+    track.addEventListener('scroll', recenter, { passive: true });
+    // Start inside the middle copy so there is content to loop to on both sides.
+    requestAnimationFrame(() => {
+      measure();
+      track.scrollLeft = copyW;
+    });
+    window.addEventListener('resize', measure);
+
+    const scrollByStep = (dir: number) =>
+      track.scrollBy({ left: dir * stepSize(), behavior: 'smooth' });
 
     const prev = document.querySelector('[data-services-prev]');
     const next = document.querySelector('[data-services-next]');
     prev?.addEventListener('click', () => scrollByStep(-1));
     next?.addEventListener('click', () => scrollByStep(1));
+
+    // --- Drag to scroll (mouse). Touch flick uses native scrolling. ---
+    let dragging = false;
+    let startX = 0;
+    let startScroll = 0;
+    track.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      dragging = true;
+      startX = e.clientX;
+      startScroll = track.scrollLeft;
+      track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      track.scrollLeft = startScroll - (e.clientX - startX);
+    });
+    const endDrag = () => {
+      dragging = false;
+    };
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
 
     // --- Autoplay ---
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -97,10 +147,7 @@ const t = getDict(lang);
     let paused = false;
 
     const tick = () => {
-      if (paused) return;
-      const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
-      if (atEnd) track.scrollTo({ left: 0, behavior: 'smooth' });
-      else scrollByStep(1);
+      if (!paused) scrollByStep(1);
     };
     const start = () => {
       if (!reduce && timer === null) timer = setInterval(tick, 3800);
@@ -112,7 +159,7 @@ const t = getDict(lang);
       }
     };
 
-    // Pause on hover / focus / touch, and briefly after an arrow click.
+    // Pause on hover / focus / touch / drag, resume shortly after.
     const pause = () => {
       paused = true;
     };
@@ -127,6 +174,7 @@ const t = getDict(lang);
     track.addEventListener('pointerleave', resume);
     track.addEventListener('focusin', pause);
     track.addEventListener('focusout', resume);
+    track.addEventListener('pointerdown', () => resumeLater(6000));
     track.addEventListener('touchstart', () => resumeLater(6000), { passive: true });
     prev?.addEventListener('click', () => resumeLater(8000));
     next?.addEventListener('click', () => resumeLater(8000));
