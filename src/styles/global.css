@@ -144,6 +144,19 @@ body {
   overflow-x: hidden;
 }
 
+/* Better line wrapping. CJK can break between almost any two characters, so
+   the default often orphans a trailing character or punctuation onto its own
+   line (e.g. 「…決めません／か？」). Balance headings and avoid orphans in
+   body copy. Progressive enhancement — ignored by browsers that lack support. */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
 ::selection {
   background: color-mix(in oklab, var(--color-brand) 40%, transparent);
   color: #fff;
