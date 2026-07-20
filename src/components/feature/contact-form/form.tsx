@@ -238,11 +238,11 @@ export default function ContactForm({ labels, action, siteKey = '' }: Props) {
         </div>
       )}
 
-      <div className="mt-6 flex flex-col items-center gap-3">
+      <div className="mt-8 flex flex-col items-center gap-3">
         <button
           type="submit"
           disabled={submitting}
-          className="btn btn-primary w-full disabled:opacity-60 sm:w-auto sm:px-14"
+          className="btn btn-primary w-full py-4 text-base font-semibold disabled:opacity-60 sm:w-auto sm:min-w-[20rem] sm:py-5 sm:text-lg"
         >
           {submitting ? labels.sending : labels.submit}
         </button>
