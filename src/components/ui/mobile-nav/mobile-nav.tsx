@@ -40,28 +40,53 @@ export default function MobileNav({ links, contact, langLinks }: MobileNavProps)
 
       {open && (
         <div className="fixed inset-0 z-40">
+          {/* Tap anywhere off the links to dismiss. */}
+          <div
+            aria-hidden="true"
+            onClick={close}
+            className="absolute inset-0 bg-[color:var(--color-base)]/95 backdrop-blur-md"
+          />
+          {/* Explicit close button — the header toggle sits under this overlay. */}
           <button
             type="button"
             aria-label="Close menu"
             onClick={close}
-            className="absolute inset-0 h-full w-full cursor-default bg-[color:var(--color-base)]/95 backdrop-blur-md"
-          />
-          <nav className="relative flex h-full flex-col items-center justify-center gap-6 px-8 text-center">
+            className="absolute right-5 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface)] text-[color:var(--color-ink)]"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              aria-hidden="true"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+          <nav className="pointer-events-none relative flex h-full flex-col items-center justify-center gap-6 px-8 text-center">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={close}
-                className="text-2xl font-semibold text-[color:var(--color-ink)] hover:text-gradient"
+                className="pointer-events-auto text-2xl font-semibold text-[color:var(--color-ink)] hover:text-gradient"
               >
                 {l.label}
               </a>
             ))}
-            <a href={contact.href} onClick={close} className="btn btn-primary mt-2 text-lg">
+            <a
+              href={contact.href}
+              onClick={close}
+              className="btn btn-primary pointer-events-auto mt-2 text-lg"
+            >
               {contact.label}
             </a>
 
-            <div className="mt-6 flex items-center gap-3 text-lg">
+            <div className="pointer-events-auto mt-6 flex items-center gap-3 text-lg">
               {langLinks.map((ll, i) => (
                 <span key={ll.code} className="flex items-center gap-3">
                   {i > 0 && <span className="text-[color:var(--color-ink-faint)]">/</span>}
