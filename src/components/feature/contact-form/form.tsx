@@ -125,6 +125,9 @@ export default function ContactForm({ labels, action, siteKey = '' }: Props) {
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    // Capture the honeypot before any await (currentTarget clears afterwards).
+    const honeypot =
+      (e.currentTarget.elements.namedItem('company_url') as HTMLInputElement | null)?.value ?? '';
     const parsed = schema.safeParse(values);
     if (!parsed.success) {
       const next: FieldErrors = {};
@@ -144,20 +147,30 @@ export default function ContactForm({ labels, action, siteKey = '' }: Props) {
     setErrors({});
     setSubmitting(true);
     try {
-      const res = await fetch('/', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encode({
-          'form-name': 'contact',
           name: parsed.data.name,
           company: parsed.data.company ?? '',
           email: parsed.data.email,
           content: parsed.data.content,
           'cf-turnstile-response': token,
+          company_url: honeypot,
         }),
       });
-      if (!res.ok) throw new Error('submit failed');
-      window.location.href = action;
+      if (res.ok) {
+        window.location.href = action;
+        return;
+      }
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      if (res.status === 400 && data.error === 'turnstile') {
+        setSubmitting(false);
+        resetTurnstile();
+        setErrors({ turnstile: labels.errors.turnstile });
+        return;
+      }
+      throw new Error('submit failed');
     } catch {
       setSubmitting(false);
       resetTurnstile();
@@ -167,6 +180,15 @@ export default function ContactForm({ labels, action, siteKey = '' }: Props) {
 
   return (
     <form onSubmit={onSubmit} noValidate className="card p-6 sm:p-8">
+      {/* Honeypot — hidden from real users; bots that fill it are dropped. */}
+      <input
+        type="text"
+        name="company_url"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className={labelClass} htmlFor="name">

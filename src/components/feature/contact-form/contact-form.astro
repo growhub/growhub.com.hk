@@ -31,16 +31,6 @@ const labels: ContactLabels = {
 };
 ---
 
-{/* Hidden static form so Netlify detects the fields at build time. The
-    visible, validated form is the React island below, which submits via AJAX. */}
-<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
-  <input type="hidden" name="form-name" value="contact" />
-  <input type="text" name="name" />
-  <input type="text" name="company" />
-  <input type="email" name="email" />
-  <textarea name="content"></textarea>
-  <input type="hidden" name="cf-turnstile-response" />
-  <input name="bot-field" />
-</form>
-
+{/* The validated React island submits via AJAX to the Cloudflare Pages
+    Function at /api/contact, which verifies Turnstile and emails the message. */}
 <ContactForm client:load labels={labels} action={action} siteKey={turnstileSiteKey} />
