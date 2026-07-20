@@ -2,14 +2,14 @@ import { describe, expect, it } from 'vitest';
 import { buildContactLink, buildLangLinks, buildNavLinks } from './hooks';
 
 describe('buildNavLinks', () => {
-  it('uses bare anchors for the default locale (en)', () => {
+  it('resolves anchors against the home page for the default locale (en)', () => {
     const links = buildNavLinks('en');
     expect(links.map((l) => l.href)).toEqual([
-      '#services',
-      '#capabilities',
-      '#ai',
-      '#works',
-      '#company',
+      '/#services',
+      '/#capabilities',
+      '/#ai',
+      '/#works',
+      '/#company',
     ]);
   });
 

@@ -111,6 +111,17 @@ const ogLocaleAlternates = locales.filter((l) => l !== lang).map((l) => ogLocale
         );
         els.forEach((el) => io.observe(el));
       }
+
+      // Smooth-scroll to an in-page target when landing with a hash from
+      // another page (e.g. a header link like `/#capabilities` clicked on
+      // the contact page). Same-page anchors already scroll smoothly via CSS.
+      if (!reduce && location.hash.length > 1) {
+        const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (target) {
+          window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+          requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth' }));
+        }
+      }
     </script>
   </body>
 </html>

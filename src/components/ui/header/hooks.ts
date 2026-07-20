@@ -1,11 +1,14 @@
 import { getDict, type Locale, localeNames, locales, localizePath } from '@i18n/ui';
 import type { LangLink, NavLink } from './types';
 
-/** Primary nav links. Section anchors resolve against the localized home page. */
+/**
+ * Primary nav links. Section anchors always resolve against the localized
+ * home page (e.g. `/#services`, `/ja#services`) so they work from any page —
+ * clicking a section link from /contact navigates home and scrolls there.
+ */
 export function buildNavLinks(lang: Locale): NavLink[] {
   const t = getDict(lang);
-  const home = localizePath('/', lang);
-  const base = home === '/' ? '' : home;
+  const base = localizePath('/', lang);
   return [
     { href: `${base}#services`, label: t.nav.services },
     { href: `${base}#capabilities`, label: t.nav.capabilities },
