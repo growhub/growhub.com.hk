@@ -6,6 +6,7 @@ const errors: ContactErrors = {
   name: 'name required',
   email: 'bad email',
   content: 'content required',
+  turnstile: 'verify please',
   generic: 'oops',
 };
 const schema = buildContactSchema(errors);

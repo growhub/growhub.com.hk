@@ -8,6 +8,10 @@ const { lang } = Astro.props as ContactFormProps;
 const t = getDict(lang);
 const action = buildContactAction(lang);
 
+// Cloudflare Turnstile — optional. When PUBLIC_TURNSTILE_SITE_KEY is unset
+// (e.g. local dev), the widget is skipped and the form still works.
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
+
 const labels: ContactLabels = {
   name: t.contact.name,
   company: t.contact.company,
@@ -21,6 +25,7 @@ const labels: ContactLabels = {
     name: t.contact.errors.name,
     email: t.contact.errors.email,
     content: t.contact.errors.content,
+    turnstile: t.contact.errors.turnstile,
     generic: t.contact.errors.generic,
   },
 };
@@ -34,7 +39,8 @@ const labels: ContactLabels = {
   <input type="text" name="company" />
   <input type="email" name="email" />
   <textarea name="content"></textarea>
+  <input type="hidden" name="cf-turnstile-response" />
   <input name="bot-field" />
 </form>
 
-<ContactForm client:load labels={labels} action={action} />
+<ContactForm client:load labels={labels} action={action} siteKey={turnstileSiteKey} />

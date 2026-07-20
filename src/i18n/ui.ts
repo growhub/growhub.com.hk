@@ -110,7 +110,7 @@ export interface Dict {
     submit: string;
     sending: string;
     privacy_note: string;
-    errors: { name: string; email: string; content: string; generic: string };
+    errors: { name: string; email: string; content: string; turnstile: string; generic: string };
   };
   thanks: {
     title: string;
@@ -294,6 +294,7 @@ const zhHK: Dict = {
       name: '請輸入姓名。',
       email: '請輸入有效的電子郵箱。',
       content: '請輸入查詢內容。',
+      turnstile: '請完成驗證。',
       generic: '發生錯誤，請稍後再試。',
     },
   },
@@ -538,6 +539,7 @@ const en: Dict = {
       name: 'Please enter your name.',
       email: 'Please enter a valid e-mail address.',
       content: 'Please enter a message.',
+      turnstile: 'Please complete the verification.',
       generic: 'Something went wrong. Please try again.',
     },
   },
@@ -776,6 +778,7 @@ const ja: Dict = {
       name: 'お名前を入力してください。',
       email: '有効なメールアドレスを入力してください。',
       content: 'お問い合わせ内容を入力してください。',
+      turnstile: '認証を完了してください。',
       generic: 'エラーが発生しました。時間をおいて再度お試しください。',
     },
   },

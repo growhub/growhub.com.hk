@@ -8,6 +8,7 @@ export interface ContactErrors {
   name: string;
   email: string;
   content: string;
+  turnstile: string;
   generic: string;
 }
 
