@@ -120,7 +120,9 @@ const loopItems = [...items, ...items, ...items];
     prev?.addEventListener('click', () => scrollByStep(-1));
     next?.addEventListener('click', () => scrollByStep(1));
 
-    // --- Drag to scroll (mouse). Touch flick uses native scrolling. ---
+    // --- Grab to scroll (mouse). Touch flick uses native scrolling. ---
+    // Snap is disabled while dragging so the track follows the cursor freely,
+    // then re-enabled on release to settle on the nearest card.
     let dragging = false;
     let startX = 0;
     let startScroll = 0;
@@ -129,6 +131,7 @@ const loopItems = [...items, ...items, ...items];
       dragging = true;
       startX = e.clientX;
       startScroll = track.scrollLeft;
+      track.style.scrollSnapType = 'none';
       track.setPointerCapture(e.pointerId);
     });
     track.addEventListener('pointermove', (e) => {
@@ -136,10 +139,14 @@ const loopItems = [...items, ...items, ...items];
       track.scrollLeft = startScroll - (e.clientX - startX);
     });
     const endDrag = () => {
+      if (!dragging) return;
       dragging = false;
+      track.style.scrollSnapType = '';
     };
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
+    // Suppress the browser's native image-drag / text selection while gripping.
+    track.addEventListener('dragstart', (e) => e.preventDefault());
 
     // --- Autoplay ---
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
