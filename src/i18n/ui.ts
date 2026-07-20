@@ -81,6 +81,8 @@ export interface Dict {
     kicker: string;
     title: string;
     subtitle: string;
+    free_badge: string;
+    free_note: string;
     steps: StepItem[];
   };
   company: {
@@ -236,6 +238,9 @@ const zhHK: Dict = {
     title: '先做出來，再談。',
     subtitle:
       '對話的起點不是計劃書，而是「做出來的東西」。這是我們以 0 初期費用原型開展項目的方式。',
+    free_badge: 'HK$0',
+    free_note:
+      '由諮詢、可運作原型的開發，到方案建議——步驟 ①〜③ 全部 0 初期費用。先看到實物，再決定是否進入正式開發。',
     steps: [
       { title: '免費諮詢', desc: '毋須準備計劃書。想做甚麼、有甚麼疑問，直接告訴我們就可以。' },
       { title: 'AI 驅動試作（HK$0）', desc: '運用 AI，最快數日內以 0 初期費用造出可運作的原型。' },
@@ -476,6 +481,9 @@ const en: Dict = {
     title: 'Build first, then talk.',
     subtitle:
       'Conversations start around something real — not a spec document. Here is how a project begins with a zero-cost prototype.',
+    free_badge: 'HK$0',
+    free_note:
+      'From consultation to a working prototype and our proposals — steps 1–3 are all zero upfront cost. See something real before deciding on full development.',
     steps: [
       {
         title: 'Free consultation',
@@ -729,6 +737,9 @@ const ja: Dict = {
     title: '悩む前に、作る。',
     subtitle:
       '会話の起点は、企画書ではなく“できたもの”。初期費用0円のプロトタイプから始める、私たちの進め方です。',
+    free_badge: '0円',
+    free_note:
+      'ヒアリングから“動くプロトタイプ”の開発、ご提案まで——ステップ①〜③はすべて初期費用0円。実物を見てから、本開発に進むか判断いただけます。',
     steps: [
       {
         title: '無料相談',

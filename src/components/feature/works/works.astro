@@ -1,9 +1,12 @@
 ---
 import { getDict } from '@i18n/ui';
+import { stepIconPaths as icons } from './constants';
 import type { WorksProps } from './types';
 
 const { lang } = Astro.props as WorksProps;
 const t = getDict(lang);
+// All steps except the last (full development) are covered at zero upfront cost.
+const freeCount = t.works.steps.length - 1;
 ---
 
 <section id="works" class="scroll-mt-20 py-20 sm:py-28">
@@ -22,18 +25,82 @@ const t = getDict(lang);
       {
         t.works.steps.map((step, i) => (
           <li class="reveal relative" style={`transition-delay:${i * 70}ms`}>
-            <div class="h-full rounded-2xl border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-6">
+            <div class="card relative h-full overflow-hidden p-6">
               <span
-                class="flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--color-border)] font-[family-name:var(--font-display)] text-sm font-bold text-gradient"
-              >
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 class="mt-4 font-semibold">{step.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-[color:var(--color-ink-muted)]">{step.desc}</p>
+                class="absolute inset-x-0 top-0 h-1"
+                style={
+                  i < freeCount
+                    ? 'background:linear-gradient(90deg,var(--color-brand),var(--color-brand-2))'
+                    : 'background:var(--color-border)'
+                }
+              />
+              {i < freeCount && (
+                <span
+                  class="absolute right-4 top-4 rounded-full px-2.5 py-1 text-[11px] font-bold text-white"
+                  style="background:linear-gradient(100deg,var(--color-brand),var(--color-brand-2))"
+                >
+                  {t.works.free_badge}
+                </span>
+              )}
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)]">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="url(#works-grad)"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d={icons[i]} />
+                </svg>
+              </div>
+              <div class="mt-4 flex items-center gap-2">
+                <span class="font-[family-name:var(--font-display)] text-sm font-bold text-gradient">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 class="font-semibold">{step.title}</h3>
+              </div>
+              <p class="mt-2 text-sm leading-relaxed text-[color:var(--color-ink-muted)]">
+                {step.desc}
+              </p>
             </div>
           </li>
         ))
       }
     </ol>
+
+    <!-- What's included at zero cost -->
+    <div
+      class="reveal mt-6 flex items-start gap-3 rounded-2xl border border-[color:var(--color-brand-2)]/30 bg-[color:var(--color-surface-2)]/60 px-6 py-5"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="url(#works-grad)"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        class="mt-0.5 shrink-0"
+      >
+        <path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" />
+      </svg>
+      <p class="text-sm leading-relaxed text-[color:var(--color-ink)]">{t.works.free_note}</p>
+    </div>
   </div>
+
+  <!-- shared gradient for icon strokes -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="works-grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0284c7" />
+        <stop offset="100%" stop-color="#4f46e5" />
+      </linearGradient>
+    </defs>
+  </svg>
 </section>
