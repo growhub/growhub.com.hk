@@ -1,3 +1,15 @@
+/**
+ * Cover visual per capability group, in the same order as capabilities.groups.
+ * Placeholder abstract SVGs — swap for richer artwork when available.
+ */
+export const capabilityImages = [
+  '/images/capabilities/frontend.svg',
+  '/images/capabilities/backend.svg',
+  '/images/capabilities/mobile.svg',
+  '/images/capabilities/cloud.svg',
+  '/images/capabilities/ai.svg',
+];
+
 /** SVG stroke path per capability group, in the same order as capabilities.groups. */
 export const capabilityIconPaths = [
   // Frontend — code brackets

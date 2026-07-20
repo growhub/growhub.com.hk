@@ -1,0 +1,38 @@
+<svg width="640" height="240" viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef2ff"/>
+      <stop offset="1" stop-color="#e0f2fe"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f46e5"/>
+      <stop offset="1" stop-color="#0284c7"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.15" r="0.9">
+      <stop offset="0" stop-color="#818cf8" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#818cf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="240" fill="url(#bg)"/>
+  <rect width="640" height="240" fill="url(#glow)"/>
+  <!-- back phone -->
+  <g transform="translate(346 40) rotate(8)">
+    <rect x="0" y="0" width="104" height="170" rx="22" fill="#ffffff" stroke="#c7d2fe" stroke-width="2"/>
+    <rect x="12" y="16" width="80" height="120" rx="10" fill="#e0f2fe"/>
+    <circle cx="52" cy="152" r="7" fill="#c7d2fe"/>
+  </g>
+  <!-- front phone -->
+  <g transform="translate(206 34)">
+    <rect x="0" y="0" width="116" height="184" rx="24" fill="#ffffff" stroke="#c7d2fe" stroke-width="2"/>
+    <rect x="12" y="16" width="92" height="30" rx="10" fill="url(#acc)"/>
+    <rect x="40" y="6" width="36" height="8" rx="4" fill="#eef2ff"/>
+    <rect x="12" y="56" width="44" height="44" rx="10" fill="#eef2ff"/>
+    <rect x="64" y="56" width="40" height="20" rx="8" fill="#dbeafe"/>
+    <rect x="64" y="80" width="40" height="20" rx="8" fill="#dbeafe"/>
+    <rect x="12" y="110" width="92" height="12" rx="6" fill="#c7d2fe"/>
+    <rect x="12" y="130" width="70" height="12" rx="6" fill="#dbeafe"/>
+    <rect x="12" y="156" width="60" height="20" rx="10" fill="url(#acc)"/>
+  </g>
+  <circle cx="120" cy="80" r="34" fill="#4f46e5" fill-opacity="0.12"/>
+  <circle cx="530" cy="180" r="38" fill="#0284c7" fill-opacity="0.12"/>
+</svg>

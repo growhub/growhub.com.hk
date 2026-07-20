@@ -1,6 +1,6 @@
 ---
 import { getDict } from '@i18n/ui';
-import { capabilityIconPaths as icons } from './constants';
+import { capabilityIconPaths as icons, capabilityImages as images } from './constants';
 import type { CapabilitiesProps } from './types';
 
 const { lang } = Astro.props as CapabilitiesProps;
@@ -24,31 +24,44 @@ const t = getDict(lang);
     <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {
         t.capabilities.groups.map((group, i) => (
-          <article class="card reveal p-6" style={`transition-delay:${i * 60}ms`}>
-            <div class="flex items-center gap-3">
-              <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)]">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="url(#cap-grad)"
-                  stroke-width="1.6"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d={icons[i]} />
-                </svg>
+          <article
+            class="card reveal flex flex-col overflow-hidden p-0"
+            style={`transition-delay:${i * 60}ms`}
+          >
+            <img
+              src={images[i]}
+              alt=""
+              width="640"
+              height="240"
+              loading="lazy"
+              class="aspect-[8/3] w-full object-cover"
+            />
+            <div class="flex flex-1 flex-col p-6">
+              <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)]">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="url(#cap-grad)"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d={icons[i]} />
+                  </svg>
+                </div>
+                <h3 class="font-semibold">{group.name}</h3>
               </div>
-              <h3 class="font-semibold">{group.name}</h3>
-            </div>
-            <div class="mt-4 flex flex-wrap gap-2">
-              {group.items.map((item) => (
-                <span class="rounded-full border border-[color:var(--color-border)] px-2.5 py-1 text-xs text-[color:var(--color-ink-muted)]">
-                  {item}
-                </span>
-              ))}
+              <div class="mt-4 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span class="rounded-full border border-[color:var(--color-border)] px-2.5 py-1 text-xs text-[color:var(--color-ink-muted)]">
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           </article>
         ))

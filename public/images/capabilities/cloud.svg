@@ -1,0 +1,33 @@
+<svg width="640" height="240" viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef2ff"/>
+      <stop offset="1" stop-color="#e0f2fe"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f46e5"/>
+      <stop offset="1" stop-color="#0284c7"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.2" r="0.9">
+      <stop offset="0" stop-color="#818cf8" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#818cf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="240" fill="url(#bg)"/>
+  <rect width="640" height="240" fill="url(#glow)"/>
+  <!-- cloud -->
+  <path d="M250 118a44 44 0 0 1 84-14 34 34 0 0 1 6 67H250a26 26 0 0 1 0-53z" fill="#ffffff" stroke="#c7d2fe" stroke-width="2"/>
+  <path d="M300 92a30 30 0 0 1 40 20" fill="none" stroke="url(#acc)" stroke-width="6" stroke-linecap="round"/>
+  <!-- CI/CD pipeline -->
+  <line x1="150" y1="182" x2="490" y2="182" stroke="#a5b4fc" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+  <g>
+    <circle cx="150" cy="182" r="18" fill="#ffffff" stroke="url(#acc)" stroke-width="4"/>
+    <circle cx="150" cy="182" r="6" fill="url(#acc)"/>
+    <circle cx="320" cy="182" r="18" fill="#ffffff" stroke="url(#acc)" stroke-width="4"/>
+    <path d="M314 182l5 5 8-9" fill="none" stroke="url(#acc)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="490" cy="182" r="18" fill="url(#acc)"/>
+    <path d="M484 182l5 5 8-9" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <circle cx="120" cy="70" r="30" fill="#0284c7" fill-opacity="0.12"/>
+  <circle cx="540" cy="90" r="40" fill="#4f46e5" fill-opacity="0.12"/>
+</svg>
