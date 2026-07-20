@@ -48,7 +48,7 @@ const t = getDict(lang);
       >
         {
           t.services.items.map((item, i) => (
-            <article class="card flex w-[300px] shrink-0 snap-start flex-col overflow-hidden p-0 sm:w-[360px]">
+            <article class="card flex w-[85%] shrink-0 snap-start flex-col overflow-hidden p-0 sm:w-[62%] lg:w-[35%]">
               <img
                 src={images[i]}
                 alt=""
@@ -84,11 +84,68 @@ const t = getDict(lang);
       const card = track.querySelector<HTMLElement>('article');
       return card ? card.offsetWidth + 20 : track.clientWidth;
     };
-    document
-      .querySelector('[data-services-prev]')
-      ?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
-    document
-      .querySelector('[data-services-next]')
-      ?.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+    const scrollByStep = (dir: number) => track.scrollBy({ left: dir * step(), behavior: 'smooth' });
+
+    const prev = document.querySelector('[data-services-prev]');
+    const next = document.querySelector('[data-services-next]');
+    prev?.addEventListener('click', () => scrollByStep(-1));
+    next?.addEventListener('click', () => scrollByStep(1));
+
+    // --- Autoplay ---
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let timer: ReturnType<typeof setInterval> | null = null;
+    let paused = false;
+
+    const tick = () => {
+      if (paused) return;
+      const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      if (atEnd) track.scrollTo({ left: 0, behavior: 'smooth' });
+      else scrollByStep(1);
+    };
+    const start = () => {
+      if (!reduce && timer === null) timer = setInterval(tick, 3800);
+    };
+    const stop = () => {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+    };
+
+    // Pause on hover / focus / touch, and briefly after an arrow click.
+    const pause = () => {
+      paused = true;
+    };
+    const resume = () => {
+      paused = false;
+    };
+    const resumeLater = (ms: number) => {
+      paused = true;
+      window.setTimeout(resume, ms);
+    };
+    track.addEventListener('pointerenter', pause);
+    track.addEventListener('pointerleave', resume);
+    track.addEventListener('focusin', pause);
+    track.addEventListener('focusout', resume);
+    track.addEventListener('touchstart', () => resumeLater(6000), { passive: true });
+    prev?.addEventListener('click', () => resumeLater(8000));
+    next?.addEventListener('click', () => resumeLater(8000));
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop();
+      else start();
+    });
+
+    // Only autoplay while the carousel is on screen.
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) start();
+          else stop();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(track);
   }
 </script>
