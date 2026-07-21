@@ -53,6 +53,11 @@ typings/
 
 # dotenv environment variables file
 .env
+.env.*
+!.env.example
+# Cloudflare / wrangler local secrets & per-directory account switching
+.dev.vars
+.envrc
 
 # build output
 dist/
