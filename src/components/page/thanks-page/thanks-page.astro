@@ -16,9 +16,9 @@ const t = getDict(lang);
   <section class="glow-bg relative flex min-h-[70vh] items-center overflow-hidden pt-24">
     <div class="grid-pattern pointer-events-none absolute inset-0 -z-10 opacity-60"></div>
     <div class="container-x">
-      <div class="mx-auto max-w-lg text-center">
+      <div class="card mx-auto max-w-lg px-8 py-12 text-center sm:px-12">
         <div
-          class="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)]"
+          class="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)] shadow-sm"
         >
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="url(#svc-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M20 6 9 17l-5-5" />
@@ -29,7 +29,7 @@ const t = getDict(lang);
         </h1>
         <p class="mt-4 text-lg font-medium text-gradient">{t.thanks.subtitle}</p>
         <p class="mt-3 leading-relaxed text-[color:var(--color-ink-muted)]">{t.thanks.desc}</p>
-        <a href={localizePath('/', lang)} class="btn btn-ghost mt-8">{t.thanks.back}</a>
+        <a href={localizePath('/', lang)} class="btn btn-primary mt-8">{t.thanks.back}</a>
       </div>
     </div>
   </section>
