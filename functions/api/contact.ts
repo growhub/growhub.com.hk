@@ -1,5 +1,10 @@
 /**
- * Cloudflare Pages Function — contact form handler.
+ * Cloudflare Pages Function — contact form handler (POST /api/contact).
+ *
+ * This is the backend API. It runs on Cloudflare's Workers runtime, but as a
+ * Pages Function (a file under `functions/` is auto-deployed as a serverless
+ * endpoint alongside the static site) — so there is no separate Worker to
+ * manage; bindings/env are configured in the Pages project settings.
  *
  * Flow: receive the POSTed form → (optional) verify Cloudflare Turnstile with
  * the secret key → email the submission to the Email Routing destination via
@@ -119,10 +124,13 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
     content,
   ].join('\n');
 
+  const fromDomain = from.split('@')[1] ?? 'growhub.com.hk';
   const raw =
     `From: GrowHub Website <${from}>\r\n` +
     `To: ${to}\r\n` +
     `Reply-To: ${email}\r\n` +
+    `Message-ID: <${crypto.randomUUID()}@${fromDomain}>\r\n` +
+    `Date: ${new Date().toUTCString()}\r\n` +
     `Subject: =?UTF-8?B?${base64Utf8(subject)}?=\r\n` +
     'MIME-Version: 1.0\r\n' +
     'Content-Type: text/plain; charset="utf-8"\r\n' +
