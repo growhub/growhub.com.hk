@@ -12,7 +12,7 @@
 - Founder & CEO: Mika Nakamura (Carmen)
 - Founded: 2019-04-17
 - Location: 21/F., Kam Fung Commercial Building, 2-4 Tin Lok Lane, Wan Chai, Hong Kong
-- Website: https://www.growhub.com.hk/
+- Website: https://growhub.com.hk/
 
 ## Services
 
@@ -38,10 +38,10 @@
 
 ## Pages
 
-- Home: https://www.growhub.com.hk/ (Traditional Chinese: /zh-hk/ , Japanese: /ja/)
-- Contact: https://www.growhub.com.hk/contact
-- Privacy Policy: https://www.growhub.com.hk/policy/privacy
+- Home: https://growhub.com.hk/ (Traditional Chinese: /zh-hk/ , Japanese: /ja/)
+- Contact: https://growhub.com.hk/contact
+- Privacy Policy: https://growhub.com.hk/policy/privacy
 
 ## Contact
 
-- Please use the contact form at https://www.growhub.com.hk/contact
+- Please use the contact form at https://growhub.com.hk/contact

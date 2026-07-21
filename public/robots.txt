@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.growhub.com.hk/sitemap-index.xml
+Sitemap: https://growhub.com.hk/sitemap-index.xml

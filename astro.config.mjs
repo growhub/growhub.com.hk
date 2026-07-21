@@ -7,7 +7,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.SITE_URL || 'https://www.growhub.com.hk',
+  site: process.env.SITE_URL || 'https://growhub.com.hk',
   output: 'static',
   trailingSlash: 'ignore',
   i18n: {

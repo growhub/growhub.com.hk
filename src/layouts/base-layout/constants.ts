@@ -1,4 +1,4 @@
-export const SITE_FALLBACK = 'https://www.growhub.com.hk';
+export const SITE_FALLBACK = 'https://growhub.com.hk';
 export const OG_IMAGE_PATH = '/og.png';
 
 /**

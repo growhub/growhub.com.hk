@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { buildOrganizationSchema, buildWebsiteSchema } from './hooks';
 
-const site = new URL('https://www.growhub.com.hk');
+const site = new URL('https://growhub.com.hk');
 
 describe('buildOrganizationSchema', () => {
   it('is a ProfessionalService with the real company identity', () => {
@@ -15,8 +15,8 @@ describe('buildOrganizationSchema', () => {
 
   it('uses absolute asset URLs', () => {
     const org = buildOrganizationSchema('en', site);
-    expect(org.logo).toBe('https://www.growhub.com.hk/android-chrome-512x512.png');
-    expect(org.image).toBe('https://www.growhub.com.hk/og.png');
+    expect(org.logo).toBe('https://growhub.com.hk/android-chrome-512x512.png');
+    expect(org.image).toBe('https://growhub.com.hk/og.png');
   });
 
   it('exposes the four services as an OfferCatalog', () => {
@@ -37,6 +37,6 @@ describe('buildWebsiteSchema', () => {
     const web = buildWebsiteSchema('en', site);
     expect(web['@type']).toBe('WebSite');
     expect(web.inLanguage).toEqual(['en', 'zh-Hant-HK', 'ja']);
-    expect(web.publisher['@id']).toBe('https://www.growhub.com.hk/#organization');
+    expect(web.publisher['@id']).toBe('https://growhub.com.hk/#organization');
   });
 });

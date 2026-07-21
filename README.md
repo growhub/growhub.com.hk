@@ -184,7 +184,7 @@ Corepack 経由で使用します。
 
 | 変数名 | 説明 |
 | --- | --- |
-| `SITE_URL` | サイトのベース URL。sitemap / canonical / OG に利用（既定: `https://www.growhub.com.hk`） |
+| `SITE_URL` | サイトのベース URL。sitemap / canonical / OG に利用（既定: `https://growhub.com.hk`） |
 | `PUBLIC_GA_ID` | Google Analytics 4 の測定 ID（`G-XXXXXXXXXX`）。設定時のみ、かつ本番ビルドで `gtag.js` を読み込みます。未設定ならタグは出力されません |
 | `PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile のサイトキー。設定時のみお問い合わせフォームに Turnstile ウィジェットを表示します。未設定なら非表示（フォームは通常動作） |
 

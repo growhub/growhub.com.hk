@@ -324,7 +324,7 @@ const zhHK: Dict = {
     body: [
       {
         heading: '適用範圍',
-        text: '本私隱政策適用於閣下透過本網站（www.growhub.com.hk）向本公司提供的個人資料，說明本公司如何收集、使用、儲存及保障該等資料，並列明閣下可行使的權利。',
+        text: '本私隱政策適用於閣下透過本網站（growhub.com.hk）向本公司提供的個人資料，說明本公司如何收集、使用、儲存及保障該等資料，並列明閣下可行使的權利。',
       },
       {
         heading: '收集的個人資料類別',
@@ -580,7 +580,7 @@ const en: Dict = {
     body: [
       {
         heading: 'Scope',
-        text: 'This Privacy Policy applies to personal data you provide to the Company through this website (www.growhub.com.hk). It explains how the Company collects, uses, stores, and protects that data, and sets out the rights available to you.',
+        text: 'This Privacy Policy applies to personal data you provide to the Company through this website (growhub.com.hk). It explains how the Company collects, uses, stores, and protects that data, and sets out the rights available to you.',
       },
       {
         heading: 'Personal Data We Collect',
@@ -838,7 +838,7 @@ const ja: Dict = {
     body: [
       {
         heading: '適用範囲',
-        text: '本プライバシーポリシーは、お客様が本サイト（www.growhub.com.hk）を通じて当社に提供する個人情報に適用され、当社による個人情報の収集・利用・保管・保護の方法、およびお客様が行使できる権利について定めるものです。',
+        text: '本プライバシーポリシーは、お客様が本サイト（growhub.com.hk）を通じて当社に提供する個人情報に適用され、当社による個人情報の収集・利用・保管・保護の方法、およびお客様が行使できる権利について定めるものです。',
       },
       {
         heading: '収集する個人情報の種類',

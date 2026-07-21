@@ -5,7 +5,7 @@ const site = new URL('https://example.com');
 
 describe('resolveSite', () => {
   it('falls back to the production URL when unset', () => {
-    expect(resolveSite(undefined).href).toBe('https://www.growhub.com.hk/');
+    expect(resolveSite(undefined).href).toBe('https://growhub.com.hk/');
   });
 
   it('passes through a provided site', () => {
