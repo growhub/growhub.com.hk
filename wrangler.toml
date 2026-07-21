@@ -1,0 +1,29 @@
+# Cloudflare Pages configuration.
+#
+# The Pages dashboard does not expose the Email Routing "send_email" binding,
+# so it is declared here. When this file is present, Cloudflare Pages reads the
+# project's bindings and (non-secret) variables from it instead of the
+# dashboard — so the vars the site/Function needs are defined below too.
+#
+# Secrets (e.g. TURNSTILE_SECRET_KEY) are NOT stored here. Add them in the
+# dashboard (Settings → Variables and secrets → Secret) or via
+# `npx wrangler pages secret put <NAME>`.
+
+name = "growhub-com-hk"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "dist"
+
+# Email Routing — send the contact form submission to a verified destination.
+[[send_email]]
+name = "SEND_EMAIL"
+destination_address = "growhub.hk@gmail.com"
+
+# Project variables (build-time for the Astro site + runtime for the Function).
+[vars]
+PUBLIC_GA_ID = "G-9MLP44QY1M"
+SITE_URL = "https://growhub.com.hk"
+CONTACT_FROM = "contact@growhub.com.hk"
+CONTACT_TO = "growhub.hk@gmail.com"
+# To enable Turnstile, add your Site Key here (public) and set the secret
+# TURNSTILE_SECRET_KEY in the dashboard:
+# PUBLIC_TURNSTILE_SITE_KEY = "0x4AAAAAAA..."
