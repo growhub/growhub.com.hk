@@ -13,9 +13,10 @@
  * Required Pages configuration (Settings → Functions, and Environment vars):
  *   - Binding `SEND_EMAIL` (type: "Send email"), destination_address = the
  *     verified Email Routing address (your Gmail).
- *   - `CONTACT_FROM`  e.g. "contact@growhub.com.hk" (an address on your zone)
- *   - `CONTACT_TO`    the verified destination, must match the binding's
- *     destination_address (your Gmail).
+ *   - `CONTACT_FROM`  optional; an address on your zone. Defaults to
+ *     "contact@growhub.com.hk".
+ *   - `CONTACT_TO`    required; the verified destination, must match the
+ *     binding's destination_address (e.g. growhub.hk@gmail.com).
  *   - `TURNSTILE_SECRET_KEY` (secret) — optional; when set, tokens are verified.
  *
  * This file runs only in the Cloudflare Pages runtime; it is not part of the
@@ -108,9 +109,11 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
     if (!ok) return json({ error: 'turnstile' }, 400);
   }
 
-  const from = env.CONTACT_FROM;
+  // From is a public address on our zone; default it so only the destination
+  // (a private inbox) needs configuring. Both can still be overridden via env.
+  const from = env.CONTACT_FROM || 'contact@growhub.com.hk';
   const to = env.CONTACT_TO;
-  if (!from || !to) {
+  if (!to) {
     return json({ error: 'not_configured' }, 500);
   }
 
