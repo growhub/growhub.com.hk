@@ -113,8 +113,12 @@ export default function ContactForm({ labels, action, siteKey = '' }: Props) {
     };
   }, [turnstileEnabled, siteKey]);
 
-  const update = (key: keyof ContactValues) => (e: { currentTarget: { value: string } }) =>
-    setValues((v) => ({ ...v, [key]: e.currentTarget.value }));
+  const update = (key: keyof ContactValues) => (e: { currentTarget: { value: string } }) => {
+    // Read the value synchronously — the synthetic event's currentTarget is
+    // nulled out by the time the state updater runs during render.
+    const value = e.currentTarget.value;
+    setValues((v) => ({ ...v, [key]: value }));
+  };
 
   const resetTurnstile = () => {
     setToken('');
