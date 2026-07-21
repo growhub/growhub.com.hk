@@ -100,6 +100,7 @@ export interface Dict {
     title: string;
     subtitle: string;
     button: string;
+    points: string[];
   };
   contact: {
     kicker: string;
@@ -128,6 +129,8 @@ export interface Dict {
   footer: {
     tagline: string;
     contactPrompt: string;
+    explore: string;
+    company: string;
     nav_home: string;
     nav_privacy: string;
     nav_contact: string;
@@ -287,6 +290,7 @@ const zhHK: Dict = {
     title: '不如先看到「動得起來的東西」，再作決定？',
     subtitle: '由 0 初期費用的原型開發開始。Web、App、AI 開發亦歡迎隨時查詢。',
     button: '立即查詢',
+    points: ['0 初期費用', '最快數日內出原型', '靈活・快速對應'],
   },
   contact: {
     kicker: 'CONTACT',
@@ -369,6 +373,8 @@ const zhHK: Dict = {
     ],
   },
   footer: {
+    explore: '瀏覽',
+    company: '公司',
     tagline: '先做出來，再談。由 0 初期費用的原型開始。',
     contactPrompt: '歡迎垂詢',
     nav_home: '首頁',
@@ -540,6 +546,7 @@ const en: Dict = {
     subtitle:
       'Start with a zero-upfront-cost prototype — or just talk to us about web, app, or AI development.',
     button: 'Contact us',
+    points: ['Zero upfront cost', 'A prototype in days', 'Flexible and fast'],
   },
   contact: {
     kicker: 'CONTACT',
@@ -622,6 +629,8 @@ const en: Dict = {
     ],
   },
   footer: {
+    explore: 'Explore',
+    company: 'Company',
     tagline: 'Build first, then talk. Starting with zero-cost prototypes.',
     contactPrompt: 'Get in touch',
     nav_home: 'Home',
@@ -795,6 +804,7 @@ const ja: Dict = {
     title: 'まずは、“動くもの”を見てから決めませんか？',
     subtitle: '初期費用0円のプロトタイプ開発から。Web・アプリ・AI開発のご相談も歓迎です。',
     button: 'お問い合わせ',
+    points: ['初期費用0円', '最短数日でプロトタイプ', '柔軟・スピード対応'],
   },
   contact: {
     kicker: 'CONTACT',
@@ -877,6 +887,8 @@ const ja: Dict = {
     ],
   },
   footer: {
+    explore: 'サイトを見る',
+    company: '会社情報',
     tagline: '悩む前に、作る。初期費用0円のプロトタイプから。',
     contactPrompt: 'お気軽にお問い合わせください',
     nav_home: 'ホーム',

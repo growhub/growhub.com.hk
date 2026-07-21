@@ -1,44 +1,95 @@
 ---
 import { getDict, localizePath } from '@i18n/ui';
 import Logo from '@ui/logo';
-import { buildFooterLinks } from './hooks';
+import { buildFooterLinks, buildFooterSectionLinks } from './hooks';
 import type { FooterProps } from './types';
 
 const { lang } = Astro.props as FooterProps;
 const t = getDict(lang);
 const year = new Date().getFullYear();
-const links = buildFooterLinks(lang);
+const pageLinks = buildFooterLinks(lang);
+const sectionLinks = buildFooterSectionLinks(lang);
 ---
 
-<footer class="mt-24 border-t border-[color:var(--color-border)]">
+<footer class="mt-24 border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-2)]/40">
   <div class="container-x py-14">
-    <div class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-      <div class="max-w-sm">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <!-- Brand -->
+      <div class="max-w-sm lg:col-span-2">
         <a href={localizePath('/', lang)} class="flex items-center gap-2">
           <Logo size={32} />
           <span class="logo text-2xl">GrowHub</span>
         </a>
-        <p class="mt-3 text-sm leading-relaxed text-[color:var(--color-ink-muted)]">
+        <p class="mt-3 max-w-xs text-sm leading-relaxed text-[color:var(--color-ink-muted)]">
           {t.footer.tagline}
         </p>
+        <address
+          class="mt-5 flex items-start gap-2 text-xs not-italic leading-relaxed text-[color:var(--color-ink-faint)]"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            class="mt-0.5 shrink-0"
+          >
+            <path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z" />
+            <circle cx="12" cy="10" r="2.5" />
+          </svg>
+          {t.company.values.address}
+        </address>
       </div>
 
-      <nav class="flex flex-wrap gap-x-8 gap-y-3 text-sm">
-        {
-          links.map((l) => (
-            <a
-              href={l.href}
-              class="text-[color:var(--color-ink-muted)] transition-colors hover:text-[color:var(--color-ink)]"
-            >
-              {l.label}
-            </a>
-          ))
-        }
+      <!-- Explore (sections) -->
+      <nav aria-label={t.footer.explore}>
+        <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-[color:var(--color-ink-faint)]">
+          {t.footer.explore}
+        </h2>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          {
+            sectionLinks.map((l) => (
+              <li>
+                <a
+                  href={l.href}
+                  class="text-[color:var(--color-ink-muted)] transition-colors hover:text-[color:var(--color-brand)]"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Company (pages) -->
+      <nav aria-label={t.footer.company}>
+        <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-[color:var(--color-ink-faint)]">
+          {t.footer.company}
+        </h2>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          {
+            pageLinks.map((l) => (
+              <li>
+                <a
+                  href={l.href}
+                  class="text-[color:var(--color-ink-muted)] transition-colors hover:text-[color:var(--color-brand)]"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
       </nav>
     </div>
 
     <div
-      class="mt-10 flex flex-col gap-2 border-t border-[color:var(--color-border)] pt-6 text-xs text-[color:var(--color-ink-faint)] sm:flex-row sm:items-center sm:justify-between"
+      class="mt-12 flex flex-col gap-2 border-t border-[color:var(--color-border)] pt-6 text-xs text-[color:var(--color-ink-faint)] sm:flex-row sm:items-center sm:justify-between"
     >
       <p>© {year} GrowHub Limited. {t.footer.rights}</p>
       <p>Hong Kong · Software Studio</p>
