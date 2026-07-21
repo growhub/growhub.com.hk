@@ -7,6 +7,9 @@
 name = "growhub-mailer"
 main = "src/index.ts"
 compatibility_date = "2024-11-01"
+# Pin the target Cloudflare account so `wrangler deploy` can only deploy here
+# (a different logged-in account will error instead of deploying by mistake).
+account_id = "de779d074dc4928610876987e009b20c"
 
 [[send_email]]
 name = "SEND_EMAIL"
