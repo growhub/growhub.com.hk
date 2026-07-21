@@ -1,40 +1,22 @@
 /**
  * Cloudflare Pages Function — contact form handler (POST /api/contact).
  *
- * This is the backend API. It runs on Cloudflare's Workers runtime, but as a
- * Pages Function (a file under `functions/` is auto-deployed as a serverless
- * endpoint alongside the static site) — so there is no separate Worker to
- * manage; bindings/env are configured in the Pages project settings.
+ * Runs on the Workers runtime as a Pages Function. It validates the form,
+ * verifies Turnstile (when a secret is set), then delegates email delivery to
+ * the `growhub-mailer` Worker via a Service binding (Pages Functions cannot use
+ * the Email Routing send binding directly).
  *
- * Flow: receive the POSTed form → (optional) verify Cloudflare Turnstile with
- * the secret key → email the submission to the Email Routing destination via
- * the `send_email` binding.
- *
- * Required Pages configuration (Settings → Functions, and Environment vars):
- *   - Binding `SEND_EMAIL` (type: "Send email"), destination_address = the
- *     verified Email Routing address (your Gmail).
- *   - `CONTACT_FROM`  optional; an address on your zone. Defaults to
- *     "contact@growhub.com.hk".
- *   - `CONTACT_TO`    required; the verified destination, must match the
- *     binding's destination_address (e.g. growhub.hk@gmail.com).
+ * Required Pages configuration:
+ *   - Binding `MAILER` (type: Service) → the `growhub-mailer` Worker.
  *   - `TURNSTILE_SECRET_KEY` (secret) — optional; when set, tokens are verified.
- *
- * This file runs only in the Cloudflare Pages runtime; it is not part of the
- * Astro build (Astro builds `src/` → `dist/`; Cloudflare serves `functions/`).
  */
 
-// `cloudflare:email` is provided by the Workers runtime.
-// @ts-expect-error - resolved at deploy time, not during the Astro build.
-import { EmailMessage } from 'cloudflare:email';
-
-interface SendEmailBinding {
-  send(message: unknown): Promise<void>;
+interface Fetcher {
+  fetch(request: Request): Promise<Response>;
 }
 
 interface Env {
-  SEND_EMAIL: SendEmailBinding;
-  CONTACT_FROM?: string;
-  CONTACT_TO?: string;
+  MAILER: Fetcher;
   TURNSTILE_SECRET_KEY?: string;
 }
 
@@ -48,22 +30,6 @@ const json = (data: unknown, status = 200): Response =>
     status,
     headers: { 'content-type': 'application/json; charset=utf-8' },
   });
-
-/** UTF-8 safe base64 (chunked to avoid call-stack limits on large input). */
-function base64Utf8(input: string): string {
-  const bytes = new TextEncoder().encode(input);
-  let binary = '';
-  const chunk = 0x8000;
-  for (let i = 0; i < bytes.length; i += chunk) {
-    binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
-  }
-  return btoa(binary);
-}
-
-/** Fold a long string into 76-char lines (RFC 2045 for base64 bodies). */
-function fold(b64: string): string {
-  return (b64.match(/.{1,76}/g) ?? []).join('\r\n');
-}
 
 async function verifyTurnstile(secret: string, token: string, ip: string | null): Promise<boolean> {
   const body = new URLSearchParams({ secret, response: token });
@@ -109,41 +75,19 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
     if (!ok) return json({ error: 'turnstile' }, 400);
   }
 
-  // From is a public address on our zone; default it so only the destination
-  // (a private inbox) needs configuring. Both can still be overridden via env.
-  const from = env.CONTACT_FROM || 'contact@growhub.com.hk';
-  const to = env.CONTACT_TO;
-  if (!to) {
+  if (!env.MAILER) {
     return json({ error: 'not_configured' }, 500);
   }
 
-  const subject = `[GrowHub] お問い合わせ — ${name}`;
-  const bodyText = [
-    `Name: ${name}`,
-    `Company: ${company || '-'}`,
-    `Email: ${email}`,
-    '',
-    'Message:',
-    content,
-  ].join('\n');
-
-  const fromDomain = from.split('@')[1] ?? 'growhub.com.hk';
-  const raw =
-    `From: GrowHub Website <${from}>\r\n` +
-    `To: ${to}\r\n` +
-    `Reply-To: ${email}\r\n` +
-    `Message-ID: <${crypto.randomUUID()}@${fromDomain}>\r\n` +
-    `Date: ${new Date().toUTCString()}\r\n` +
-    `Subject: =?UTF-8?B?${base64Utf8(subject)}?=\r\n` +
-    'MIME-Version: 1.0\r\n' +
-    'Content-Type: text/plain; charset="utf-8"\r\n' +
-    'Content-Transfer-Encoding: base64\r\n' +
-    '\r\n' +
-    fold(base64Utf8(bodyText));
-
-  try {
-    await env.SEND_EMAIL.send(new EmailMessage(from, to, raw));
-  } catch {
+  // Delegate delivery to the mailer Worker (internal Service binding call).
+  const res = await env.MAILER.fetch(
+    new Request('https://mailer/send', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ name, company, email, content }),
+    })
+  );
+  if (!res.ok) {
     return json({ error: 'send_failed' }, 502);
   }
 

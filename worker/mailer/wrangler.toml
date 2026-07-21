@@ -1,0 +1,17 @@
+# growhub-mailer — standalone Worker that sends the contact email via
+# Email Routing. Deploy from this directory:  npx wrangler deploy
+#
+# The site's Pages Function calls this Worker through a Service binding
+# (MAILER), so keep its public workers.dev route disabled.
+
+name = "growhub-mailer"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+
+[[send_email]]
+name = "SEND_EMAIL"
+destination_address = "growhub.hk@gmail.com"
+
+[vars]
+CONTACT_FROM = "contact@growhub.com.hk"
+CONTACT_TO = "growhub.hk@gmail.com"
