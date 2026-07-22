@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects.
+# Serve the @astrojs/sitemap output at the conventional /sitemap.xml path
+# (rewrite, so the URL stays /sitemap.xml and returns the sitemap index XML).
+/sitemap.xml  /sitemap-index.xml  200
