@@ -1,0 +1,62 @@
+---
+import { getDict } from '@i18n/ui';
+import { strengthIcons } from './constants';
+import type { StrengthsProps } from './types';
+
+const { lang } = Astro.props as StrengthsProps;
+const t = getDict(lang);
+---
+
+<section id="strengths" class="scroll-mt-20 py-20 sm:py-28">
+  <div class="container-x">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)] px-4 py-1.5 text-xs font-semibold tracking-[0.15em] text-[color:var(--color-brand-2)]"
+      >
+        {t.strengths.kicker}
+      </span>
+      <h2
+        class="mt-4 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl"
+      >
+        {t.strengths.title}
+      </h2>
+      <p class="mt-4 leading-relaxed text-[color:var(--color-ink-muted)]">{t.strengths.subtitle}</p>
+    </div>
+
+    <div class="reveal mt-12 grid gap-5 sm:grid-cols-3">
+      {
+        t.strengths.items.map((item, i) => (
+          <article class="card flex flex-col gap-4 p-7">
+            <span class="flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface-2)]">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="url(#strength-grad)"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                set:html={strengthIcons[i]}
+              />
+            </span>
+            <h3 class="font-[family-name:var(--font-display)] text-lg font-bold tracking-tight">
+              {item.title}
+            </h3>
+            <p class="text-sm leading-relaxed text-[color:var(--color-ink-muted)]">{item.desc}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <svg width="0" height="0" class="absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="strength-grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0284c7"></stop>
+        <stop offset="100%" stop-color="#4f46e5"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+</section>

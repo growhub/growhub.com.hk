@@ -77,6 +77,12 @@ export interface Dict {
     points: StepItem[];
     note: string;
   };
+  strengths: {
+    kicker: string;
+    title: string;
+    subtitle: string;
+    items: StepItem[];
+  };
   works: {
     kicker: string;
     title: string;
@@ -320,6 +326,26 @@ const zhHK: Dict = {
       {
         q: '支援哪些語言與地區？',
         a: '本公司位於香港，支援繁體中文、英文、日文，並以遠端方式與香港以至海外的客戶合作。',
+      },
+    ],
+  },
+  strengths: {
+    kicker: 'JAPAN × HONG KONG',
+    title: '把日本的技術力，帶到香港',
+    subtitle:
+      '開發由日本工程師負責。透過與日本企業協作及日本的尖端 AI，讓您在香港也能享受日本品質的開發。',
+    items: [
+      {
+        title: '日本工程師負責開發',
+        desc: '由需求對接到實作，均由日本工程師細心處理，減少認知落差，以日本水準的品質標準交付。',
+      },
+      {
+        title: '與日本企業協作',
+        desc: '與日本夥伴企業緊密合作，帶來可靠的技術與開發體制，並將日本的專業知識與最新趨勢注入專案。',
+      },
+      {
+        title: '運用日本尖端 AI',
+        desc: '部分最尖端的 AI 在香港較難使用。我們透過日本的技術與環境將其引入開發，兼顧速度與品質。',
       },
     ],
   },
@@ -606,6 +632,26 @@ const en: Dict = {
       {
         q: 'Which languages and regions do you support?',
         a: 'We are based in Hong Kong and work in English, Traditional Chinese and Japanese, collaborating remotely with clients in Hong Kong and overseas.',
+      },
+    ],
+  },
+  strengths: {
+    kicker: 'JAPAN × HONG KONG',
+    title: "Japan's engineering, delivered in Hong Kong",
+    subtitle:
+      "Development is handled by Japanese engineers. Through collaboration with Japanese companies and Japan's cutting-edge AI, we bring Japan-grade craft to your project — right here in Hong Kong.",
+    items: [
+      {
+        title: 'Japanese engineers on the build',
+        desc: 'From requirements to implementation, Japanese engineers do the work with careful communication and Japan-grade quality standards, keeping misalignment to a minimum.',
+      },
+      {
+        title: 'Partnered with Japanese companies',
+        desc: 'We work alongside Japanese partner firms, bringing proven technology, a solid delivery setup, and the latest Japanese know-how to every project.',
+      },
+      {
+        title: "Powered by Japan's advanced AI",
+        desc: 'Some of the most advanced AI is hard to access from Hong Kong. We tap Japan’s technology and environment to bring it into development — pairing speed with quality.',
       },
     ],
   },
@@ -896,6 +942,26 @@ const ja: Dict = {
       {
         q: '対応言語・地域は？',
         a: '香港拠点で、日本語・英語・繁体字に対応。リモートで香港および海外のお客様と協働します。',
+      },
+    ],
+  },
+  strengths: {
+    kicker: 'JAPAN × HONG KONG',
+    title: '日本の技術力を、香港の現場へ',
+    subtitle:
+      '開発は日本人エンジニアが担当。日本企業との協業と日本の先端AIを活かし、香港にいながら日本品質のものづくりをお届けします。',
+    items: [
+      {
+        title: '日本人エンジニアが担当',
+        desc: '要件のすり合わせから実装まで、日本人エンジニアが丁寧に対応。認識のズレを抑え、日本仕込みの品質基準で仕上げます。',
+      },
+      {
+        title: '日本企業との協業',
+        desc: '日本のパートナー企業と連携し、確かな技術と開発体制で対応。日本のノウハウと最新動向をプロジェクトに還元します。',
+      },
+      {
+        title: '日本の先端AIを活用',
+        desc: '一部の最先端AIは香港では利用が難しいのが実情。私たちは日本の技術・環境を通じてそれらを開発に取り入れ、スピードと品質を両立させます。',
       },
     ],
   },
