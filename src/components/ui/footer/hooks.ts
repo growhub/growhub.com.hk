@@ -21,5 +21,6 @@ export function buildFooterSectionLinks(lang: Locale): FooterLink[] {
     { href: `${base}#ai`, label: t.nav.approach },
     { href: `${base}#works`, label: t.nav.works },
     { href: `${base}#company`, label: t.nav.company },
+    { href: `${base}#faq`, label: t.faq.kicker },
   ];
 }

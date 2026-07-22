@@ -96,6 +96,12 @@ export interface Dict {
     title: string;
     items: { date: string; title: string; desc: string }[];
   };
+  faq: {
+    kicker: string;
+    title: string;
+    subtitle: string;
+    items: { q: string; a: string }[];
+  };
   contactCta: {
     title: string;
     subtitle: string;
@@ -283,6 +289,37 @@ const zhHK: Dict = {
         date: '2019/04/17',
         title: '完成法人登記手續',
         desc: '本公司於 2019 年 4 月 17 日完成法人登記相關手續。衷心感謝一直支持本公司的各位。',
+      },
+    ],
+  },
+  faq: {
+    kicker: 'FAQ',
+    title: '常見問題',
+    subtitle: '關於「先做出來，再談」的合作方式，以下是常見的疑問。',
+    items: [
+      {
+        q: '真的 0 初期費用嗎？免費到哪個階段？',
+        a: '是。由免費諮詢、AI 驅動的可運作原型開發，到方案建議（步驟 ①〜③）全部 0 初期費用。看過實物後，再決定是否進入正式開發。',
+      },
+      {
+        q: '最快多久可以看到「動得起來的東西」？',
+        a: '視乎範圍，最快數日內即可交付可運作的原型。我們刻意把第一步做得又快又輕，讓您盡早看到成果。',
+      },
+      {
+        q: '可以對應哪些類型的專案？',
+        a: 'Web 應用・SaaS、網站製作與運營、iOS / Android 流動應用，以及 AI 驅動開發。由構思到上線、運營都能一條龍支援。',
+      },
+      {
+        q: '大量使用 AI，品質可靠嗎？',
+        a: '我們以 AI 輔助編碼、程式碼審查與測試，並由工程師把關，在高速開發下維持穩定品質。AI 是加速工具，不是放任交付。',
+      },
+      {
+        q: '如果原型不合適，可以中途停止嗎？',
+        a: '可以。看過原型後若感覺方向不合，在此停下也沒問題，不會產生正式開發費用。先確認、後投入是我們的原則。',
+      },
+      {
+        q: '支援哪些語言與地區？',
+        a: '本公司位於香港，支援繁體中文、英文、日文，並以遠端方式與香港以至海外的客戶合作。',
       },
     ],
   },
@@ -538,6 +575,37 @@ const en: Dict = {
         date: '17 Apr 2019',
         title: 'Corporate registration completed',
         desc: 'We completed our corporate registration on 17 April 2019. Thank you sincerely to everyone who has supported us.',
+      },
+    ],
+  },
+  faq: {
+    kicker: 'FAQ',
+    title: 'Frequently asked questions',
+    subtitle: 'Common questions about our "build first, then talk" way of working.',
+    items: [
+      {
+        q: 'Is it really zero upfront cost? How far is free?',
+        a: 'Yes. The free consultation, the AI-driven working prototype, and our proposal (steps ①–③) are all zero upfront cost. You decide whether to move into full development only after seeing something real.',
+      },
+      {
+        q: 'How soon can I see something working?',
+        a: 'Depending on scope, a working prototype can be ready in a matter of days. We deliberately keep the first step fast and light so you see results early.',
+      },
+      {
+        q: 'What kinds of projects can you take on?',
+        a: 'Web apps and SaaS, website production and operation, iOS / Android mobile apps, and AI-driven development — end to end, from idea to launch and beyond.',
+      },
+      {
+        q: 'You use a lot of AI — is quality reliable?',
+        a: 'We pair AI-assisted coding, review and testing with engineer oversight, so quality stays dependable even at high speed. AI accelerates the work; it does not replace review.',
+      },
+      {
+        q: 'What if the prototype is not a fit — can I stop?',
+        a: 'Absolutely. If the direction does not feel right after seeing the prototype, you can stop there with no full-development cost. Validate first, invest later.',
+      },
+      {
+        q: 'Which languages and regions do you support?',
+        a: 'We are based in Hong Kong and work in English, Traditional Chinese and Japanese, collaborating remotely with clients in Hong Kong and overseas.',
       },
     ],
   },
@@ -797,6 +865,37 @@ const ja: Dict = {
         date: '2019/04/17',
         title: '法人登記が完了しました',
         desc: '2019年4月17日付けで法人登記が完了いたしました。支援していただいた皆様、誠にありがとうございます。',
+      },
+    ],
+  },
+  faq: {
+    kicker: 'FAQ',
+    title: 'よくあるご質問',
+    subtitle: '「悩む前に、作る」進め方について、よくいただく質問をまとめました。',
+    items: [
+      {
+        q: '本当に初期費用0円ですか？どこまで無料ですか？',
+        a: 'はい。無料相談、AI駆動の動くプロトタイプ開発、ご提案（①〜③）まですべて初期費用0円です。実物を見てから、本開発に進むかを判断いただけます。',
+      },
+      {
+        q: '最短でどのくらいで「動くもの」を見られますか？',
+        a: '規模によりますが、最短数日で動くプロトタイプをお出しできます。最初の一歩をあえて速く軽く作り、早く成果を見ていただきます。',
+      },
+      {
+        q: 'どんな案件に対応できますか？',
+        a: 'Webアプリ・SaaS、Webサイト制作と運用、iOS / Android アプリ、AI駆動開発まで。構想から公開・運用まで一貫して対応します。',
+      },
+      {
+        q: 'AIを多用して品質は大丈夫ですか？',
+        a: 'AIによるコーディング・レビュー・テスト支援に加え、エンジニアが必ず確認するため、高速でも品質を保てます。AIは加速の道具で、確認を省くものではありません。',
+      },
+      {
+        q: 'プロトタイプが合わなければ途中でやめられますか？',
+        a: 'もちろんです。プロトタイプを見て方向性が合わないと感じたら、そこで止めても本開発費用は発生しません。まず確認、投資は後、が私たちの原則です。',
+      },
+      {
+        q: '対応言語・地域は？',
+        a: '香港拠点で、日本語・英語・繁体字に対応。リモートで香港および海外のお客様と協働します。',
       },
     ],
   },

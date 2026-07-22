@@ -25,6 +25,7 @@ describe('buildFooterSectionLinks', () => {
       '/#ai',
       '/#works',
       '/#company',
+      '/#faq',
     ]);
   });
 
