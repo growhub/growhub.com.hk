@@ -98,6 +98,26 @@ export interface Dict {
       note: string;
     };
   };
+  demo: {
+    kicker: string;
+    title: string;
+    subtitle: string;
+    placeholder: string;
+    examples: string[];
+    button: string;
+    loading: string;
+    disclaimer: string;
+    errors: { empty: string; failed: string; notConfigured: string };
+    result: {
+      heading: string;
+      features: string;
+      screens: string;
+      stack: string;
+      nextStep: string;
+      cta: string;
+      again: string;
+    };
+  };
   works: {
     kicker: string;
     title: string;
@@ -404,6 +424,30 @@ const zhHK: Dict = {
       ai: 'AI 驅動開發',
       aiValue: '數日起',
       note: '在相同品質標準下，以 AI 壓縮每個工序——這正是能提供 0 初期費用原型的原因。',
+    },
+  },
+  demo: {
+    kicker: 'TRY IT NOW',
+    title: '先體驗，再相信',
+    subtitle: '輸入你的點子，AI 會即時提出原型構成案。這正是我們 0 初期費用原型的縮影。',
+    placeholder: '例如：為小店打造的預約與會員 App',
+    examples: ['餐廳線上預約系統', '健身教練的會員 App', '二手買賣平台'],
+    button: '生成原型構成',
+    loading: 'AI 正在思考原型構成…',
+    disclaimer: '※ 由 AI 即時生成的示意，僅供參考。實際會由工程師與你一起打磨。',
+    errors: {
+      empty: '請先輸入你的點子。',
+      failed: '生成失敗，請稍後再試。',
+      notConfigured: 'Demo 尚未啟用（需設定 Workers AI）。',
+    },
+    result: {
+      heading: 'AI 提出的原型構成',
+      features: '主要功能',
+      screens: '主要畫面',
+      stack: '技術選型',
+      nextStep: '若先做原型',
+      cta: '就用這個構成諮詢',
+      again: '換個點子再試',
     },
   },
   contactCta: {
@@ -752,6 +796,36 @@ const en: Dict = {
       ai: 'AI-driven development',
       aiValue: 'days+',
       note: 'Same quality bar, every stage compressed with AI — which is exactly why a zero-upfront-cost prototype is possible.',
+    },
+  },
+  demo: {
+    kicker: 'TRY IT NOW',
+    title: 'Experience it before you believe it',
+    subtitle:
+      'Describe your idea and AI drafts a prototype plan on the spot — a miniature of the zero-upfront-cost prototype we start every project with.',
+    placeholder: 'e.g. A booking and membership app for a small shop',
+    examples: [
+      'Restaurant online booking',
+      'Membership app for a personal trainer',
+      'A resale marketplace',
+    ],
+    button: 'Generate a prototype plan',
+    loading: 'AI is sketching your prototype…',
+    disclaimer:
+      'A rough, AI-generated sketch for reference — the real thing is shaped together with our engineers.',
+    errors: {
+      empty: 'Please describe your idea first.',
+      failed: 'Generation failed. Please try again in a moment.',
+      notConfigured: 'The demo is not enabled yet (Workers AI required).',
+    },
+    result: {
+      heading: 'A prototype plan drafted by AI',
+      features: 'Core features',
+      screens: 'Key screens',
+      stack: 'Suggested stack',
+      nextStep: 'If we prototyped first',
+      cta: 'Talk to us about this plan',
+      again: 'Try another idea',
     },
   },
   contactCta: {
@@ -1104,6 +1178,35 @@ const ja: Dict = {
       ai: 'AI駆動開発',
       aiValue: '数日〜',
       note: '同じ品質基準でも、AIで各工程を圧縮。だから初期費用0円のプロトタイプ提供が可能です。',
+    },
+  },
+  demo: {
+    kicker: 'TRY IT NOW',
+    title: '信じる前に、体験してください',
+    subtitle:
+      'アイデアを入力すると、AIがその場でプロトタイプ構成案を提案します。私たちの「初期費用0円プロトタイプ」の縮図です。',
+    placeholder: '例: 小さな店舗向けの予約・会員アプリ',
+    examples: [
+      '飲食店のネット予約',
+      'パーソナルトレーナーの会員アプリ',
+      'フリマ・二次流通サービス',
+    ],
+    button: 'プロトタイプ構成を生成',
+    loading: 'AIがプロトタイプを考えています…',
+    disclaimer: '※ AIがその場で生成した参考イメージです。実際はエンジニアと一緒に磨き上げます。',
+    errors: {
+      empty: 'まずはアイデアを入力してください。',
+      failed: '生成に失敗しました。少し時間をおいて再度お試しください。',
+      notConfigured: 'デモは未有効化です（Workers AI の設定が必要）。',
+    },
+    result: {
+      heading: 'AIが提案したプロトタイプ構成',
+      features: '主な機能',
+      screens: '主な画面',
+      stack: '技術スタック案',
+      nextStep: 'まず作るなら',
+      cta: 'この構成で相談する',
+      again: '別のアイデアで試す',
     },
   },
   contactCta: {

@@ -1,0 +1,30 @@
+---
+import { getDict, localizePath } from '@i18n/ui';
+import Demo from './demo';
+import type { DemoProps } from './types';
+
+const { lang } = Astro.props as Pick<DemoProps, 'lang'>;
+const t = getDict(lang);
+const contactHref = localizePath('/contact', lang);
+---
+
+<section id="demo" class="scroll-mt-20 py-20 sm:py-28">
+  <div class="container-x">
+    <div class="mx-auto max-w-2xl text-center">
+      <span
+        class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-[0.15em] text-white"
+        style="background-image:linear-gradient(100deg,var(--color-brand),var(--color-brand-2))"
+      >
+        {t.demo.kicker}
+      </span>
+      <h2
+        class="mt-4 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl"
+      >
+        {t.demo.title}
+      </h2>
+      <p class="mt-4 leading-relaxed text-[color:var(--color-ink-muted)]">{t.demo.subtitle}</p>
+    </div>
+
+    <Demo client:visible lang={lang} labels={t.demo} contactHref={contactHref} />
+  </div>
+</section>
