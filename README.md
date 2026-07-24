@@ -178,6 +178,24 @@ Pages Function 側では、`TURNSTILE_SECRET_KEY` が設定されていれば
 で `cf-turnstile-response` を**サーバー検証**します。これによりフロントの抑止だけでなく、
 サーバー側でも確実にボットを弾けます。
 
+## 🤖 AI プロトタイプ・デモ（Workers AI）
+
+トップの「TRY IT NOW」セクション（`src/components/feature/prototype-demo`）は、訪問者が
+アイデアを入力すると **AI がその場でプロトタイプ構成案**（機能・画面・技術スタック・最初の一歩）
+を返す、"動く証拠" のデモです。フロントは React island、生成は Pages Function
+`functions/api/prototype.ts` が **Cloudflare Workers AI**（`@cf/meta/llama-3.1-8b-instruct`）で
+行います。応答は防御的に正規化（`hooks.ts` / `hooks.test.ts`）してから描画します。
+
+Cloudflare 側の設定:
+
+1. Pages → **Settings → Bindings → Add → Workers AI**、Variable name = **`AI`**
+2. **Retry deployment** で再デプロイ
+3. （推奨）悪用・コスト対策として `/api/prototype` に **Rate Limiting ルール**を追加
+   （例: 5 req/min/IP）。入力長は 500 文字、`max_tokens` は 900 に制限済み。
+
+`AI` バインディング未設定時は Function が `503 not_configured` を返し、UI は
+「デモは未有効化」を表示します（サイトの他機能には影響しません）。
+
 ## ☁️ デプロイ
 
 ### Netlify（現行）
