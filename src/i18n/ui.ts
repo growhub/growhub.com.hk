@@ -87,6 +87,7 @@ export interface Dict {
     kicker: string;
     title: string;
     subtitle: string;
+    engine: string;
     steps: { title: string; desc: string; ai: string }[];
     speed: {
       title: string;
@@ -368,6 +369,7 @@ const zhHK: Dict = {
     title: '我們實際如何用 AI 開發',
     subtitle:
       '實績從外部難以判斷，所以我們選擇公開「怎樣做」。AI 貫穿每一個工序，讓小團隊也能又快又穩地交付。',
+    engine: 'AI 貫穿全工序，加速並自動化',
     steps: [
       {
         title: '需求整理・設計',
@@ -715,6 +717,7 @@ const en: Dict = {
     title: 'How we actually build with AI',
     subtitle:
       'Track records are hard to judge from the outside — so we show how we work instead. AI runs through every stage, letting a small team ship fast and reliably.',
+    engine: 'AI runs through every stage — accelerating and automating',
     steps: [
       {
         title: 'Discovery & design',
@@ -1066,6 +1069,7 @@ const ja: Dict = {
     title: 'AIをどう開発に使っているか',
     subtitle:
       '実績は外から見えにくいもの。だから私たちは「どう作っているか」を公開します。各工程でAIを活かし、少人数でも速く・確かに仕上げます。',
+    engine: 'AIが全工程を貫き、加速・自動化します',
     steps: [
       {
         title: '要件整理・設計',
