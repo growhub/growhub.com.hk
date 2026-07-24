@@ -25,7 +25,8 @@ interface PagesContext {
   env: Env;
 }
 
-const MODEL = '@cf/meta/llama-3.1-8b-instruct';
+// Tried in order; the first that returns usable text wins.
+const MODELS = ['@cf/meta/llama-3.1-8b-instruct', '@cf/meta/llama-3-8b-instruct'];
 const MAX_IDEA_LEN = 500;
 
 const LANG_NAME: Record<string, string> = {
@@ -53,62 +54,79 @@ function extractJson(text: string): unknown {
 }
 
 export const onRequestPost = async ({ request, env }: PagesContext): Promise<Response> => {
-  let body: { idea?: string; lang?: string; company_url?: string };
+  // Everything is wrapped so the endpoint always returns JSON (never an HTML
+  // 502 from an uncaught throw), which also surfaces the real error as `detail`.
   try {
-    body = (await request.json()) as typeof body;
-  } catch {
-    return json({ error: 'bad_request' }, 400);
-  }
+    let body: { idea?: string; lang?: string; company_url?: string };
+    try {
+      body = (await request.json()) as typeof body;
+    } catch {
+      return json({ error: 'bad_request' }, 400);
+    }
 
-  // Honeypot: real users never fill this hidden field.
-  if (body.company_url?.trim()) {
-    return json({ error: 'validation' }, 400);
-  }
+    // Honeypot: real users never fill this hidden field.
+    if (body.company_url?.trim()) {
+      return json({ error: 'validation' }, 400);
+    }
 
-  const idea = (body.idea ?? '').trim().slice(0, MAX_IDEA_LEN);
-  if (!idea) {
-    return json({ error: 'validation' }, 400);
-  }
+    const idea = (body.idea ?? '').trim().slice(0, MAX_IDEA_LEN);
+    if (!idea) {
+      return json({ error: 'validation' }, 400);
+    }
 
-  if (!env.AI) {
-    return json({ error: 'not_configured' }, 503);
-  }
+    if (!env.AI) {
+      return json({ error: 'not_configured' }, 503);
+    }
 
-  const language = LANG_NAME[body.lang ?? 'en'] ?? 'English';
-  const system = [
-    'You are a senior product engineer at GrowHub, a Hong Kong software studio that starts every project with a free, AI-driven working prototype.',
-    `A visitor describes an idea. Propose a concise, realistic prototype plan. Respond ONLY with a JSON object (no markdown, no commentary) in this exact shape:`,
-    '{"appName": string, "summary": string, "features": string[], "screens": string[], "stack": string[], "nextStep": string}',
-    '- appName: a short, catchy working name.',
-    '- summary: one sentence describing the concept.',
-    '- features: 4-6 concrete core features (short phrases).',
-    '- screens: 3-5 key screens/pages (short phrases).',
-    '- stack: 3-5 suitable technologies.',
-    '- nextStep: one sentence on what GrowHub would build first as the free prototype.',
-    `Write every string value in ${language}. Keep it practical and encouraging. Do not include any text outside the JSON.`,
-  ].join('\n');
+    const language = LANG_NAME[body.lang ?? 'en'] ?? 'English';
+    const system = [
+      'You are a senior product engineer at GrowHub, a Hong Kong software studio that starts every project with a free, AI-driven working prototype.',
+      'A visitor describes an idea. Propose a concise, realistic prototype plan. Respond ONLY with a JSON object (no markdown, no commentary) in this exact shape:',
+      '{"appName": string, "summary": string, "features": string[], "screens": string[], "stack": string[], "nextStep": string}',
+      '- appName: a short, catchy working name.',
+      '- summary: one sentence describing the concept.',
+      '- features: 4-6 concrete core features (short phrases).',
+      '- screens: 3-5 key screens/pages (short phrases).',
+      '- stack: 3-5 suitable technologies.',
+      '- nextStep: one sentence on what GrowHub would build first as the free prototype.',
+      `Write every string value in ${language}. Keep it practical and encouraging. Do not include any text outside the JSON.`,
+    ].join('\n');
 
-  let raw: string;
-  try {
-    const out = await env.AI.run(MODEL, {
+    const input = {
       messages: [
         { role: 'system', content: system },
         { role: 'user', content: idea },
       ],
-      max_tokens: 900,
-      temperature: 0.7,
-    });
-    raw = out.response ?? '';
+      max_tokens: 700,
+    };
+
+    let raw = '';
+    let lastError = '';
+    for (const model of MODELS) {
+      try {
+        const out = await env.AI.run(model, input);
+        raw = out.response ?? '';
+        if (raw) break;
+      } catch (e) {
+        lastError = e instanceof Error ? e.message : String(e);
+        console.error(`prototype: AI.run failed for ${model}:`, lastError);
+      }
+    }
+
+    if (!raw) {
+      return json({ error: 'ai_failed', stage: 'run', detail: lastError || 'empty response' }, 502);
+    }
+
+    const parsed = extractJson(raw);
+    if (!parsed || typeof parsed !== 'object') {
+      console.error('prototype: could not parse JSON:', raw.slice(0, 600));
+      return json({ error: 'ai_failed', stage: 'parse', detail: raw.slice(0, 200) }, 502);
+    }
+
+    return json({ ok: true, plan: parsed });
   } catch (e) {
-    console.error('prototype: AI.run failed', e);
-    return json({ error: 'ai_failed', stage: 'run' }, 502);
+    const detail = e instanceof Error ? e.message : String(e);
+    console.error('prototype: unhandled error', detail);
+    return json({ error: 'ai_failed', stage: 'handler', detail }, 500);
   }
-
-  const parsed = extractJson(raw);
-  if (!parsed || typeof parsed !== 'object') {
-    console.error('prototype: could not parse JSON from response:', raw.slice(0, 600));
-    return json({ error: 'ai_failed', stage: 'parse' }, 502);
-  }
-
-  return json({ ok: true, plan: parsed });
 };

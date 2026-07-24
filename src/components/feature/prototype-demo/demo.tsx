@@ -34,6 +34,8 @@ export default function Demo({ lang, labels, contactHref }: DemoProps) {
         ok?: boolean;
         plan?: unknown;
         error?: string;
+        stage?: string;
+        detail?: string;
       };
       if (res.status === 503 || data.error === 'not_configured') {
         setStatus('error');
@@ -43,7 +45,9 @@ export default function Demo({ lang, labels, contactHref }: DemoProps) {
       const normalised = data.ok ? normalizePlan(data.plan) : null;
       if (!normalised) {
         setStatus('error');
-        setError(labels.errors.failed);
+        // Temporary: surface the server-side cause on-page for diagnosis.
+        const diag = [data.stage, data.detail].filter(Boolean).join(': ');
+        setError(diag ? `${labels.errors.failed} [${diag}]` : labels.errors.failed);
         return;
       }
       setPlan(normalised);
