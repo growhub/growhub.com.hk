@@ -99,13 +99,15 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
       temperature: 0.7,
     });
     raw = out.response ?? '';
-  } catch {
-    return json({ error: 'ai_failed' }, 502);
+  } catch (e) {
+    console.error('prototype: AI.run failed', e);
+    return json({ error: 'ai_failed', stage: 'run' }, 502);
   }
 
   const parsed = extractJson(raw);
   if (!parsed || typeof parsed !== 'object') {
-    return json({ error: 'ai_failed' }, 502);
+    console.error('prototype: could not parse JSON from response:', raw.slice(0, 600));
+    return json({ error: 'ai_failed', stage: 'parse' }, 502);
   }
 
   return json({ ok: true, plan: parsed });
