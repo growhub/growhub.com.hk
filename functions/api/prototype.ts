@@ -6,7 +6,7 @@
  * the Workers AI binding) through a Service binding (AISVC).
  *
  * Required Pages configuration:
- *   - Binding `AISVC` (type: Service) → the `growhub-ai` Worker.
+ *   - Binding `AI` (type: Service) → the `growhub-ai` Worker.
  * Recommended:
  *   - A Rate Limiting rule on /api/prototype (e.g. 5 req/min/IP).
  */
@@ -16,7 +16,7 @@ interface Fetcher {
 }
 
 interface Env {
-  AISVC?: Fetcher;
+  AI?: Fetcher;
 }
 
 interface PagesContext {
@@ -51,12 +51,12 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
       return json({ error: 'validation' }, 400);
     }
 
-    if (!env.AISVC) {
+    if (!env.AI) {
       return json({ error: 'not_configured' }, 503);
     }
 
     // Forward to the AI Worker via the Service binding (internal call).
-    const res = await env.AISVC.fetch(
+    const res = await env.AI.fetch(
       new Request('https://ai/prototype', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
