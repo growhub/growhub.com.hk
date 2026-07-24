@@ -104,7 +104,12 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
     let lastError = '';
     for (const model of MODELS) {
       try {
-        const out = await env.AI.run(model, input);
+        // Race against a timeout so a hung inference fails cleanly (JSON),
+        // rather than letting the platform return an uncatchable 502.
+        const out = (await Promise.race([
+          env.AI.run(model, input),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('ai_timeout_25s')), 25_000)),
+        ])) as { response?: string };
         raw = out.response ?? '';
         if (raw) break;
       } catch (e) {
