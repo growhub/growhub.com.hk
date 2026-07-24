@@ -83,6 +83,20 @@ export interface Dict {
     subtitle: string;
     items: StepItem[];
   };
+  flow: {
+    kicker: string;
+    title: string;
+    subtitle: string;
+    steps: { title: string; desc: string; ai: string }[];
+    speed: {
+      title: string;
+      traditional: string;
+      traditionalValue: string;
+      ai: string;
+      aiValue: string;
+      note: string;
+    };
+  };
   works: {
     kicker: string;
     title: string;
@@ -348,6 +362,47 @@ const zhHK: Dict = {
         desc: '部分最尖端的 AI 在香港較難使用。我們透過日本的技術與環境將其引入開發，兼顧速度與品質。',
       },
     ],
+  },
+  flow: {
+    kicker: 'AI DEVELOPMENT FLOW',
+    title: '我們實際如何用 AI 開發',
+    subtitle:
+      '實績從外部難以判斷，所以我們選擇公開「怎樣做」。AI 貫穿每一個工序，讓小團隊也能又快又穩地交付。',
+    steps: [
+      {
+        title: '需求整理・設計',
+        desc: '一起把想法化為文字，並一口氣完成規格草案。',
+        ai: 'AI 整理需求、生成規格草案',
+      },
+      {
+        title: 'AI 驅動原型',
+        desc: '最快數日交付可運作原型，以可觸碰的實物討論。',
+        ai: 'AI 快速生成初期 UI 與程式碼',
+      },
+      {
+        title: '檢視 & 反覆',
+        desc: '看著實物即時調整方向，避免多餘的開發。',
+        ai: 'AI 迅速提出改善與替代方案',
+      },
+      {
+        title: '實作・測試',
+        desc: '由工程師把關品質，穩步進入正式開發。',
+        ai: 'AI 協同編碼、程式碼審查、自動測試',
+      },
+      {
+        title: '發佈・運營',
+        desc: '上線不是終點，邊量度邊持續改善。',
+        ai: 'AI 提升 CI/CD、監控與迭代效率',
+      },
+    ],
+    speed: {
+      title: '為何這麼快',
+      traditional: '傳統開發',
+      traditionalValue: '數週起',
+      ai: 'AI 驅動開發',
+      aiValue: '數日起',
+      note: '在相同品質標準下，以 AI 壓縮每個工序——這正是能提供 0 初期費用原型的原因。',
+    },
   },
   contactCta: {
     title: '不如先看到「動得起來的東西」，再作決定？',
@@ -654,6 +709,47 @@ const en: Dict = {
         desc: 'Some of the most advanced AI is hard to access from Hong Kong. We tap Japan’s technology and environment to bring it into development — pairing speed with quality.',
       },
     ],
+  },
+  flow: {
+    kicker: 'AI DEVELOPMENT FLOW',
+    title: 'How we actually build with AI',
+    subtitle:
+      'Track records are hard to judge from the outside — so we show how we work instead. AI runs through every stage, letting a small team ship fast and reliably.',
+    steps: [
+      {
+        title: 'Discovery & design',
+        desc: 'We put your idea into words together and draft the spec in one go.',
+        ai: 'AI structures requirements and drafts specs',
+      },
+      {
+        title: 'AI-driven prototyping',
+        desc: 'A working prototype in days — we discuss with something you can actually touch.',
+        ai: 'AI generates the initial UI and code fast',
+      },
+      {
+        title: 'Review & iterate',
+        desc: 'Adjust direction on the spot while looking at the real thing — no wasted build.',
+        ai: 'AI surfaces improvements and alternatives',
+      },
+      {
+        title: 'Build & test',
+        desc: 'Engineers safeguard quality as we move steadily into full development.',
+        ai: 'AI pair-programming, code review, automated tests',
+      },
+      {
+        title: 'Ship & operate',
+        desc: 'Launch is not the end — we measure and keep improving.',
+        ai: 'AI streamlines CI/CD, monitoring and iteration',
+      },
+    ],
+    speed: {
+      title: 'Why it is fast',
+      traditional: 'Traditional development',
+      traditionalValue: 'weeks+',
+      ai: 'AI-driven development',
+      aiValue: 'days+',
+      note: 'Same quality bar, every stage compressed with AI — which is exactly why a zero-upfront-cost prototype is possible.',
+    },
   },
   contactCta: {
     title: 'Why not see something working before you decide?',
@@ -964,6 +1060,47 @@ const ja: Dict = {
         desc: '一部の最先端AIは香港では利用が難しいのが実情。私たちは日本の技術・環境を通じてそれらを開発に取り入れ、スピードと品質を両立させます。',
       },
     ],
+  },
+  flow: {
+    kicker: 'AI DEVELOPMENT FLOW',
+    title: 'AIをどう開発に使っているか',
+    subtitle:
+      '実績は外から見えにくいもの。だから私たちは「どう作っているか」を公開します。各工程でAIを活かし、少人数でも速く・確かに仕上げます。',
+    steps: [
+      {
+        title: '要件整理・設計',
+        desc: 'やりたいことを一緒に言語化し、仕様の叩き台まで一気に。',
+        ai: 'AIで要点を構造化・仕様草案を生成',
+      },
+      {
+        title: 'AI駆動プロトタイピング',
+        desc: '最短数日で“動くもの”を用意。触れる状態で議論します。',
+        ai: 'AIでUI・コードの初期実装を高速生成',
+      },
+      {
+        title: 'レビュー & 反復',
+        desc: '実物を見ながらその場で方向を調整。ムダな作り込みを防ぎます。',
+        ai: 'AIで改善案・代替案を素早く提示',
+      },
+      {
+        title: '実装・テスト',
+        desc: 'エンジニアが品質を担保しつつ、着実に本開発へ。',
+        ai: 'AIペアプロ・コードレビュー・自動テスト',
+      },
+      {
+        title: 'リリース・運用',
+        desc: '公開して終わりではなく、計測しながら継続改善。',
+        ai: 'CI/CD・監視・改善サイクルをAIで効率化',
+      },
+    ],
+    speed: {
+      title: 'なぜ速いのか',
+      traditional: '従来型の開発',
+      traditionalValue: '数週間〜',
+      ai: 'AI駆動開発',
+      aiValue: '数日〜',
+      note: '同じ品質基準でも、AIで各工程を圧縮。だから初期費用0円のプロトタイプ提供が可能です。',
+    },
   },
   contactCta: {
     title: 'まずは、“動くもの”を見てから決めませんか？',
