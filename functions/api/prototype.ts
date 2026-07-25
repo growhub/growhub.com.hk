@@ -1,22 +1,21 @@
 /**
  * Cloudflare Pages Function — AI prototype-planner demo (POST /api/prototype).
  *
- * Workers AI does not run reliably directly from a Pages Function, so this
- * validates the request and forwards it to the `growhub-ai` Worker (which owns
- * the Workers AI binding) through a Service binding (AISVC).
+ * Calls OpenRouter (https://openrouter.ai) — an OpenAI-compatible LLM gateway —
+ * directly from the Pages Function. No Worker or Service binding is needed.
  *
- * Required Pages configuration:
- *   - Binding `AI` (type: Service) → the `growhub-ai` Worker.
+ * Required Pages configuration (Settings → Environment variables, encrypted):
+ *   - `OPENROUTER_API_KEY`  — an OpenRouter API key (sk-or-...).
+ * Optional:
+ *   - `OPENROUTER_MODEL`    — model slug(s), comma-separated, tried in order.
+ *                             Defaults below. Append `:free` for zero-cost tiers.
  * Recommended:
  *   - A Rate Limiting rule on /api/prototype (e.g. 5 req/min/IP).
  */
 
-interface Fetcher {
-  fetch(request: Request): Promise<Response>;
-}
-
 interface Env {
-  AI?: Fetcher;
+  OPENROUTER_API_KEY?: string;
+  OPENROUTER_MODEL?: string;
 }
 
 interface PagesContext {
@@ -25,12 +24,46 @@ interface PagesContext {
 }
 
 const MAX_IDEA_LEN = 500;
+const DEFAULT_MODELS = ['openai/gpt-4o-mini', 'meta-llama/llama-3.1-8b-instruct'];
+
+const LANG_NAME: Record<string, string> = {
+  en: 'English',
+  ja: 'Japanese',
+  'zh-hk': 'Traditional Chinese (Hong Kong)',
+};
 
 const json = (data: unknown, status = 200): Response =>
   new Response(JSON.stringify(data), {
     status,
     headers: { 'content-type': 'application/json; charset=utf-8' },
   });
+
+function extractJson(text: string): unknown {
+  const start = text.indexOf('{');
+  const end = text.lastIndexOf('}');
+  if (start === -1 || end === -1 || end <= start) return null;
+  try {
+    return JSON.parse(text.slice(start, end + 1));
+  } catch {
+    return null;
+  }
+}
+
+function buildSystemPrompt(lang?: string): string {
+  const language = LANG_NAME[lang ?? 'en'] ?? 'English';
+  return [
+    'You are a senior product engineer at GrowHub, a Hong Kong software studio that starts every project with a free, AI-driven working prototype.',
+    'A visitor describes an idea. Propose a concise, realistic prototype plan. Respond ONLY with a JSON object (no markdown, no commentary) in this exact shape:',
+    '{"appName": string, "summary": string, "features": string[], "screens": string[], "stack": string[], "nextStep": string}',
+    '- appName: a short, catchy working name.',
+    '- summary: one sentence describing the concept.',
+    '- features: 4-6 concrete core features (short phrases).',
+    '- screens: 3-5 key screens/pages (short phrases).',
+    '- stack: 3-5 suitable technologies.',
+    '- nextStep: one sentence on what GrowHub would build first as the free prototype.',
+    `Write every string value in ${language}. Keep it practical and encouraging. Do not include any text outside the JSON.`,
+  ].join('\n');
+}
 
 export const onRequestPost = async ({ request, env }: PagesContext): Promise<Response> => {
   try {
@@ -51,28 +84,71 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
       return json({ error: 'validation' }, 400);
     }
 
-    if (!env.AI) {
+    if (!env.OPENROUTER_API_KEY) {
       return json({ error: 'not_configured' }, 503);
     }
 
-    // Forward to the AI Worker via the Service binding (internal call).
-    const res = await env.AI.fetch(
-      new Request('https://ai/prototype', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ idea, lang: body.lang }),
-      })
-    );
+    const models = (env.OPENROUTER_MODEL ?? '')
+      .split(',')
+      .map((m) => m.trim())
+      .filter(Boolean);
+    const modelList = models.length > 0 ? models : DEFAULT_MODELS;
 
-    // Pass the Worker's JSON response straight through.
-    const text = await res.text();
-    return new Response(text, {
-      status: res.status,
-      headers: { 'content-type': 'application/json; charset=utf-8' },
-    });
+    const payload = {
+      messages: [
+        { role: 'system', content: buildSystemPrompt(body.lang) },
+        { role: 'user', content: idea },
+      ],
+      max_tokens: 700,
+      temperature: 0.7,
+    };
+
+    let raw = '';
+    let lastError = '';
+    for (const model of modelList) {
+      try {
+        const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            authorization: `Bearer ${env.OPENROUTER_API_KEY}`,
+            'content-type': 'application/json',
+            // Optional attribution headers recommended by OpenRouter.
+            'http-referer': 'https://growhub.com.hk',
+            'x-title': 'GrowHub Prototype Demo',
+          },
+          body: JSON.stringify({ ...payload, model }),
+        });
+
+        if (!res.ok) {
+          lastError = `${model}: HTTP ${res.status} ${(await res.text()).slice(0, 160)}`;
+          continue;
+        }
+
+        const data = (await res.json()) as {
+          choices?: { message?: { content?: string } }[];
+        };
+        raw = data.choices?.[0]?.message?.content ?? '';
+        if (raw) break;
+        lastError = `${model}: empty response`;
+      } catch (e) {
+        lastError = `${model}: ${e instanceof Error ? e.message : String(e)}`;
+      }
+    }
+
+    if (!raw) {
+      console.error('prototype: all models failed', lastError);
+      return json({ error: 'ai_failed', stage: 'run', detail: lastError || 'empty' }, 502);
+    }
+
+    const parsed = extractJson(raw);
+    if (!parsed || typeof parsed !== 'object') {
+      return json({ error: 'ai_failed', stage: 'parse', detail: raw.slice(0, 200) }, 502);
+    }
+
+    return json({ ok: true, plan: parsed });
   } catch (e) {
     const detail = e instanceof Error ? e.message : String(e);
-    console.error('prototype: proxy error', detail);
-    return json({ error: 'ai_failed', stage: 'proxy', detail }, 502);
+    console.error('prototype: unhandled error', detail);
+    return json({ error: 'ai_failed', stage: 'handler', detail }, 502);
   }
 };

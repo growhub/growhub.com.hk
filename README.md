@@ -178,23 +178,34 @@ Pages Function 側では、`TURNSTILE_SECRET_KEY` が設定されていれば
 で `cf-turnstile-response` を**サーバー検証**します。これによりフロントの抑止だけでなく、
 サーバー側でも確実にボットを弾けます。
 
-## 🤖 AI プロトタイプ・デモ（Workers AI）
+## 🤖 AI プロトタイプ・デモ（OpenRouter）
 
 トップの「TRY IT NOW」セクション（`src/components/feature/prototype-demo`）は、訪問者が
 アイデアを入力すると **AI がその場でプロトタイプ構成案**（機能・画面・技術スタック・最初の一歩）
 を返す、"動く証拠" のデモです。フロントは React island、生成は Pages Function
-`functions/api/prototype.ts` が **Cloudflare Workers AI**（`@cf/meta/llama-3.1-8b-instruct`）で
-行います。応答は防御的に正規化（`hooks.ts` / `hooks.test.ts`）してから描画します。
+`functions/api/prototype.ts` が **[OpenRouter](https://openrouter.ai)**（OpenAI 互換の
+LLM ゲートウェイ）を直接呼び出して行います。Worker も Service binding も不要。応答は防御的に
+正規化（`hooks.ts` / `hooks.test.ts`）してから描画します。
 
 Cloudflare 側の設定:
 
-1. Pages → **Settings → Bindings → Add → Workers AI**、Variable name = **`AI`**
-2. **Retry deployment** で再デプロイ
-3. （推奨）悪用・コスト対策として `/api/prototype` に **Rate Limiting ルール**を追加
-   （例: 5 req/min/IP）。入力長は 500 文字、`max_tokens` は 900 に制限済み。
+1. [OpenRouter](https://openrouter.ai/keys) で API キー（`sk-or-...`）を発行
+2. Pages → **Settings → Environment variables** に暗号化変数を追加:
 
-`AI` バインディング未設定時は Function が `503 not_configured` を返し、UI は
+   | 変数名 | 必須 | 説明 |
+   | --- | --- | --- |
+   | `OPENROUTER_API_KEY` | ✅ | OpenRouter の API キー |
+   | `OPENROUTER_MODEL` | 任意 | 使用モデル（カンマ区切りで順にフォールバック）。未指定時は `openai/gpt-4o-mini` → `meta-llama/llama-3.1-8b-instruct`。無料枠を使うなら `:free` 付きスラッグを指定 |
+
+3. **Retry deployment** で再デプロイ
+4. （推奨）悪用・コスト対策として `/api/prototype` に **Rate Limiting ルール**を追加
+   （例: 5 req/min/IP）。入力長は 500 文字、`max_tokens` は 700 に制限済み。
+
+`OPENROUTER_API_KEY` 未設定時は Function が `503 not_configured` を返し、UI は
 「デモは未有効化」を表示します（サイトの他機能には影響しません）。
+
+> **メモ:** 旧構成の Workers AI Worker（`worker/ai/`）は使用しなくなりました。
+> `.github/workflows/worker-deploy.yml` の `growhub-ai` デプロイ job と併せて後で削除可能です。
 
 ## ☁️ デプロイ
 
