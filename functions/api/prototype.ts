@@ -8,7 +8,9 @@
  *   - `OPENROUTER_API_KEY`  — an OpenRouter API key (sk-or-...).
  * Optional:
  *   - `OPENROUTER_MODEL`    — model slug(s), comma-separated, tried in order.
- *                             Defaults below. Append `:free` for zero-cost tiers.
+ *                             Defaults below. Append `:free` for zero-cost tiers,
+ *                             e.g. `meta-llama/llama-3.3-70b-instruct:free`
+ *                             (free rosters rotate — verify on openrouter.ai/models).
  * Recommended:
  *   - A Rate Limiting rule on /api/prototype (e.g. 5 req/min/IP).
  */

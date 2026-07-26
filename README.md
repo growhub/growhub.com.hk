@@ -195,11 +195,15 @@ Cloudflare 側の設定:
    | 変数名 | 必須 | 説明 |
    | --- | --- | --- |
    | `OPENROUTER_API_KEY` | ✅ | OpenRouter の API キー |
-   | `OPENROUTER_MODEL` | 任意 | 使用モデル（カンマ区切りで順にフォールバック）。未指定時は `openai/gpt-4o-mini` → `meta-llama/llama-3.1-8b-instruct`。無料枠を使うなら `:free` 付きスラッグを指定 |
+   | `OPENROUTER_MODEL` | 任意 | 使用モデル（カンマ区切りで順にフォールバック）。**未指定時は [`openrouter/free`](https://openrouter.ai/openrouter/free)** — 無料モデルをランダム自動選択する Free Models Router。構造化出力（JSON schema）対応モデルだけを選ぶので、無料モデルが入れ替わっても動き続ける。特定モデルに固定したい場合は `openai/gpt-4o-mini` などの有料スラッグや `:free` 付きスラッグを指定 |
 
 3. **Retry deployment** で再デプロイ
 4. （推奨）悪用・コスト対策として `/api/prototype` に **Rate Limiting ルール**を追加
    （例: 5 req/min/IP）。入力長は 500 文字、`max_tokens` は 700 に制限済み。
+
+> **無料枠の制限:** `openrouter/free` は OpenRouter の無料枠を使うため、累計クレジット購入が
+> $10 未満だと **50 リクエスト/日**、$10 以上購入で **1000/日**。常時公開デモで足りなければ、
+> `OPENROUTER_MODEL` に格安の有料モデル（例: `openai/gpt-4o-mini`）を指定してください。
 
 `OPENROUTER_API_KEY` 未設定時は Function が `503 not_configured` を返し、UI は
 「デモは未有効化」を表示します（サイトの他機能には影響しません）。
