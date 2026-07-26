@@ -142,6 +142,7 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
 
     let raw = '';
     let lastError = '';
+    let providerStatus: number | undefined;
     for (const model of modelList) {
       try {
         const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -157,6 +158,7 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
         });
 
         if (!res.ok) {
+          providerStatus = res.status;
           lastError = `${model}: HTTP ${res.status} ${(await res.text()).slice(0, 160)}`;
           continue;
         }
@@ -174,7 +176,7 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
 
     if (!raw) {
       console.error('prototype: all models failed', lastError);
-      return json({ error: 'ai_failed', stage: 'run' }, 503);
+      return json({ error: 'ai_failed', stage: 'run', providerStatus }, 503);
     }
 
     const parsed = extractJson(raw);
