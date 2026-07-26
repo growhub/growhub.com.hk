@@ -24,7 +24,36 @@ interface PagesContext {
 }
 
 const MAX_IDEA_LEN = 500;
-const DEFAULT_MODELS = ['openai/gpt-4o-mini', 'meta-llama/llama-3.1-8b-instruct'];
+const DEFAULT_MODELS = ['openrouter/free'];
+
+const PLAN_SCHEMA = {
+  type: 'object',
+  properties: {
+    appName: { type: 'string' },
+    summary: { type: 'string' },
+    features: {
+      type: 'array',
+      items: { type: 'string' },
+      minItems: 3,
+      maxItems: 6,
+    },
+    screens: {
+      type: 'array',
+      items: { type: 'string' },
+      minItems: 3,
+      maxItems: 5,
+    },
+    stack: {
+      type: 'array',
+      items: { type: 'string' },
+      minItems: 2,
+      maxItems: 6,
+    },
+    nextStep: { type: 'string' },
+  },
+  required: ['appName', 'summary', 'features', 'screens', 'stack', 'nextStep'],
+  additionalProperties: false,
+} as const;
 
 const LANG_NAME: Record<string, string> = {
   en: 'English',
@@ -99,8 +128,16 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
         { role: 'system', content: buildSystemPrompt(body.lang) },
         { role: 'user', content: idea },
       ],
+      response_format: {
+        type: 'json_schema',
+        json_schema: {
+          name: 'prototype_plan',
+          strict: true,
+          schema: PLAN_SCHEMA,
+        },
+      },
       max_tokens: 700,
-      temperature: 0.7,
+      temperature: 0.4,
     };
 
     let raw = '';
@@ -137,18 +174,19 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
 
     if (!raw) {
       console.error('prototype: all models failed', lastError);
-      return json({ error: 'ai_failed', stage: 'run', detail: lastError || 'empty' }, 502);
+      return json({ error: 'ai_failed', stage: 'run' }, 503);
     }
 
     const parsed = extractJson(raw);
     if (!parsed || typeof parsed !== 'object') {
-      return json({ error: 'ai_failed', stage: 'parse', detail: raw.slice(0, 200) }, 502);
+      console.error('prototype: model returned an invalid plan');
+      return json({ error: 'ai_failed', stage: 'parse' }, 503);
     }
 
     return json({ ok: true, plan: parsed });
   } catch (e) {
     const detail = e instanceof Error ? e.message : String(e);
     console.error('prototype: unhandled error', detail);
-    return json({ error: 'ai_failed', stage: 'handler', detail }, 502);
+    return json({ error: 'ai_failed', stage: 'handler' }, 503);
   }
 };
