@@ -1,8 +1,19 @@
 /**
  * Cloudflare Pages Function — AI prototype-planner demo (POST /api/prototype).
  *
- * Calls OpenRouter directly from the Pages Function. Keep the API key in the
- * encrypted `OPENROUTER_API_KEY` Pages secret; it is never sent to the browser.
+ * Calls OpenRouter (https://openrouter.ai) — an OpenAI-compatible LLM gateway —
+ * directly from the Pages Function. Keep the API key in the encrypted
+ * `OPENROUTER_API_KEY` Pages secret; it is never sent to the browser.
+ *
+ * Required Pages configuration (Settings → Environment variables, encrypted):
+ *   - `OPENROUTER_API_KEY`  — an OpenRouter API key (sk-or-...).
+ * Optional:
+ *   - `OPENROUTER_MODEL`    — model slug(s), comma-separated, tried in order.
+ *                             Defaults below. Append `:free` for zero-cost tiers,
+ *                             e.g. `meta-llama/llama-3.3-70b-instruct:free`
+ *                             (free rosters rotate — verify on openrouter.ai/models).
+ * Recommended:
+ *   - A Rate Limiting rule on /api/prototype (e.g. 5 req/min/IP).
  */
 
 interface Env {

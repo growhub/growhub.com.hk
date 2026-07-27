@@ -200,9 +200,18 @@ Cloudflare 側の設定:
 5. （推奨）悪用・コスト対策として `/api/prototype` に **Rate Limiting ルール**を追加
    （例: 5 req/min/IP）。入力長は500文字、出力は最大700トークンに制限済み。
 
+   | 変数名 | 必須 | 説明 |
+   | --- | --- | --- |
+   | `OPENROUTER_API_KEY` | ✅ | OpenRouterのAPIキー |
+   | `OPENROUTER_MODEL` | 任意 | 使用モデル。未指定時は[`openrouter/free`](https://openrouter.ai/openrouter/free)。カンマ区切りでフォールバック指定可 |
+
 ローカルでPages Functionsも含めて試す場合は、Git管理外の`.dev.vars`へ
 `OPENROUTER_API_KEY="..."`を保存し、`wrangler pages dev`を使用してください。APIキーを
 `.env.example`やソースコード、`PUBLIC_`で始まる環境変数へ入れないでください。
+
+> **無料枠の制限:** `openrouter/free` は OpenRouter の無料枠を使うため、累計クレジット購入が
+> $10 未満だと **50 リクエスト/日**、$10 以上購入で **1000/日**。常時公開デモで足りなければ、
+> `OPENROUTER_MODEL` に格安の有料モデル（例: `openai/gpt-4o-mini`）を指定してください。
 
 `OPENROUTER_API_KEY` 未設定時は Function が `503 not_configured` を返し、UI は
 「デモは未有効化」を表示します（サイトの他機能には影響しません）。
