@@ -3,6 +3,7 @@ import type { Locale } from '@i18n/ui';
 export interface NavLink {
   href: string;
   label: string;
+  eyebrow?: string;
 }
 
 export interface LangLink {
@@ -16,4 +17,6 @@ export interface MobileNavProps {
   links: NavLink[];
   contact: NavLink;
   langLinks: LangLink[];
+  menuLabel: string;
+  closeLabel: string;
 }

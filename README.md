@@ -15,7 +15,7 @@
 | フォント | Sora（見出し・ロゴ）+ Inter（本文）/ CJK はシステムフォント |
 | パッケージ管理 | [pnpm](https://pnpm.io)（`pnpm-workspace.yaml`） |
 | Lint / Format | [Biome](https://biomejs.dev)（`biome.json`） |
-| ホスティング | Netlify（`netlify.toml` / Netlify Forms） |
+| ホスティング | Cloudflare Pages（Pages Functions / Workers連携） |
 
 ## 🚀 開発
 
@@ -77,10 +77,11 @@ src/components/
 - import エイリアス: `@ui/*` `@feature/*` `@page/*` `@layouts/*` `@i18n/*`（`tsconfig.json` /
   `vitest.config.ts`）。
 
-### ページ構成（1 ページ LP + 補助ページ）
+### ページ構成
 
 - `/` … トップ（Hero / Services / AI開発 / 開発フロー / 会社概要 / News / Contact CTA）
-- `/contact` … お問い合わせ（Netlify Forms）
+- `/services/*` … サービス詳細（Webアプリ / Web制作 / アプリ / AI開発）
+- `/contact` … お問い合わせ（Cloudflare Pages Function）
 - `/contact/thanks` … 送信完了
 - `/policy/privacy` … プライバシーポリシー
 - `/404`
@@ -178,38 +179,41 @@ Pages Function 側では、`TURNSTILE_SECRET_KEY` が設定されていれば
 で `cf-turnstile-response` を**サーバー検証**します。これによりフロントの抑止だけでなく、
 サーバー側でも確実にボットを弾けます。
 
-## 🤖 AI プロトタイプ・デモ（Workers AI）
+## 🤖 AI プロトタイプ・デモ（OpenRouter）
 
 トップの「TRY IT NOW」セクション（`src/components/feature/prototype-demo`）は、訪問者が
 アイデアを入力すると **AI がその場でプロトタイプ構成案**（機能・画面・技術スタック・最初の一歩）
 を返す、"動く証拠" のデモです。フロントは React island、生成は Pages Function
-`functions/api/prototype.ts` が **Cloudflare Workers AI**（`@cf/meta/llama-3.1-8b-instruct`）で
-行います。応答は防御的に正規化（`hooks.ts` / `hooks.test.ts`）してから描画します。
+`functions/api/prototype.ts` から **OpenRouter** を呼び出して行います。APIキーはブラウザへ
+公開せず、Pages Function のSecretとして保持します。応答はJSON Schemaで制約し、さらに
+防御的に正規化（`hooks.ts` / `hooks.test.ts`）してから描画します。
 
 Cloudflare 側の設定:
 
-1. Pages → **Settings → Bindings → Add → Workers AI**、Variable name = **`AI`**
-2. **Retry deployment** で再デプロイ
-3. （推奨）悪用・コスト対策として `/api/prototype` に **Rate Limiting ルール**を追加
-   （例: 5 req/min/IP）。入力長は 500 文字、`max_tokens` は 900 に制限済み。
+1. OpenRouterで用途を判別できる名前（例: `growhub-prototype-production`）のAPIキーを作成し、
+   必要に応じてCredit limitと有効期限を設定
+2. Pages → **Settings → Variables and Secrets → Add** で
+   **`OPENROUTER_API_KEY`** をSecret（Encrypt）として登録
+3. （任意）同画面で **`OPENROUTER_MODEL`** を通常の環境変数として登録
+   （未設定時: `openai/gpt-4.1-mini`）
+4. **Retry deployment** で再デプロイ
+5. （推奨）悪用・コスト対策として `/api/prototype` に **Rate Limiting ルール**を追加
+   （例: 5 req/min/IP）。入力長は500文字、出力は最大900トークンに制限済み。
 
-`AI` バインディング未設定時は Function が `503 not_configured` を返し、UI は
+ローカルでPages Functionsも含めて試す場合は、Git管理外の`.dev.vars`へ
+`OPENROUTER_API_KEY="..."`を保存し、`wrangler pages dev`を使用してください。APIキーを
+`.env.example`やソースコード、`PUBLIC_`で始まる環境変数へ入れないでください。
+
+移行用として、従来の`AI` Service bindingが残っている環境ではOpenRouter未設定時に
+フォールバックします。どちらも未設定の場合はFunctionが`503 not_configured`を返し、UIは
 「デモは未有効化」を表示します（サイトの他機能には影響しません）。
 
 ## ☁️ デプロイ
 
-### Netlify（現行）
+### Cloudflare Pages（現行）
 
-`netlify.toml`:
-
-```toml
-[build]
-  command = "pnpm build"
-  publish = "dist"
-```
-
-Netlify は `pnpm-lock.yaml` を検出して pnpm を有効化し、`packageManager` のバージョンを
-Corepack 経由で使用します。
+ビルドコマンドは `pnpm build`、出力ディレクトリは `dist` です。`functions/` は
+Cloudflare Pages Functionsとして自動デプロイされます。
 
 環境変数（任意）:
 
@@ -219,9 +223,7 @@ Corepack 経由で使用します。
 | `PUBLIC_GA_ID` | Google Analytics 4 の測定 ID（`G-XXXXXXXXXX`）。設定時のみ、かつ本番ビルドで `gtag.js` を読み込みます。未設定ならタグは出力されません |
 | `PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile のサイトキー。設定時のみお問い合わせフォームに Turnstile ウィジェットを表示します。未設定なら非表示（フォームは通常動作） |
 
-### Cloudflare Pages への移行メモ
-
-静的サイトのため、ホスティング依存は **`netlify.toml`** と **お問い合わせフォームのバックエンド** に限定されます。
+### Cloudflare Pages設定
 
 1. Cloudflare Pages でビルドコマンド `pnpm build` / 出力ディレクトリ `dist` を設定
    （`functions/` ディレクトリは Cloudflare Pages が自動的に Functions として扱います）

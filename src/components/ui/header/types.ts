@@ -8,6 +8,7 @@ export interface HeaderProps {
 export interface NavLink {
   href: string;
   label: string;
+  eyebrow?: string;
 }
 
 export interface LangLink {

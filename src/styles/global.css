@@ -20,7 +20,7 @@
    colour utility that shadows the built-in `text-base` font-size utility.
    Declaring them on :root keeps them fully themeable while leaving
    Tailwind's core utilities intact. All components reference them via
-   var(--color-*) or arbitrary `[color:var(--color-*)]` values. */
+   var(--color-*) or arbitrary values such as `[color:var(--color-ink)]`. */
 
 /* ---- Default LIGHT palette + semantic surface tokens (themeable) ---- */
 :root,
@@ -144,6 +144,23 @@ body {
   overflow-x: hidden;
 }
 
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  translate: 0 -200%;
+  border-radius: 9999px;
+  background: var(--color-ink);
+  color: var(--color-base);
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  transition: translate 0.2s ease;
+}
+.skip-link:focus {
+  translate: 0;
+}
+
 /* Better line wrapping. CJK can break between almost any two characters, so
    the default often orphans a trailing character or punctuation onto its own
    line (e.g. 「…決めません／か？」). Balance headings and avoid orphans in
@@ -155,6 +172,29 @@ h3 {
 }
 p {
   text-wrap: pretty;
+}
+
+/* Locale-aware typography.
+   Latin glyphs can stay compact; CJK needs more vertical breathing room
+   because its glyphs occupy more of the em square. */
+.locale-display {
+  line-height: 1.12;
+}
+
+.locale-copy {
+  line-height: 1.7;
+}
+
+:lang(ja) .locale-display,
+:lang(zh-Hant-HK) .locale-display {
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+}
+
+:lang(ja) .locale-copy,
+:lang(zh-Hant-HK) .locale-copy {
+  line-height: 1.9;
+  letter-spacing: 0.01em;
 }
 
 ::selection {

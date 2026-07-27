@@ -6,7 +6,7 @@ attribute on `<html>` re-skins the whole site. The active theme is set by
 `THEME` in `src/layouts/base-layout/base-layout.astro` (currently **`aurora`**).
 
 Components must read these variables (`var(--color-*)` or arbitrary values like
-`[color:var(--color-*)]`) — never hardcode colors.
+`[color:var(--color-ink)]`) — never hardcode colors.
 
 ---
 

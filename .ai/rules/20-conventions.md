@@ -37,6 +37,6 @@ Each component is a folder under `src/components/{ui,feature,page}/<name>/`:
 
 ## Styling
 
-- Read theme via `var(--color-*)` or arbitrary values `[color:var(--color-*)]`.
+- Read theme via `var(--color-*)` or arbitrary values such as `[color:var(--color-ink)]`.
 - Reusable classes (`.card`, `.btn`, `.glass`, `.text-gradient`, …) live in
   `global.css`. Respect `prefers-reduced-motion`.

@@ -26,6 +26,19 @@ export interface ServiceItem {
   tags: string[];
 }
 
+export type ServiceSlug =
+  | 'web-app-development'
+  | 'website-production'
+  | 'app-development'
+  | 'ai-development';
+
+export interface ServiceDetailItem {
+  title: string;
+  summary: string;
+  deliverables: string[];
+  suitableFor: string[];
+}
+
 export interface StepItem {
   title: string;
   desc: string;
@@ -40,6 +53,9 @@ export interface Dict {
     works: string;
     company: string;
     contact: string;
+    menu: string;
+    close_menu: string;
+    skip_to_content: string;
   };
   meta: {
     home_title: string;
@@ -62,7 +78,23 @@ export interface Dict {
     kicker: string;
     title: string;
     subtitle: string;
+    previous: string;
+    next: string;
     items: ServiceItem[];
+  };
+  serviceDetail: {
+    kicker: string;
+    back: string;
+    learnMore: string;
+    deliverablesTitle: string;
+    suitableTitle: string;
+    processKicker: string;
+    processTitle: string;
+    processIntro: string;
+    ctaTitle: string;
+    ctaText: string;
+    ctaButton: string;
+    items: Record<ServiceSlug, ServiceDetailItem>;
   };
   capabilities: {
     kicker: string;
@@ -175,6 +207,7 @@ export interface Dict {
   };
   footer: {
     tagline: string;
+    contactKicker: string;
     contactPrompt: string;
     explore: string;
     company: string;
@@ -199,6 +232,9 @@ const zhHK: Dict = {
     works: '合作方式',
     company: '公司詳情',
     contact: '查詢',
+    menu: '開啟選單',
+    close_menu: '關閉選單',
+    skip_to_content: '跳至主要內容',
   },
   meta: {
     home_title: 'GrowHub — 香港軟件開發公司 | 0 初期費用原型開發・Web・App・AI',
@@ -227,6 +263,8 @@ const zhHK: Dict = {
     kicker: 'SERVICES',
     title: '我們的服務',
     subtitle: '由構思、開發到運營，提供一條龍的軟件開發服務。',
+    previous: '上一項服務',
+    next: '下一項服務',
     items: [
       {
         name: 'Web 應用・服務開發',
@@ -250,6 +288,64 @@ const zhHK: Dict = {
       },
     ],
   },
+  serviceDetail: {
+    kicker: 'SERVICE',
+    back: '返回所有服務',
+    learnMore: '了解更多',
+    deliverablesTitle: '可協助製作',
+    suitableTitle: '適合這類項目',
+    processKicker: 'PROTOTYPE FIRST',
+    processTitle: '先看到可運作的原型',
+    processIntro:
+      '我們不會一開始就要求您確定所有規格，而是先用 AI 快速製作可操作的原型，再根據實物一起調整方向。',
+    ctaTitle: '有想法，但還未整理成企劃？',
+    ctaText: '毋須準備完整的計劃書。先告訴我們您想改善的事情，我們會由原型開始。',
+    ctaButton: '免費諮詢',
+    items: {
+      'web-app-development': {
+        title: 'Web 應用・服務開發',
+        summary: '由業務構思到 SaaS、會員系統及內部工具，我們設計並開發可持續擴展的 Web 服務。',
+        deliverables: [
+          'SaaS 與訂閱服務',
+          '預約・會員管理系統',
+          '企業內部工具',
+          'API 與外部服務整合',
+        ],
+        suitableFor: ['希望把手動流程數碼化', '需要先驗證新服務構思', '現有系統難以擴展或維護'],
+      },
+      'website-production': {
+        title: '網站製作與運營',
+        summary: '由資訊架構、UI/UX、開發到發佈後改善，製作兼顧品牌、速度與成果的網站。',
+        deliverables: ['企業網站', '服務與產品網站', '多語言網站', 'SEO 與持續改善'],
+        suitableFor: [
+          '網站未能清楚傳達服務價值',
+          '需要面向香港、日本及海外市場',
+          '希望發佈後繼續改善成效',
+        ],
+      },
+      'app-development': {
+        title: '流動應用程式開發',
+        summary: '由介面設計、原型到 iOS・Android 發佈及維護，協助您把流動服務真正交到用戶手上。',
+        deliverables: ['iOS・Android 應用程式', '跨平台應用程式', '後台與 API', '發佈與維護支援'],
+        suitableFor: [
+          '需要手機通知、相機或位置功能',
+          '希望同時支援 iOS 與 Android',
+          '想先以原型驗證使用流程',
+        ],
+      },
+      'ai-development': {
+        title: 'AI 驅動開發',
+        summary: '把 LLM、RAG 與自動化融入實際業務，同時以 AI 提升整個產品開發流程的速度與品質。',
+        deliverables: [
+          '生成式 AI 功能',
+          '企業知識搜尋與 RAG',
+          '工作流程自動化',
+          'AI 開發流程導入支援',
+        ],
+        suitableFor: ['希望把 AI 接入現有服務', '需要活用公司內部知識', '想在確保品質下加快開發'],
+      },
+    },
+  },
   capabilities: {
     kicker: 'CAPABILITIES',
     title: '技術能力',
@@ -258,7 +354,10 @@ const zhHK: Dict = {
       { name: '前端', items: ['React', 'Next.js', 'Astro', 'TypeScript', 'Tailwind CSS'] },
       { name: '後端', items: ['Node.js', 'Python', 'Go', 'REST / GraphQL', 'PostgreSQL'] },
       { name: '流動應用', items: ['React Native', 'Swift', 'Kotlin', 'Flutter'] },
-      { name: '雲端 & DevOps', items: ['AWS', 'Cloudflare', 'Docker', 'CI/CD', 'Netlify'] },
+      {
+        name: '雲端 & DevOps',
+        items: ['AWS', 'Cloudflare', 'Docker', 'CI/CD', 'Cloudflare Pages'],
+      },
       { name: 'AI', items: ['LLM 整合', 'RAG', 'AI 輔助開發', '自動化'] },
     ],
   },
@@ -322,7 +421,7 @@ const zhHK: Dict = {
     title: '最新消息',
     items: [
       {
-        date: '2026/07/31',
+        date: '2026/07/25',
         title: '本公司網站已全新改版',
         desc: '本公司網站已於設計及技術層面全面更新。今後亦請繼續多多支持。',
       },
@@ -434,11 +533,12 @@ const zhHK: Dict = {
     examples: ['餐廳線上預約系統', '健身教練的會員 App', '二手買賣平台'],
     button: '生成原型構成',
     loading: 'AI 正在思考原型構成…',
-    disclaimer: '※ 由 AI 即時生成的示意，僅供參考。實際會由工程師與你一起打磨。',
+    disclaimer:
+      '※ 由 AI 即時生成的示意，僅供參考。請勿輸入個人、機密或敏感資料；內容會傳送至外部 AI 服務。',
     errors: {
       empty: '請先輸入你的點子。',
       failed: '生成失敗，請稍後再試。',
-      notConfigured: 'Demo 尚未啟用（需設定 Workers AI）。',
+      notConfigured: 'Demo 尚未啟用（需設定 AI 服務）。',
     },
     result: {
       heading: 'AI 提出的原型構成',
@@ -492,7 +592,7 @@ const zhHK: Dict = {
       },
       {
         heading: '收集的個人資料類別',
-        text: '本公司透過查詢表格收集的個人資料包括：姓名、公司名稱（如適用）、電子郵箱地址及查詢內容。\n此外，本網站使用網站分析工具，可能自動收集瀏覽器類型、裝置資訊、IP 地址（經匿名化處理）及瀏覽行為等非直接識別個人身份的資料。',
+        text: '本公司透過查詢表格收集的個人資料包括：姓名、公司名稱（如適用）、電子郵箱地址及查詢內容。當閣下使用 AI 原型規劃 Demo 時，本公司亦會處理閣下輸入的構思內容；請勿輸入個人資料、機密資料或敏感資料。\n此外，本網站使用網站分析工具，可能自動收集瀏覽器類型、裝置資訊、IP 地址（經匿名化處理）及瀏覽行為等非直接識別個人身份的資料。',
       },
       {
         heading: '收集方式',
@@ -500,7 +600,7 @@ const zhHK: Dict = {
       },
       {
         heading: '收集及使用個人資料的目的',
-        text: '收集的個人資料將用於以下目的：\n(a) 回覆及處理閣下的查詢；\n(b) 提供閣下所要求的服務資訊；\n(c) 改善本網站的內容、功能及使用體驗；\n(d) 分析網站流量及使用情況，以優化服務質素；\n(e) 履行適用法律及監管要求。\n提供上述個人資料屬自願性質；惟如閣下未有提供姓名及電子郵箱地址等必要資料，本公司將無法回覆閣下的查詢。',
+        text: '收集的個人資料將用於以下目的：\n(a) 回覆及處理閣下的查詢；\n(b) 提供閣下所要求的服務資訊；\n(c) 根據閣下輸入的構思生成 AI 原型規劃；\n(d) 改善本網站的內容、功能及使用體驗；\n(e) 分析網站流量及使用情況，以優化服務質素；\n(f) 履行適用法律及監管要求。\n提供上述個人資料屬自願性質；惟如閣下未有提供姓名及電子郵箱地址等必要資料，本公司將無法回覆閣下的查詢。',
       },
       {
         heading: 'Cookie 及網站分析工具',
@@ -508,7 +608,7 @@ const zhHK: Dict = {
       },
       {
         heading: '第三方披露及服務供應商',
-        text: '本公司不會出售閣下的個人資料。除下列情況外，本公司不會向第三方披露閣下的個人資料：\n(a) 為處理查詢表格及網站分析而使用的服務供應商（包括 Netlify 及 Google Analytics），該等供應商僅按本公司指示處理資料；\n(b) 法律、法規或政府機關要求；\n(c) 已取得閣下的明確同意。\n由於上述服務供應商的伺服器可能位於香港以外地區，閣下的個人資料有可能被傳送至香港以外的司法管轄區處理。',
+        text: '本公司不會出售閣下的個人資料。除下列情況外，本公司不會向第三方披露閣下的個人資料：\n(a) 為營運網站、處理查詢、傳送電郵、網站分析及 AI 原型規劃而使用的服務供應商（包括 Cloudflare、Google Analytics 及 OpenRouter），該等供應商僅為提供相關服務而處理資料；\n(b) 法律、法規或政府機關要求；\n(c) 已取得閣下的明確同意。\nAI 原型規劃的構思內容會傳送至 OpenRouter 及其所路由的模型供應商。由於上述服務供應商的伺服器可能位於香港以外地區，資料有可能被傳送至香港以外的司法管轄區處理。',
       },
       {
         heading: '資料的保留期限',
@@ -540,6 +640,7 @@ const zhHK: Dict = {
     explore: '瀏覽',
     company: '公司',
     tagline: '先做出來，再談。由 0 初期費用的原型開始。',
+    contactKicker: 'CONTACT',
     contactPrompt: '歡迎垂詢',
     nav_home: '首頁',
     nav_privacy: '私隱條例',
@@ -562,6 +663,9 @@ const en: Dict = {
     works: 'How we work',
     company: 'Company',
     contact: 'Contact',
+    menu: 'Open menu',
+    close_menu: 'Close menu',
+    skip_to_content: 'Skip to main content',
   },
   meta: {
     home_title: 'GrowHub — Hong Kong Software Studio | Zero-Cost Prototypes・Web・App・AI',
@@ -590,6 +694,8 @@ const en: Dict = {
     kicker: 'SERVICES',
     title: 'What we do',
     subtitle: 'End-to-end software development, from idea to operation.',
+    previous: 'Previous service',
+    next: 'Next service',
     items: [
       {
         name: 'Web App & Service Development',
@@ -613,6 +719,87 @@ const en: Dict = {
       },
     ],
   },
+  serviceDetail: {
+    kicker: 'SERVICE',
+    back: 'Back to all services',
+    learnMore: 'Learn more',
+    deliverablesTitle: 'What we can build',
+    suitableTitle: 'A good fit when you',
+    processKicker: 'PROTOTYPE FIRST',
+    processTitle: 'See a working prototype first',
+    processIntro:
+      'We do not ask you to lock every requirement at the start. We use AI to build a working prototype quickly, then refine the direction together around something tangible.',
+    ctaTitle: 'Have an idea, but not a full brief?',
+    ctaText:
+      'You do not need a finished specification. Tell us what you want to improve, and we will start by making it tangible.',
+    ctaButton: 'Start a free consultation',
+    items: {
+      'web-app-development': {
+        title: 'Web App & Service Development',
+        summary:
+          'From business ideas to SaaS, membership platforms, and internal tools, we design and build web services that can grow with you.',
+        deliverables: [
+          'SaaS and subscription products',
+          'Booking and membership systems',
+          'Internal business tools',
+          'APIs and third-party integrations',
+        ],
+        suitableFor: [
+          'Want to digitize a manual workflow',
+          'Need to validate a new service idea',
+          'Have a system that is difficult to scale or maintain',
+        ],
+      },
+      'website-production': {
+        title: 'Website Production & Management',
+        summary:
+          'From information architecture and UI/UX to development and continuous improvement, we create websites built for brand clarity, speed, and outcomes.',
+        deliverables: [
+          'Corporate websites',
+          'Service and product sites',
+          'Multilingual websites',
+          'SEO and continuous improvement',
+        ],
+        suitableFor: [
+          'Your website does not explain your value clearly',
+          'You need to reach Hong Kong, Japan, or global audiences',
+          'You want to improve results after launch',
+        ],
+      },
+      'app-development': {
+        title: 'App Development',
+        summary:
+          'From interface design and prototypes to iOS and Android release and maintenance, we help put a real mobile service in users’ hands.',
+        deliverables: [
+          'iOS and Android apps',
+          'Cross-platform applications',
+          'Backend systems and APIs',
+          'Release and maintenance support',
+        ],
+        suitableFor: [
+          'Need notifications, camera, or location features',
+          'Want to support both iOS and Android',
+          'Need to validate the user flow with a prototype first',
+        ],
+      },
+      'ai-development': {
+        title: 'AI-Driven Development',
+        summary:
+          'We bring LLMs, RAG, and automation into real business workflows while using AI to improve the speed and quality of product development itself.',
+        deliverables: [
+          'Generative AI features',
+          'Enterprise knowledge search and RAG',
+          'Workflow automation',
+          'AI development workflow adoption',
+        ],
+        suitableFor: [
+          'Want to add AI to an existing service',
+          'Need to make internal knowledge usable',
+          'Want faster delivery without lowering the quality bar',
+        ],
+      },
+    },
+  },
   capabilities: {
     kicker: 'CAPABILITIES',
     title: 'Our tech stack',
@@ -621,7 +808,10 @@ const en: Dict = {
       { name: 'Frontend', items: ['React', 'Next.js', 'Astro', 'TypeScript', 'Tailwind CSS'] },
       { name: 'Backend', items: ['Node.js', 'Python', 'Go', 'REST / GraphQL', 'PostgreSQL'] },
       { name: 'Mobile', items: ['React Native', 'Swift', 'Kotlin', 'Flutter'] },
-      { name: 'Cloud & DevOps', items: ['AWS', 'Cloudflare', 'Docker', 'CI/CD', 'Netlify'] },
+      {
+        name: 'Cloud & DevOps',
+        items: ['AWS', 'Cloudflare', 'Docker', 'CI/CD', 'Cloudflare Pages'],
+      },
       { name: 'AI', items: ['LLM integration', 'RAG', 'AI-assisted dev', 'Automation'] },
     ],
   },
@@ -694,7 +884,7 @@ const en: Dict = {
     title: 'Latest news',
     items: [
       {
-        date: '31 Jul 2026',
+        date: '25 Jul 2026',
         title: 'We renewed our corporate website',
         desc: 'We have renewed our corporate website with a fresh design and a modern technology stack. Thank you for your continued support.',
       },
@@ -812,11 +1002,11 @@ const en: Dict = {
     button: 'Generate a prototype plan',
     loading: 'AI is sketching your prototype…',
     disclaimer:
-      'A rough, AI-generated sketch for reference — the real thing is shaped together with our engineers.',
+      'A rough AI-generated sketch for reference. Do not enter personal, confidential, or sensitive data; input is sent to an external AI service.',
     errors: {
       empty: 'Please describe your idea first.',
       failed: 'Generation failed. Please try again in a moment.',
-      notConfigured: 'The demo is not enabled yet (Workers AI required).',
+      notConfigured: 'The demo is not enabled yet (AI service configuration required).',
     },
     result: {
       heading: 'A prototype plan drafted by AI',
@@ -871,7 +1061,7 @@ const en: Dict = {
       },
       {
         heading: 'Personal Data We Collect',
-        text: 'Through the contact form, we collect: your name, company name (if provided), e-mail address, and the content of your message.\nIn addition, this website uses analytics tools that may automatically collect non-identifying information such as browser type, device information, IP address (anonymised), and browsing behaviour.',
+        text: 'Through the contact form, we collect: your name, company name (if provided), e-mail address, and the content of your message. When you use the AI prototype planner demo, we also process the idea you enter; please do not enter personal, confidential, or sensitive information.\nIn addition, this website uses analytics tools that may automatically collect non-identifying information such as browser type, device information, IP address (anonymised), and browsing behaviour.',
       },
       {
         heading: 'How We Collect Personal Data',
@@ -879,7 +1069,7 @@ const en: Dict = {
       },
       {
         heading: 'Purposes of Collection and Use',
-        text: 'Personal data collected is used for the following purposes:\n(a) responding to and handling your enquiry;\n(b) providing information about services you have requested;\n(c) improving the content, functionality, and usability of this website;\n(d) analysing website traffic and usage to improve our services; and\n(e) complying with applicable laws and regulatory requirements.\nProvision of personal data is voluntary; however, if you do not provide the necessary information (such as your name and e-mail address), we will not be able to respond to your enquiry.',
+        text: 'Personal data collected is used for the following purposes:\n(a) responding to and handling your enquiry;\n(b) providing information about services you have requested;\n(c) generating an AI prototype plan from the idea you enter;\n(d) improving the content, functionality, and usability of this website;\n(e) analysing website traffic and usage to improve our services; and\n(f) complying with applicable laws and regulatory requirements.\nProvision of personal data is voluntary; however, if you do not provide the necessary information (such as your name and e-mail address), we will not be able to respond to your enquiry.',
       },
       {
         heading: 'Cookies and Website Analytics',
@@ -887,7 +1077,7 @@ const en: Dict = {
       },
       {
         heading: 'Disclosure to Third Parties and Service Providers',
-        text: 'We do not sell your personal data. We do not disclose your personal data to third parties except:\n(a) to service providers that help us operate this website (including Netlify for form processing and Google for analytics), who process data only on our instructions;\n(b) where required by law, regulation, or government authority; or\n(c) with your explicit consent.\nAs these service providers’ servers may be located outside Hong Kong, your personal data may be transferred to and processed in jurisdictions outside Hong Kong.',
+        text: 'We do not sell your personal data. We do not disclose your personal data to third parties except:\n(a) to service providers that help us operate this website, process enquiries, deliver email, provide analytics, and generate AI prototype plans (including Cloudflare, Google Analytics, and OpenRouter), who process data to provide those services;\n(b) where required by law, regulation, or government authority; or\n(c) with your explicit consent.\nIdeas entered in the AI prototype planner are sent to OpenRouter and the model provider it routes the request to. As these service providers’ servers may be located outside Hong Kong, data may be transferred to and processed in jurisdictions outside Hong Kong.',
       },
       {
         heading: 'Data Retention',
@@ -919,6 +1109,7 @@ const en: Dict = {
     explore: 'Explore',
     company: 'Company',
     tagline: 'Build first, then talk. Starting with zero-cost prototypes.',
+    contactKicker: 'CONTACT',
     contactPrompt: 'Get in touch',
     nav_home: 'Home',
     nav_privacy: 'Privacy Policy',
@@ -941,6 +1132,9 @@ const ja: Dict = {
     works: '進め方',
     company: '会社概要',
     contact: 'お問い合わせ',
+    menu: 'メニューを開く',
+    close_menu: 'メニューを閉じる',
+    skip_to_content: 'メインコンテンツへ移動',
   },
   meta: {
     home_title: 'GrowHub — 香港のソフトウェア開発会社 | 初期費用0円のプロトタイプ開発',
@@ -969,6 +1163,8 @@ const ja: Dict = {
     kicker: 'SERVICES',
     title: '私たちのサービス',
     subtitle: '企画から開発、運用まで。ソフトウェア開発をワンストップで。',
+    previous: '前のサービス',
+    next: '次のサービス',
     items: [
       {
         name: 'Webアプリ・サービス開発',
@@ -992,6 +1188,87 @@ const ja: Dict = {
       },
     ],
   },
+  serviceDetail: {
+    kicker: 'SERVICE',
+    back: 'サービス一覧へ戻る',
+    learnMore: '詳しく見る',
+    deliverablesTitle: '対応できること',
+    suitableTitle: 'こんな課題に向いています',
+    processKicker: 'PROTOTYPE FIRST',
+    processTitle: 'まず、動くプロトタイプを見る',
+    processIntro:
+      '最初からすべての仕様を決める必要はありません。AIを活用して短期間で動く原型をつくり、実物を見ながら一緒に方向を磨きます。',
+    ctaTitle: 'アイデアはあるけれど、企画書はまだ？',
+    ctaText:
+      '完成した仕様書は必要ありません。改善したいことを聞かせてください。まず形にするところから始めます。',
+    ctaButton: '無料で相談する',
+    items: {
+      'web-app-development': {
+        title: 'Webアプリ・サービス開発',
+        summary:
+          '事業アイデアからSaaS、会員システム、社内ツールまで、成長に合わせて拡張できるWebサービスを設計・開発します。',
+        deliverables: [
+          'SaaS・サブスクリプションサービス',
+          '予約・会員管理システム',
+          '業務用の社内ツール',
+          'API・外部サービス連携',
+        ],
+        suitableFor: [
+          '手作業の業務をデジタル化したい',
+          '新しいサービスの仮説を検証したい',
+          '既存システムの拡張や保守に課題がある',
+        ],
+      },
+      'website-production': {
+        title: 'Web制作・運用',
+        summary:
+          '情報設計・UI/UX・開発から公開後の改善まで、ブランド、表示速度、成果を両立するWebサイトを制作します。',
+        deliverables: [
+          'コーポレートサイト',
+          'サービス・プロダクトサイト',
+          '多言語サイト',
+          'SEO・継続的な改善',
+        ],
+        suitableFor: [
+          'サービスの価値がサイトで伝わっていない',
+          '香港・日本・海外へ情報を届けたい',
+          '公開後も成果を継続的に改善したい',
+        ],
+      },
+      'app-development': {
+        title: 'アプリ開発',
+        summary:
+          '画面設計とプロトタイプからiOS・Androidの公開、保守まで、実際に使われるモバイルサービスを形にします。',
+        deliverables: [
+          'iOS・Androidアプリ',
+          'クロスプラットフォームアプリ',
+          'バックエンド・API',
+          'ストア公開・保守支援',
+        ],
+        suitableFor: [
+          '通知・カメラ・位置情報を活用したい',
+          'iOSとAndroidの両方に対応したい',
+          'まずプロトタイプで操作性を検証したい',
+        ],
+      },
+      'ai-development': {
+        title: 'AIを活用した開発',
+        summary:
+          'LLM、RAG、自動化を実際の業務へ組み込みながら、プロダクト開発そのものの速度と品質もAIで高めます。',
+        deliverables: [
+          '生成AI機能',
+          '社内ナレッジ検索・RAG',
+          '業務フロー自動化',
+          'AI開発フローの導入支援',
+        ],
+        suitableFor: [
+          '既存サービスへAIを組み込みたい',
+          '社内に蓄積した知識を活用したい',
+          '品質を保ちながら開発を速めたい',
+        ],
+      },
+    },
+  },
   capabilities: {
     kicker: 'CAPABILITIES',
     title: '技術スタック',
@@ -1003,7 +1280,10 @@ const ja: Dict = {
       },
       { name: 'バックエンド', items: ['Node.js', 'Python', 'Go', 'REST / GraphQL', 'PostgreSQL'] },
       { name: 'モバイル', items: ['React Native', 'Swift', 'Kotlin', 'Flutter'] },
-      { name: 'クラウド & DevOps', items: ['AWS', 'Cloudflare', 'Docker', 'CI/CD', 'Netlify'] },
+      {
+        name: 'クラウド & DevOps',
+        items: ['AWS', 'Cloudflare', 'Docker', 'CI/CD', 'Cloudflare Pages'],
+      },
       { name: 'AI', items: ['LLM連携', 'RAG', 'AI活用開発', '自動化'] },
     ],
   },
@@ -1076,7 +1356,7 @@ const ja: Dict = {
     title: 'お知らせ',
     items: [
       {
-        date: '2026/07/31',
+        date: '2026/07/25',
         title: 'コーポレートサイトをリニューアルしました',
         desc: 'この度、コーポレートサイトをデザイン・技術スタックともに一新いたしました。今後とも変わらぬご愛顧を賜りますようお願い申し上げます。',
       },
@@ -1193,11 +1473,12 @@ const ja: Dict = {
     ],
     button: 'プロトタイプ構成を生成',
     loading: 'AIがプロトタイプを考えています…',
-    disclaimer: '※ AIがその場で生成した参考イメージです。実際はエンジニアと一緒に磨き上げます。',
+    disclaimer:
+      '※ AIによる参考案です。個人情報・機密情報・センシティブな情報は入力しないでください。入力内容は外部AIサービスへ送信されます。',
     errors: {
       empty: 'まずはアイデアを入力してください。',
       failed: '生成に失敗しました。少し時間をおいて再度お試しください。',
-      notConfigured: 'デモは未有効化です（Workers AI の設定が必要）。',
+      notConfigured: 'デモは未有効化です（AIサービスの設定が必要です）。',
     },
     result: {
       heading: 'AIが提案したプロトタイプ構成',
@@ -1251,7 +1532,7 @@ const ja: Dict = {
       },
       {
         heading: '収集する個人情報の種類',
-        text: 'お問い合わせフォームからは、お名前・会社名（任意）・メールアドレス・お問い合わせ内容を収集します。\nまた、本サイトではアクセス解析ツールを利用しており、ブラウザの種類、デバイス情報、IPアドレス（匿名化処理済み）、閲覧行動など、個人を直接特定しない情報を自動的に取得する場合があります。',
+        text: 'お問い合わせフォームからは、お名前・会社名（任意）・メールアドレス・お問い合わせ内容を収集します。AIプロトタイプ構成デモをご利用の場合は、入力されたアイデアも処理します。個人情報・機密情報・センシティブな情報は入力しないでください。\nまた、本サイトではアクセス解析ツールを利用しており、ブラウザの種類、デバイス情報、IPアドレス（匿名化処理済み）、閲覧行動など、個人を直接特定しない情報を自動的に取得する場合があります。',
       },
       {
         heading: '収集方法',
@@ -1259,7 +1540,7 @@ const ja: Dict = {
       },
       {
         heading: '収集・利用目的',
-        text: '取得した個人情報は、以下の目的で利用します。\n(a) お問い合わせへの対応・回答\n(b) ご要望に応じたサービス情報のご案内\n(c) 本サイトのコンテンツ・機能・利便性の改善\n(d) アクセス状況の分析によるサービス品質の向上\n(e) 適用される法令・規制の遵守\nこれらの情報提供は任意ですが、お名前・メールアドレス等の必要情報をご提供いただけない場合、お問い合わせへの回答ができません。',
+        text: '取得した個人情報は、以下の目的で利用します。\n(a) お問い合わせへの対応・回答\n(b) ご要望に応じたサービス情報のご案内\n(c) 入力されたアイデアに基づくAIプロトタイプ構成案の生成\n(d) 本サイトのコンテンツ・機能・利便性の改善\n(e) アクセス状況の分析によるサービス品質の向上\n(f) 適用される法令・規制の遵守\nこれらの情報提供は任意ですが、お名前・メールアドレス等の必要情報をご提供いただけない場合、お問い合わせへの回答ができません。',
       },
       {
         heading: 'Cookie・アクセス解析ツールについて',
@@ -1267,7 +1548,7 @@ const ja: Dict = {
       },
       {
         heading: '第三者提供・業務委託について',
-        text: '当社はお客様の個人情報を第三者に販売することはありません。以下の場合を除き、個人情報を第三者に開示することはありません。\n(a) 本サイトの運営を支援する委託先（フォーム処理を担うNetlify、アクセス解析を担うGoogle等）。これらの委託先は当社の指示の範囲内でのみ情報を取り扱います。\n(b) 法令・規制または政府機関からの要請がある場合\n(c) お客様本人の同意がある場合\nなお、上記委託先のサーバーは香港域外に所在する場合があるため、お客様の個人情報が香港域外で処理される可能性があります。',
+        text: '当社はお客様の個人情報を第三者に販売することはありません。以下の場合を除き、個人情報を第三者に開示することはありません。\n(a) 本サイトの運営、お問い合わせ処理、メール送信、アクセス解析、AIプロトタイプ構成案の生成を支援する委託先（Cloudflare、Google Analytics、OpenRouter等）。これらの委託先は、各サービスの提供に必要な範囲で情報を取り扱います。\n(b) 法令・規制または政府機関からの要請がある場合\n(c) お客様本人の同意がある場合\nAIプロトタイプ構成デモへ入力したアイデアは、OpenRouterおよびOpenRouterがルーティングするモデル提供者へ送信されます。上記委託先のサーバーは香港域外に所在する場合があるため、情報が香港域外で処理される可能性があります。',
       },
       {
         heading: '保有期間',
@@ -1299,6 +1580,7 @@ const ja: Dict = {
     explore: 'サイトを見る',
     company: '会社情報',
     tagline: '悩む前に、作る。初期費用0円のプロトタイプから。',
+    contactKicker: 'CONTACT',
     contactPrompt: 'お気軽にお問い合わせください',
     nav_home: 'ホーム',
     nav_privacy: 'プライバシーポリシー',

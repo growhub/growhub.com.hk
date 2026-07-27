@@ -2,7 +2,7 @@ import { type Locale, localizePath } from '@i18n/ui';
 import { z } from 'zod';
 import type { ContactErrors } from './types';
 
-/** Netlify redirects here after a successful submit (localized thanks page). */
+/** Resolve the localized thanks page after a successful Pages Function submission. */
 export function buildContactAction(lang: Locale): string {
   return localizePath('/contact/thanks', lang);
 }

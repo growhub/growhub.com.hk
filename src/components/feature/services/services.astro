@@ -1,6 +1,6 @@
 ---
-import { getDict } from '@i18n/ui';
-import { serviceImages as images } from './constants';
+import { getDict, localizePath } from '@i18n/ui';
+import { serviceImages as images, serviceSlugs } from './constants';
 import type { ServicesProps } from './types';
 
 const { lang } = Astro.props as ServicesProps;
@@ -24,12 +24,17 @@ const loopItems = [...items, ...items, ...items];
       <p class="mt-4 text-[color:var(--color-ink-muted)]">{t.services.subtitle}</p>
     </div>
 
-    <div class="reveal relative mt-12">
+    <div
+      class="reveal relative mt-12"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label={t.services.title}
+    >
       <!-- prev (left, vertically centered) -->
       <button
         type="button"
         data-services-prev
-        aria-label="Previous"
+        aria-label={t.services.previous}
         class="glass absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-[color:var(--color-ink-muted)] shadow-lg transition-colors hover:text-[color:var(--color-brand)] sm:h-12 sm:w-12"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
@@ -38,7 +43,7 @@ const loopItems = [...items, ...items, ...items];
       <button
         type="button"
         data-services-next
-        aria-label="Next"
+        aria-label={t.services.next}
         class="glass absolute right-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-[color:var(--color-ink-muted)] shadow-lg transition-colors hover:text-[color:var(--color-brand)] sm:h-12 sm:w-12"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
@@ -51,7 +56,10 @@ const loopItems = [...items, ...items, ...items];
       >
         {
           loopItems.map((item, i) => (
-            <article class="card flex w-[85%] shrink-0 snap-start flex-col overflow-hidden p-0 sm:w-[62%] lg:w-[35%]">
+            <article
+              class="card flex w-[85%] shrink-0 snap-start flex-col overflow-hidden p-0 sm:w-[62%] lg:w-[35%]"
+              aria-hidden={i < count || i >= count * 2 ? 'true' : 'false'}
+            >
               <img
                 src={images[i % count]}
                 alt=""
@@ -72,6 +80,14 @@ const loopItems = [...items, ...items, ...items];
                     </span>
                   ))}
                 </div>
+                <a
+                  href={localizePath(`/services/${serviceSlugs[i % count]}`, lang)}
+                  tabindex={i < count || i >= count * 2 ? -1 : undefined}
+                  class="mt-5 inline-flex items-center gap-2 self-start text-sm font-semibold text-[color:var(--color-brand)] transition-colors hover:text-[color:var(--color-brand-2)]"
+                >
+                  {t.serviceDetail.learnMore}
+                  <span aria-hidden="true">→</span>
+                </a>
               </div>
             </article>
           ))
@@ -128,6 +144,7 @@ const loopItems = [...items, ...items, ...items];
     let startScroll = 0;
     track.addEventListener('pointerdown', (e) => {
       if (e.pointerType !== 'mouse') return;
+      if (e.target instanceof Element && e.target.closest('a, button')) return;
       dragging = true;
       startX = e.clientX;
       startScroll = track.scrollLeft;
@@ -148,59 +165,5 @@ const loopItems = [...items, ...items, ...items];
     // Suppress the browser's native image-drag / text selection while gripping.
     track.addEventListener('dragstart', (e) => e.preventDefault());
 
-    // --- Autoplay ---
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let timer: ReturnType<typeof setInterval> | null = null;
-    let paused = false;
-
-    const tick = () => {
-      if (!paused) scrollByStep(1);
-    };
-    const start = () => {
-      if (!reduce && timer === null) timer = setInterval(tick, 3800);
-    };
-    const stop = () => {
-      if (timer !== null) {
-        clearInterval(timer);
-        timer = null;
-      }
-    };
-
-    // Pause on hover / focus / touch / drag, resume shortly after.
-    const pause = () => {
-      paused = true;
-    };
-    const resume = () => {
-      paused = false;
-    };
-    const resumeLater = (ms: number) => {
-      paused = true;
-      window.setTimeout(resume, ms);
-    };
-    track.addEventListener('pointerenter', pause);
-    track.addEventListener('pointerleave', resume);
-    track.addEventListener('focusin', pause);
-    track.addEventListener('focusout', resume);
-    track.addEventListener('pointerdown', () => resumeLater(6000));
-    track.addEventListener('touchstart', () => resumeLater(6000), { passive: true });
-    prev?.addEventListener('click', () => resumeLater(8000));
-    next?.addEventListener('click', () => resumeLater(8000));
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) stop();
-      else start();
-    });
-
-    // Only autoplay while the carousel is on screen.
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) start();
-          else stop();
-        }
-      },
-      { threshold: 0.25 }
-    );
-    io.observe(track);
   }
 </script>

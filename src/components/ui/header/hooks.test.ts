@@ -23,6 +23,12 @@ describe('buildNavLinks', () => {
     expect(buildNavLinks('en')[0].label).toBe('Services');
     expect(buildNavLinks('ja')[0].label).toBe('サービス');
   });
+
+  it('adds English eyebrow labels only for non-English navigation', () => {
+    expect(buildNavLinks('ja')[0].eyebrow).toBe('Services');
+    expect(buildNavLinks('zh-hk')[2].eyebrow).toBe('AI Development');
+    expect(buildNavLinks('en')[0].eyebrow).toBeUndefined();
+  });
 });
 
 describe('buildContactLink', () => {

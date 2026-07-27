@@ -8,3 +8,12 @@ export const serviceImages = [
   '/images/services/app-dev.svg',
   '/images/services/ai-dev.svg',
 ];
+
+export const serviceSlugs: ServiceSlug[] = [
+  'web-app-development',
+  'website-production',
+  'app-development',
+  'ai-development',
+];
+
+import type { ServiceSlug } from '@i18n/ui';

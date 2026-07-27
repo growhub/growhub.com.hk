@@ -44,9 +44,18 @@ const langLinks = buildLangLinks(lang, route);
       <!-- Mobile nav (React island) -->
       <MobileNav
         client:load
-        links={[...navLinks, { href: home, label: t.nav.home }]}
+        links={[
+          ...navLinks,
+          {
+            href: home,
+            label: t.nav.home,
+            eyebrow: lang === 'en' ? undefined : getDict('en').nav.home,
+          },
+        ]}
         contact={contactLink}
         langLinks={langLinks}
+        menuLabel={t.nav.menu}
+        closeLabel={t.nav.close_menu}
       />
     </div>
   </div>
@@ -69,7 +78,14 @@ const langLinks = buildLangLinks(lang, route);
 <style>
   #site-header.is-scrolled {
     background: var(--header-bg);
-    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);
+  }
+
+  /* A backdrop filter creates a containing block for fixed descendants.
+     Keep it off on mobile so the full-screen menu remains viewport-sized. */
+  @media (min-width: 64rem) {
+    #site-header.is-scrolled {
+      backdrop-filter: blur(12px);
+    }
   }
 </style>

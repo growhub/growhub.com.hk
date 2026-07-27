@@ -2,10 +2,11 @@
 import { buildOrganizationSchema, buildWebsiteSchema } from './hooks';
 import type { StructuredDataProps } from './types';
 
-const { lang, site } = Astro.props as StructuredDataProps;
+const { lang, site, route } = Astro.props as StructuredDataProps;
 const org = buildOrganizationSchema(lang, site);
 const website = buildWebsiteSchema(lang, site);
+const isHome = route === '/';
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(org)} />
-<script type="application/ld+json" set:html={JSON.stringify(website)} />
+{isHome && <script type="application/ld+json" set:html={JSON.stringify(org)} />}
+{isHome && <script type="application/ld+json" set:html={JSON.stringify(website)} />}

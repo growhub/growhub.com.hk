@@ -33,12 +33,16 @@
 - Frontend: React, Next.js, Astro, TypeScript, Tailwind CSS
 - Backend: Node.js, Python, Go, REST / GraphQL, PostgreSQL
 - Mobile: React Native, Swift, Kotlin, Flutter
-- Cloud & DevOps: AWS, Cloudflare, Docker, CI/CD, Netlify
+- Cloud & DevOps: AWS, Cloudflare, Cloudflare Pages, Docker, CI/CD
 - AI: LLM integration, RAG, AI-assisted development, automation
 
 ## Pages
 
 - Home: https://growhub.com.hk/ (Traditional Chinese: /zh-hk/ , Japanese: /ja/)
+- Web App & Service Development: https://growhub.com.hk/services/web-app-development
+- Website Production & Management: https://growhub.com.hk/services/website-production
+- App Development: https://growhub.com.hk/services/app-development
+- AI-Driven Development: https://growhub.com.hk/services/ai-development
 - Contact: https://growhub.com.hk/contact
 - Privacy Policy: https://growhub.com.hk/policy/privacy
 

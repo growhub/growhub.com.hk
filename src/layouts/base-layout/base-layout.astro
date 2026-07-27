@@ -1,6 +1,6 @@
 ---
 import '../../styles/global.css';
-import { htmlLang, locales } from '@i18n/ui';
+import { getDict, htmlLang, locales } from '@i18n/ui';
 import Analytics from '@ui/analytics';
 import Footer from '@ui/footer';
 import Header from '@ui/header';
@@ -74,7 +74,7 @@ const ogLocaleAlternates = locales.filter((l) => l !== lang).map((l) => ogLocale
     <meta name="twitter:image" content={ogImage} />
 
     <!-- Structured data (JSON-LD) -->
-    <StructuredData lang={lang} site={site} />
+    <StructuredData lang={lang} site={site} route={route} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -85,8 +85,9 @@ const ogLocaleAlternates = locales.filter((l) => l !== lang).map((l) => ogLocale
     />
   </head>
   <body>
+    <a href="#main-content" class="skip-link">{getDict(lang).nav.skip_to_content}</a>
     {showHeader && <Header lang={lang} route={route} />}
-    <main>
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
     {showFooter && <Footer lang={lang} />}

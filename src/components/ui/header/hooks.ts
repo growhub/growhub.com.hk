@@ -8,19 +8,44 @@ import type { LangLink, NavLink } from './types';
  */
 export function buildNavLinks(lang: Locale): NavLink[] {
   const t = getDict(lang);
+  const en = getDict('en');
   const base = localizePath('/', lang);
   return [
-    { href: `${base}#services`, label: t.nav.services },
-    { href: `${base}#capabilities`, label: t.nav.capabilities },
-    { href: `${base}#ai`, label: t.nav.approach },
-    { href: `${base}#works`, label: t.nav.works },
-    { href: `${base}#company`, label: t.nav.company },
+    {
+      href: `${base}#services`,
+      label: t.nav.services,
+      eyebrow: lang === 'en' ? undefined : en.nav.services,
+    },
+    {
+      href: `${base}#capabilities`,
+      label: t.nav.capabilities,
+      eyebrow: lang === 'en' ? undefined : en.nav.capabilities,
+    },
+    {
+      href: `${base}#ai`,
+      label: t.nav.approach,
+      eyebrow: lang === 'en' ? undefined : en.nav.approach,
+    },
+    {
+      href: `${base}#works`,
+      label: t.nav.works,
+      eyebrow: lang === 'en' ? undefined : en.nav.works,
+    },
+    {
+      href: `${base}#company`,
+      label: t.nav.company,
+      eyebrow: lang === 'en' ? undefined : en.nav.company,
+    },
   ];
 }
 
 /** Localized "contact" call-to-action link. */
 export function buildContactLink(lang: Locale): NavLink {
-  return { href: localizePath('/contact', lang), label: getDict(lang).nav.contact };
+  return {
+    href: localizePath('/contact', lang),
+    label: getDict(lang).nav.contact,
+    eyebrow: lang === 'en' ? undefined : getDict('en').nav.contact,
+  };
 }
 
 /** One link per locale for the language switcher, flagging the active one. */
