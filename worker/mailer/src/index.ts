@@ -80,7 +80,7 @@ export default {
       return json({ error: 'not_configured' }, 500);
     }
 
-    const subject = `[GrowHub] お問い合わせ — ${name}`;
+    const subject = `[GrowHub] Contact Inquiry — ${name}`;
     const bodyText = [
       `Name: ${name}`,
       `Company: ${company || '-'}`,
